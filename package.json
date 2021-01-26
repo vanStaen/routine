@@ -1,0 +1,23 @@
+{
+  "name": "routine",
+  "version": "1.0.0",
+  "description": "Recuring task management",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanStaen/routine.git"
+  },
+  "keywords": [
+    "routine",
+    "cvs"
+  ],
+  "author": "vanStaen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanStaen/routine/issues"
+  },
+  "homepage": "https://github.com/vanStaen/routine#readme"
+}
