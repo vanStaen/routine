@@ -12,15 +12,15 @@ client.connect(err => {
   if (err) {
     console.error('connection error', err.stack)
   } else {
-    console.log('Repeater API:', 'Connected to postgres db!')
+    console.log('repeated API:', 'Connected to postgres db!')
   }
 })
 
-// GET all data from Repeater
+// GET all data from repeated
 router.get("/", async (req, res) => {
   try {
-    const repeater = await client.query('SELECT * FROM repeater ORDER BY id ASC;');
-    res.status(201).json(repeater.rows);
+    const repeated = await client.query('SELECT * FROM repeated ORDER BY id ASC;');
+    res.status(201).json(repeated.rows);
   } catch (err) {
     res.status(400).json({
       error: `${err})`,
@@ -28,12 +28,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET single data from repeater (based on id)
+// GET single data from repeated (based on id)
 router.get("/:id", async (req, res) => {
   try {
-    const repeater = await client.query('SELECT * FROM repeater WHERE id=' + req.params.id);
-    if (repeater.rows.length > 0) {
-      res.status(201).json(repeater.rows);
+    const repeated = await client.query('SELECT * FROM repeated WHERE id=' + req.params.id);
+    if (repeated.rows.length > 0) {
+      res.status(201).json(repeated.rows);
     } else {
       res.status(400).json({
         error: `No data found with id#${req.params.id}`,
@@ -46,7 +46,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// DELETE single data from repeater (based on id)
+// DELETE single data from repeated (based on id)
 router.delete("/:id", async (req, res) => {
   if (!req.isAuth) {
     res.status(401).json({
@@ -55,7 +55,7 @@ router.delete("/:id", async (req, res) => {
     return;
   }
   try {
-    const repeater = await client.query('DELETE FROM repeater WHERE id=' + req.params.id);
+    const repeated = await client.query('DELETE FROM repeated WHERE id=' + req.params.id);
     res.status(200).json({
       success: `Entry #${req.params.id} has been deleted.`,
     });
@@ -66,7 +66,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// PATCH single data from repeater (based on id)
+// PATCH single data from repeated (based on id)
 router.patch("/:id", async (req, res) => {
   if (!req.isAuth) {
     res.status(401).json({
@@ -115,11 +115,11 @@ router.patch("/:id", async (req, res) => {
     updateField = updateField + "geniusurl='" + req.body.geniusurl + "',";
   }
   const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
-  const updateQuery = 'UPDATE repeater SET ' + updateFieldEdited + ' WHERE id=' + req.params.id;
+  const updateQuery = 'UPDATE repeated SET ' + updateFieldEdited + ' WHERE id=' + req.params.id;
   console.log(updateQuery);
   try {
-    const repeater = await client.query(updateQuery);
-    if (repeater.rowCount > 0) {
+    const repeated = await client.query(updateQuery);
+    if (repeated.rowCount > 0) {
       res.status(200).json({
         success: `Entry #${req.params.id} has been updated.`,
       });
@@ -136,7 +136,7 @@ router.patch("/:id", async (req, res) => {
 
 });
 
-// POST add to repeater
+// POST add to repeated
 router.post("/", async (req, res) => {
   if (!req.isAuth) {
     res.status(401).json({
@@ -161,7 +161,7 @@ router.post("/", async (req, res) => {
   const bass = req.body.bass ? req.body.bass : false;
   const checked = req.body.checked ? req.body.checked : false;
   const geniusurl = await getfirstResultGoogleSearch(['"' + artist.split(' ').join('","'), song.split(" ").join("', '") + '"', 'lyrics', 'genius']);
-  const insertQuery = `INSERT INTO repeater (title, link, tags, picurl, active, bookmark, artist, song, videourl, piano, checked, bass, geniusurl) VALUES ('${title}', '${link}', ${tags}, '${picurl}', ${active}, ${bookmark}, '${artist}', '${song}', '${videourl}', ${piano}, ${checked}, ${bass}, '${geniusurl}')`;
+  const insertQuery = `INSERT INTO repeated (title, link, tags, picurl, active, bookmark, artist, song, videourl, piano, checked, bass, geniusurl) VALUES ('${title}', '${link}', ${tags}, '${picurl}', ${active}, ${bookmark}, '${artist}', '${song}', '${videourl}', ${piano}, ${checked}, ${bass}, '${geniusurl}')`;
   try {
     await client.query(insertQuery);
     res.status(201).json({ success: "Success" });
