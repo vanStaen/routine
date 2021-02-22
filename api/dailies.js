@@ -19,7 +19,7 @@ client.connect(err => {
 // GET all data from repeated
 router.get("/", async (req, res) => {
   try {
-    const repeated = await client.query('SELECT * FROM repeated ORDER BY id ASC;');
+    const repeated = await client.query('SELECT * FROM dailies ORDER BY id ASC;');
     res.status(201).json(repeated.rows);
   } catch (err) {
     res.status(400).json({
@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
 // GET single data from repeated (based on id)
 router.get("/:id", async (req, res) => {
   try {
-    const repeated = await client.query('SELECT * FROM repeated WHERE id=' + req.params.id);
+    const repeated = await client.query('SELECT * FROM dailies WHERE id=' + req.params.id);
     if (repeated.rows.length > 0) {
       res.status(201).json(repeated.rows);
     } else {
@@ -55,7 +55,7 @@ router.delete("/:id", async (req, res) => {
     return;
   }
   try {
-    const repeated = await client.query('DELETE FROM repeated WHERE id=' + req.params.id);
+    const repeated = await client.query('DELETE FROM dailies WHERE id=' + req.params.id);
     res.status(200).json({
       success: `Entry #${req.params.id} has been deleted.`,
     });
@@ -65,6 +65,8 @@ router.delete("/:id", async (req, res) => {
     });
   }
 });
+
+/*
 
 // PATCH single data from repeated (based on id)
 router.patch("/:id", async (req, res) => {
@@ -136,32 +138,34 @@ router.patch("/:id", async (req, res) => {
 
 });
 
+*/
+
 // POST add to repeated
 router.post("/", async (req, res) => {
+
   if (!req.isAuth) {
     res.status(401).json({
       error: "Unauthorized",
     });
     return;
   }
-  // Title and Link are Mandatory
-  if (!req.body.artist || !req.body.song) {
-    return res.status(400).json({ error: `Error: Some field are missing. You need to pass at least an 'artist' name, and a 'song' name to create a new entry.` });
-  }
-  const artist = req.body.artist.replace("'", "");
-  const song = req.body.song.replace("'", "");
-  const picurl = req.body.picurl ? req.body.picurl : null;
-  const link = req.body.link ? req.body.link : null;
-  const title = req.body.title ? req.body.title.replace("'", "") : artist + '-' + song;
-  const tags = req.body.tags ? "ARRAY ['" + req.body.tags.replace("'", "").join("','") + "']" : `ARRAY ['${artist}','${song}']`;
-  const bookmark = req.body.bookmark ? req.body.bookmark : false;
-  const active = req.body.active ? req.body.active : true;
-  const videourl = req.body.videourl ? req.body.videourl : null;
-  const piano = req.body.piano ? req.body.piano : false;
-  const bass = req.body.bass ? req.body.bass : false;
-  const checked = req.body.checked ? req.body.checked : false;
-  const geniusurl = await getfirstResultGoogleSearch(['"' + artist.split(' ').join('","'), song.split(" ").join("', '") + '"', 'lyrics', 'genius']);
-  const insertQuery = `INSERT INTO repeated (title, link, tags, picurl, active, bookmark, artist, song, videourl, piano, checked, bass, geniusurl) VALUES ('${title}', '${link}', ${tags}, '${picurl}', ${active}, ${bookmark}, '${artist}', '${song}', '${videourl}', ${piano}, ${checked}, ${bass}, '${geniusurl}')`;
+
+  // missing
+  // if (!req.body.date || !req.body.song) {
+  //  return res.status(400).json({ error: `Error: Some field are missing. You need to pass at least an 'artist' name, and a 'song' name to create a new entry.` });
+  // }
+
+  const date = req.body.date || date.now();
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const user = req.userId;
+
+  const insertQuery = `INSERT INTO dailies 
+                       (day, month, year, user) 
+                       VALUES 
+                       ('${day}', '${month}','${year}','${user}')`;
+
   try {
     await client.query(insertQuery);
     res.status(201).json({ success: "Success" });
@@ -170,9 +174,7 @@ router.post("/", async (req, res) => {
       error: `${err})`,
     });
   }
+
 });
 
 module.exports = router;
-
-
-
