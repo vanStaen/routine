@@ -8,3 +8,4 @@
 ## Completed ✓
 
 - [x] Create React App
+- [x] Initialize Heroku

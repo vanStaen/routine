@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const isAuth = require("./middleware/is-auth");
 
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 5005;
 require("dotenv/config");
 
 // Init Express
@@ -31,7 +31,8 @@ app.use(express.static(path.join(__dirname, "build")));
 app.get('/', (req, res) => { res.sendFile(path.join(__dirname, "build", "index.html")); });
 
 // Router to API endpoints
-app.use("/repeated", require("./api/repeated"));
+app.use("/dailies", require("./api/dailies"));
+app.use("/weeklies", require("./api/weeklies"));
 
 // Listen on a port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
