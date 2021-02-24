@@ -12,21 +12,9 @@ client.connect(err => {
   if (err) {
     console.error('connection error', err.stack)
   } else {
-    console.log('repeated API:', 'Connected to postgres db!')
+    console.log('Dailies API:', 'Connected to postgres db!')
   }
 })
-
-// GET all data from repeated
-router.get("/", async (req, res) => {
-  try {
-    const repeated = await client.query('SELECT * FROM dailies ORDER BY id ASC;');
-    res.status(201).json(repeated.rows);
-  } catch (err) {
-    res.status(400).json({
-      error: `${err})`,
-    });
-  }
-});
 
 // GET single data from repeated (based on id)
 router.get("/:year/:month/:day", async (req, res) => {
@@ -46,69 +34,7 @@ router.get("/:year/:month/:day", async (req, res) => {
   }
 });
 
-// DELETE single data from repeated (based on id)
-router.delete("/:year/:month/:day", async (req, res) => {
-
-  try {
-    const repeated = await client.query(`SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`);
-    res.status(200).json({
-      success: `Entry #${req.params.id} has been deleted.`,
-    });
-  } catch (err) {
-    res.status(400).json({
-      error: `${err}`,
-    });
-  }
-});
-
-/*
-// PATCH single data from repeated (based on id)
-router.patch("/:id", async (req, res) => {
-  if (!req.isAuth) {
-    res.status(401).json({
-      error: "Unauthorized",
-    });
-    return;
-  }
-  let updateField = '';
-  if (req.body.active !== undefined) {
-    updateField = updateField + "active=" + req.body.active + ",";
-  }
-  if (req.body.link) {
-    updateField = updateField + "link='" + req.body.link + "',";
-  }
-  if (req.body.checked !== undefined) {
-    updateField = updateField + "checked=" + req.body.checked + ",";
-  }
-  if (req.body.tags) {
-    updateField = updateField + "tags= ARRAY ['" + req.body.tags.join("','") + "'],";
-  }
-  if (req.body.title) {
-    updateField = updateField + "title='" + req.body.title.replace("'", "") + "',";
-  }
-  const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
-  const updateQuery = 'UPDATE repeated SET ' + updateFieldEdited + ' WHERE id=' + req.params.id;
-  console.log(updateQuery);
-  try {
-    const repeated = await client.query(updateQuery);
-    if (repeated.rowCount > 0) {
-      res.status(200).json({
-        success: `Entry #${req.params.id} has been updated.`,
-      });
-    } else {
-      res.status(400).json({
-        error: `No data found with id#${req.params.id}`,
-      });
-    }
-  } catch (err) {
-    res.status(400).json({
-      error: `${err}`,
-    });
-  }
-});
-*/
-
-// POST add to repeated
+// POST create new dailies line or update it
 router.post("/", async (req, res) => {
 
   if (!req.isAuth) {
@@ -130,16 +56,20 @@ router.post("/", async (req, res) => {
   const user = req.userId;
 
   // Check if there is already a row for today
-  const today = await client.query(`SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`);
-  if (repeated.rows.length > 0) {
+  const todayQuerry = `SELECT * FROM dailies 
+                       WHERE year=${req.params.year} 
+                       AND month=${req.params.month} 
+                       AND day=${req.params.day}`
+
+  const today = await client.query(todayQuerry);
+
+  if (today.rows.length > 0) {
     // Create new entry daily in db
     // TODO
   } else {
     // Update daily entry in db
     // TODO
   }
-
-
 
   const insertQuery = `INSERT INTO dailies 
                        (day, month, year, user) 
