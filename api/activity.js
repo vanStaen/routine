@@ -35,14 +35,14 @@ router.get("/:table", async (req, res) => {
 
 
 // DELETE single data from repeated (based on id)
-router.delete("/:table/:activity", async (req, res) => {
+router.delete("/", async (req, res) => {
     const deleteQuery = `
-                        ALTER TABLE '${req.params.table}'
-                        DROP COLUMN '${req.params.activity}';
+                        ALTER TABLE ${req.body.table}
+                        DROP COLUMN ${req.body.activity};
                         `;
     try {
         await client.query(deleteQuery);
-        res.status(201).json({ success: `Column '${req.params.activity}' deleted from table '${req.params.table}'.` });
+        res.status(201).json({ success: `Column ${req.body.activity} deleted from ${req.body.table}.` });
     } catch (err) {
         res.status(400).json({
             error: `${err})`,
@@ -51,14 +51,14 @@ router.delete("/:table/:activity", async (req, res) => {
 });
 
 // POST add to repeated
-router.post("/:table/:activity", async (req, res) => {
+router.post("/", async (req, res) => {
     const insertQuery = `
-                        ALTER TABLE '${req.params.table}'
-                        ADD '${req.params.activity}' varchar(255);
+                        ALTER TABLE ${req.body.table}
+                        ADD ${req.body.activity} varchar(255);
                         `;
     try {
         await client.query(insertQuery);
-        res.status(201).json({ success: `Column '${req.params.activity}' added to table '${req.params.table}'.` });
+        res.status(201).json({ success: `Column ${req.body.activity} added to ${req.body.table}.` });
     } catch (err) {
         res.status(400).json({
             error: `${err})`,
