@@ -29,9 +29,9 @@ router.get("/", async (req, res) => {
 });
 
 // GET single data from repeated (based on id)
-router.get("/:id", async (req, res) => {
+router.get("/:year/:month/:day", async (req, res) => {
   try {
-    const repeated = await client.query('SELECT * FROM dailies WHERE id=' + req.params.id);
+    const repeated = await client.query(`SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`);
     if (repeated.rows.length > 0) {
       res.status(201).json(repeated.rows);
     } else {
@@ -47,15 +47,10 @@ router.get("/:id", async (req, res) => {
 });
 
 // DELETE single data from repeated (based on id)
-router.delete("/:id", async (req, res) => {
-  if (!req.isAuth) {
-    res.status(401).json({
-      error: "Unauthorized",
-    });
-    return;
-  }
+router.delete("/:year/:month/:day", async (req, res) => {
+
   try {
-    const repeated = await client.query('DELETE FROM dailies WHERE id=' + req.params.id);
+    const repeated = await client.query(`SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`);
     res.status(200).json({
       success: `Entry #${req.params.id} has been deleted.`,
     });
@@ -67,7 +62,6 @@ router.delete("/:id", async (req, res) => {
 });
 
 /*
-
 // PATCH single data from repeated (based on id)
 router.patch("/:id", async (req, res) => {
   if (!req.isAuth) {
@@ -92,30 +86,6 @@ router.patch("/:id", async (req, res) => {
   if (req.body.title) {
     updateField = updateField + "title='" + req.body.title.replace("'", "") + "',";
   }
-  if (req.body.picurl) {
-    updateField = updateField + "picurl='" + req.body.picurl + "',";
-  }
-  if (req.body.bookmark !== undefined) {
-    updateField = updateField + "bookmark='" + req.body.bookmark + "',";
-  }
-  if (req.body.videourl) {
-    updateField = updateField + "videourl='" + req.body.videourl + "',";
-  }
-  if (req.body.artist) {
-    updateField = updateField + "artist='" + req.body.artist.replace("'", "") + "',";
-  }
-  if (req.body.song) {
-    updateField = updateField + "song='" + req.body.song.replace("'", "") + "',";
-  }
-  if (req.body.piano !== undefined) {
-    updateField = updateField + "piano='" + req.body.piano + "',";
-  }
-  if (req.body.bass !== undefined) {
-    updateField = updateField + "bass='" + req.body.bass + "',";
-  }
-  if (req.body.geniusurl !== undefined) {
-    updateField = updateField + "geniusurl='" + req.body.geniusurl + "',";
-  }
   const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
   const updateQuery = 'UPDATE repeated SET ' + updateFieldEdited + ' WHERE id=' + req.params.id;
   console.log(updateQuery);
@@ -135,9 +105,7 @@ router.patch("/:id", async (req, res) => {
       error: `${err}`,
     });
   }
-
 });
-
 */
 
 // POST add to repeated
@@ -150,16 +118,28 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  // missing
-  // if (!req.body.date || !req.body.song) {
-  //  return res.status(400).json({ error: `Error: Some field are missing. You need to pass at least an 'artist' name, and a 'song' name to create a new entry.` });
-  // }
+  // Check if date missing
+  if (!req.body.date) {
+    return res.status(400).json({ error: `Error: Date field is missing.` });
+  }
 
   const date = req.body.date || date.now();
   const day = date.getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
   const user = req.userId;
+
+  // Check if there is already a row for today
+  const today = await client.query(`SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`);
+  if (repeated.rows.length > 0) {
+    // Create new entry daily in db
+    // TODO
+  } else {
+    // Update daily entry in db
+    // TODO
+  }
+
+
 
   const insertQuery = `INSERT INTO dailies 
                        (day, month, year, user) 
