@@ -54,7 +54,7 @@ router.delete("/", async (req, res) => {
 router.post("/", async (req, res) => {
     const insertQuery = `
                         ALTER TABLE ${req.body.table}
-                        ADD ${req.body.activity} varchar(255);
+                        ADD ${req.body.activity} ${req.body.datatype};
                         `;
     try {
         await client.query(insertQuery);

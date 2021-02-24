@@ -16,10 +16,22 @@ client.connect(err => {
   }
 })
 
-// GET single data from repeated (based on id)
+// GET data from dailies
 router.get("/:year/:month/:day", async (req, res) => {
+  if (!req.isAuth) {
+    res.status(401).json({
+      error: "Unauthorized",
+    });
+    return;
+  } else {
+    const user = req.userId;
+  }
   try {
-    const repeated = await client.query(`SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`);
+    const repeated = await client.query(`SELECT * FROM dailies 
+                                        WHERE year=${req.params.year} 
+                                        AND month=${req.params.month} 
+                                        AND day=${req.params.day}
+                                        AND user=${user}`);
     if (repeated.rows.length > 0) {
       res.status(201).json(repeated.rows);
     } else {
@@ -36,33 +48,28 @@ router.get("/:year/:month/:day", async (req, res) => {
 
 // POST create new dailies line or update it
 router.post("/", async (req, res) => {
-
   if (!req.isAuth) {
     res.status(401).json({
       error: "Unauthorized",
     });
     return;
+  } else {
+    const user = req.userId;
   }
-
-  // Check if date missing
   if (!req.body.date) {
     return res.status(400).json({ error: `Error: Date field is missing.` });
   }
-
   const date = req.body.date || date.now();
   const day = date.getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
-  const user = req.userId;
-
   // Check if there is already a row for today
   const todayQuerry = `SELECT * FROM dailies 
                        WHERE year=${req.params.year} 
                        AND month=${req.params.month} 
-                       AND day=${req.params.day}`
-
+                       AND day=${req.params.day}
+                       AND user=${user}`;
   const today = await client.query(todayQuerry);
-
   if (today.rows.length > 0) {
     // Create new entry daily in db
     // TODO
@@ -70,21 +77,6 @@ router.post("/", async (req, res) => {
     // Update daily entry in db
     // TODO
   }
-
-  const insertQuery = `INSERT INTO dailies 
-                       (day, month, year, user) 
-                       VALUES 
-                       ('${day}', '${month}','${year}','${user}')`;
-
-  try {
-    await client.query(insertQuery);
-    res.status(201).json({ success: "Success" });
-  } catch (err) {
-    res.status(400).json({
-      error: `${err})`,
-    });
-  }
-
 });
 
 module.exports = router;
