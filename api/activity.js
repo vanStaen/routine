@@ -16,6 +16,18 @@ client.connect(err => {
     }
 })
 
+// GET all data from activities
+router.get("/", async (req, res) => {
+    try {
+        const activities = await client.query('SELECT * FROM activities ORDER BY activities ASC;');
+        res.status(201).json(activities.rows);
+    } catch (err) {
+        res.status(400).json({
+            error: `${err})`,
+        });
+    }
+});
+
 // GET list of all columns in table
 router.get("/:table", async (req, res) => {
     try {
