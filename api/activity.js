@@ -43,7 +43,7 @@ router.get("/:table", async (req, res) => {
 });
 
 
-// DELETE single data from repeated (based on id)
+// DELETE single column from a table (based on column_name 'activity')
 router.delete("/", async (req, res) => {
     const deleteQuery = `
                         ALTER TABLE ${req.body.table}
@@ -59,13 +59,18 @@ router.delete("/", async (req, res) => {
     }
 });
 
-// POST add to repeated
+// POST add activity
 router.post("/", async (req, res) => {
-    const insertQuery = `
+    const alterQuery = `
                         ALTER TABLE ${req.body.table}
                         ADD ${req.body.activity} ${req.body.datatype};
                         `;
+    const insertQuery = `
+                        INSERT INTO activities (activity, icon, category, unit) 
+                        VALUES ('${req.body.activity}', '${req.body.icon}', '${req.body.category}', '${req.body.unit}' )
+                        `;
     try {
+        await client.query(alterQuery);
         await client.query(insertQuery);
         res.status(201).json({ success: `Column ${req.body.activity} added to ${req.body.table}.` });
     } catch (err) {
