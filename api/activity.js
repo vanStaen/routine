@@ -80,4 +80,38 @@ router.post("/", async (req, res) => {
     }
 });
 
+// PATCH single data from songbook(based on id)
+router.patch("/", async (req, res) => {
+    let updateField = '';
+    if (req.body.icon !== undefined) {
+        updateField = updateField + "icon='" + req.body.icon + "',";
+    }
+    if (req.body.category) {
+        updateField = updateField + "category='" + req.body.category + "',";
+    }
+    if (req.body.unit !== undefined) {
+        updateField = updateField + "unit='" + req.body.unit + "',";
+    }
+    const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
+    const updateQuery = `UPDATE activities SET ${updateFieldEdited} WHERE activity='${req.body.activity}'`;
+    console.log(updateQuery);
+    try {
+        const udpate = await client.query(updateQuery);
+        if (udpate.rowCount > 0) {
+            res.status(200).json({
+                success: `Activity '${req.body.activity}' has been updated.`,
+            });
+        } else {
+            res.status(400).json({
+                error: `No data found for activitiy ${req.body.activity}`,
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            error: `${err}`,
+        });
+    }
+
+});
+
 module.exports = router;
