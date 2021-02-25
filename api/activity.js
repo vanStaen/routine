@@ -24,8 +24,17 @@ router.get("/:table", async (req, res) => {
                         FROM   INFORMATION_SCHEMA.COLUMNS
                         WHERE  TABLE_NAME = '${req.params.table}'
                         `
-        const activities = await client.query(querry);
-        res.status(201).json(activities.rows);
+        const results = await client.query(querry)
+        const activities = results.rows.filter(result => {
+            if (result.column_name === "year" ||
+                result.column_name === "month" ||
+                result.column_name === "day") {
+                return false;
+            } else {
+                return true;
+            }
+        });
+        res.status(201).json(activities);
     } catch (err) {
         res.status(400).json({
             error: `${err})`,
