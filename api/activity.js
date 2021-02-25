@@ -45,12 +45,17 @@ router.get("/:table", async (req, res) => {
 
 // DELETE single column from a table (based on column_name 'activity')
 router.delete("/", async (req, res) => {
-    const deleteQuery = `
+    const deleteQuery1 = `
                         ALTER TABLE ${req.body.table}
                         DROP COLUMN ${req.body.activity};
                         `;
+    const deleteQuery2 = `
+                        DELETE FROM activities 
+                        WHERE activity='${req.body.activity}'
+                        `;
     try {
-        await client.query(deleteQuery);
+        await client.query(deleteQuery1);
+        await client.query(deleteQuery2);
         res.status(201).json({ success: `Column ${req.body.activity} deleted from ${req.body.table}.` });
     } catch (err) {
         res.status(400).json({

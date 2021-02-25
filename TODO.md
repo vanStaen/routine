@@ -10,7 +10,7 @@
         - [x] POST create new column in table (from body)
         - [x] POST create new line in table activities
         - [x] DEL drop column in table (from body)
-        - [ ] DEL delete line in table activities
+        - [x] DEL delete line in table activities
         - [x] GET list of all columns in table (from body)
         - [ ] GET if table (from body) empty, list all from table activities
 
