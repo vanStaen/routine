@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const getRepeatedItems = async () => {
+export const getDailies = async () => {
     const response = await axios({
-        url: process.env.REACT_APP_API_URL + "repeated",
+        url: process.env.REACT_APP_API_URL + "activity",
         method: "GET",
     });
     if ((response.status !== 200) & (response.status !== 201)) {

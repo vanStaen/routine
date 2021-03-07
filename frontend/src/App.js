@@ -1,11 +1,11 @@
 import './App.css';
-import './component/RepeatedItem/RepeatedItem'
+import { Dailies } from './component/Dailies/Dailies';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <RepeatedItem/>       
+        <Dailies/>
       </header>
     </div>
   );
