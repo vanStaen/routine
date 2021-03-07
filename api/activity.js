@@ -117,7 +117,6 @@ router.patch("/", async (req, res) => {
     }
     const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
     const updateQuery = `UPDATE activities SET ${updateFieldEdited} WHERE activity='${req.body.activity}'`;
-    console.log(updateQuery);
     try {
         const udpate = await client.query(updateQuery);
         if (udpate.rowCount > 0) {
@@ -134,7 +133,6 @@ router.patch("/", async (req, res) => {
             error: `${err}`,
         });
     }
-
 });
 
 module.exports = router;
