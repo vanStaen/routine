@@ -83,8 +83,8 @@ router.post("/", async (req, res) => {
                         ADD ${req.body.activity} ${req.body.datatype};
                         `;
     const insertQuery = `
-                        INSERT INTO activities (activity, icon, category, unit) 
-                        VALUES ('${req.body.activity}', '${req.body.icon}', '${req.body.category}', '${req.body.unit}' )
+                        INSERT INTO activities (activity, category, unit) 
+                        VALUES ('${req.body.activity}','${req.body.category}', '${req.body.unit}' )
                         `;
     try {
         await client.query(alterQuery);
@@ -100,9 +100,6 @@ router.post("/", async (req, res) => {
 // PATCH single data from songbook(based on id)
 router.patch("/", async (req, res) => {
     let updateField = '';
-    if (req.body.icon !== undefined) {
-        updateField = updateField + "icon='" + req.body.icon + "',";
-    }
     if (req.body.category) {
         updateField = updateField + "category='" + req.body.category + "',";
     }
