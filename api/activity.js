@@ -83,8 +83,8 @@ router.post("/", async (req, res) => {
                         ADD ${req.body.activity} ${req.body.datatype};
                         `;
     const insertQuery = `
-                        INSERT INTO activities (activity, category, unit) 
-                        VALUES ('${req.body.activity}','${req.body.category}', '${req.body.unit}' )
+                        INSERT INTO activities (name, activity, category, unit, datatype, increment) 
+                        VALUES ('${req.body.name}', '${req.body.activity}','${req.body.category}', '${req.body.datatype}', '${req.body.increment}',  )
                         `;
     try {
         await client.query(alterQuery);
@@ -100,11 +100,20 @@ router.post("/", async (req, res) => {
 // PATCH single data from songbook(based on id)
 router.patch("/", async (req, res) => {
     let updateField = '';
+    if (req.body.name) {
+        updateField = updateField + "name='" + req.body.name + "',";
+    }
     if (req.body.category) {
         updateField = updateField + "category='" + req.body.category + "',";
     }
     if (req.body.unit !== undefined) {
         updateField = updateField + "unit='" + req.body.unit + "',";
+    }
+    if (req.body.datatype) {
+        updateField = updateField + "datatype='" + req.body.datatype + "',";
+    }
+    if (req.body.increment) {
+        updateField = updateField + "increment='" + req.body.increment + "',";
     }
     const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
     const updateQuery = `UPDATE activities SET ${updateFieldEdited} WHERE activity='${req.body.activity}'`;
