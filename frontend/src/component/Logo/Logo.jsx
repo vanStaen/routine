@@ -13,6 +13,8 @@ import logoJavascript from "../../images/javascript.svg";
 import logoSitups from "../../images/situps.svg";
 import logoPushups from "../../images/pushups.svg";
 import logoPullups from "../../images/pullups.svg";
+import logoCode from "../../images/code.svg";
+import logoRun from "../../images/run.svg";
 
 export const Logo = (props) => {
   let image = "";
@@ -49,6 +51,12 @@ export const Logo = (props) => {
       break;
     case "pullups":
       image = logoPullups;
+      break;
+    case "code":
+      image = logoCode;
+      break;
+    case "run":
+      image = logoRun;
       break;
     default:
       image = null;
