@@ -1,0 +1,48 @@
+.dailies__main {
+    max-width: 100%;
+    display: flex;     
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.dailies__item {
+    border: 2px solid red; 
+    width: 3.5em;
+    height: 3.5em;
+    padding: 0.5em;
+    margin: 1em;
+    display: inline;
+}
+
+.dailies__textMain {
+    font-size: .7em;
+}
+
+.dailies__logo {
+    width: 2.5em;
+}
+
+.spinner {
+    min-height: calc(100vh - 50px);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+.loader {
+    height: 40vmin;
+    pointer-events: none;
+    border: 1px solid #333;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .loader {
+      animation: App-logo-spin infinite 5s linear;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+  }
