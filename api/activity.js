@@ -19,7 +19,7 @@ client.connect(err => {
 // GET all data from activities
 router.get("/", async (req, res) => {
     try {
-        const activities = await client.query('SELECT * FROM activities ORDER BY activities ASC;');
+        const activities = await client.query('SELECT * FROM activities ORDER BY category ASC;');
         res.status(201).json(activities.rows);
     } catch (err) {
         res.status(400).json({
@@ -84,7 +84,7 @@ router.post("/", async (req, res) => {
                         `;
     const insertQuery = `
                         INSERT INTO activities (name, activity, category, unit, datatype, increment) 
-                        VALUES ('${req.body.name}', '${req.body.activity}','${req.body.category}', '${req.body.datatype}', '${req.body.increment}',  )
+                        VALUES ('${req.body.name}', '${req.body.activity}','${req.body.category}', '${req.body.unit}', '${req.body.datatype}', '${req.body.increment}')
                         `;
     try {
         await client.query(alterQuery);

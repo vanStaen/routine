@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { getDailies } from "./getDailies";
+import { Logo } from "../Logo/Logo";
 
 import logoTeeth from "../../images/teeth.svg";
+import logoGuitar from "../../images/guitar.svg";
+import logoProducing from "../../images/producing.svg";
+import logoTrumpet from "../../images/trumpet.svg";
+import logoPiano from "../../images/piano.svg";
+import logoBass from "../../images/bass.svg";
 
 import "./Dailies.css";
 
@@ -26,11 +32,13 @@ export const Dailies = () => {
   //if (!dailies) return "no data";
   //if (!Array.isArray(dailies)) return "results are not array";
 
-  const formattedDailies = dailies.map((dailie) => {
+  const i = "Teeth";
+
+  const formattedDailies = dailies.map((daily) => {
     return (
-      <div key={dailie.activity} className="dailies__item">
-        <img className="dailies__logo" src={logoTeeth} alt="teeth" />
-        <div className="dailies__textMain">{dailie.activity}</div>
+      <div key={daily.activity} className="dailies__item">
+        <Logo activity={daily.activity} />
+        <div className="dailies__text">{daily.activity}</div>
       </div>
     );
   });
