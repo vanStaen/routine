@@ -1,18 +1,28 @@
 import { useState, useEffect } from "react";
 import { getDailies } from "./getDailies";
+import { getActivities } from "./getActivities";
 import { Logo } from "../Logo/Logo";
 
 import "./Dailies.css";
 
 export const Dailies = () => {
   const [dailies, setDailies] = useState([]);
+  const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchDailies = async () => {
     try {
-      const dailies = await getDailies();
-      setDailies(dailies);
-      setIsLoading(false);
+      const fetchedDailies = await getDailies();
+      setDailies(fetchedDailies);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const fetchActivities = async () => {
+    try {
+      const fetchedActivities = await getActivities();
+      setActivities(fetchedActivities);
     } catch (error) {
       console.log(error.message);
     }
@@ -20,16 +30,19 @@ export const Dailies = () => {
 
   useEffect(() => {
     fetchDailies();
+    fetchActivities();
+    setIsLoading(false);
   }, []);
 
-  //if (!dailies) return "no data";
-  //if (!Array.isArray(dailies)) return "results are not array";
+  console.log(dailies);
 
-  const formattedDailies = dailies.map((daily) => {
+  const formattedDailies = activities.map((activities) => {
+    const countDone = dailies[activities.activity];
     return (
-      <div key={daily.activity} className="dailies__item">
-        <Logo activity={daily.activity} />
-        <div className="dailies__text">{daily.activity}</div>
+      <div key={activities.activity} className="dailies__item">
+        <Logo activity={activities.activity} />
+        <div className="dailies__text">{activities.activity}</div>
+        {countDone && <div>{countDone}</div>}
       </div>
     );
   });
