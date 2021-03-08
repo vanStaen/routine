@@ -97,7 +97,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-// PATCH single data from songbook(based on id)
+// PATCH single data from daily (based on activity)
 router.patch("/", async (req, res) => {
     let updateField = '';
     if (req.body.name) {

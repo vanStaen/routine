@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "7a23b86e-a559-472b-b147-d7b7f4b690df",
+		"name": "Routine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ROUTINE: localhost:5001/activity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5005/activity/dailies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"activity",
+						"dailies"
+					]
+				},
+				"description": "GET request : list of all users\nTo localserver on port 5000\n"
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTINE: localhost:5001/activity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n   \"table\": \"dailies\",\n   \"name\" : \"Javascript\",\n   \"activity\": \"javascript\",\n   \"datatype\": \"BOOLEAN\",\n   \"category\": \"learning\",\n   \"increment\": 1,\n   \"unit\": \"commits\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5005/activity/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"activity",
+						""
+					]
+				},
+				"description": "GET request : list of all users\nTo localserver on port 5000\n"
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTINE: localhost:5001/activity",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n   \"table\": \"dailies\",\n   \"activity\": \"javascript\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5005/activity/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"activity",
+						""
+					]
+				},
+				"description": "GET request : list of all users\nTo localserver on port 5000\n"
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTINE: localhost:5001/activity",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n   \"activity\": \"producing\",\n   \"datatype\": \"boolean\",\n   \"increment\": \"1\",\n   \"name\" : \"Producing\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5005/activity/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"activity",
+						""
+					]
+				},
+				"description": "GET request : list of all users\nTo localserver on port 5000\n"
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTINE: localhost:5001/dailies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5005/dailies/2021/02/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"dailies",
+						"2021",
+						"02",
+						"24"
+					]
+				},
+				"description": "GET request : list of all users\nTo localserver on port 5000\n"
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTINE: localhost:5001/dailies",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"teeth\" : true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5005/dailies/2021/3/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"dailies",
+						"2021",
+						"3",
+						"8"
+					]
+				},
+				"description": "GET request : list of all users\nTo localserver on port 5000\n"
+			},
+			"response": []
+		}
+	]
+}
