@@ -83,8 +83,8 @@ router.post("/", async (req, res) => {
                         ADD ${req.body.activity} ${req.body.datatype};
                         `;
     const insertQuery = `
-                        INSERT INTO activities (name, activity, category, unit, datatype, increment) 
-                        VALUES ('${req.body.name}', '${req.body.activity}','${req.body.category}', '${req.body.unit}', '${req.body.datatype}', '${req.body.increment}')
+                        INSERT INTO activities (name, activity, category, unit, datatype, increment, goal) 
+                        VALUES ('${req.body.name}', '${req.body.activity}','${req.body.category}', '${req.body.unit}', '${req.body.datatype}', ${req.body.increment}, ${req.body.goal})
                         `;
     try {
         await client.query(alterQuery);
@@ -115,7 +115,11 @@ router.patch("/", async (req, res) => {
     if (req.body.increment) {
         updateField = updateField + "increment='" + req.body.increment + "',";
     }
+    if (req.body.goal !== undefined) {
+        updateField = updateField + "goal='" + req.body.goal + "',";
+    }
     const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
+    
     const updateQuery = `UPDATE activities SET ${updateFieldEdited} WHERE activity='${req.body.activity}'`;
     try {
         const udpate = await client.query(updateQuery);

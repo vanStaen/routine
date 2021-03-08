@@ -37,12 +37,18 @@ export const Dailies = () => {
   console.log(dailies);
 
   const formattedDailies = activities.map((activities) => {
-    const countDone = dailies[activities.activity];
+    const count = dailies[activities.activity];
+    const increment = activities.increment;
+    const goal = activities.goal;
     return (
       <div key={activities.activity} className="dailies__item">
         <Logo activity={activities.activity} />
         <div className="dailies__text">{activities.activity}</div>
-        {countDone && <div>{countDone}</div>}
+        {count && (
+          <div>
+            {count} / {goal}
+          </div>
+        )}
       </div>
     );
   });
