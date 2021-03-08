@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.d24e8dbf.chunk.css",
-    "main.js": "/static/js/main.c0343415.chunk.js",
-    "main.js.map": "/static/js/main.c0343415.chunk.js.map",
+    "main.js": "/static/js/main.0e773685.chunk.js",
+    "main.js.map": "/static/js/main.0e773685.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.3f8f966f.js",
     "runtime-main.js.map": "/static/js/runtime-main.3f8f966f.js.map",
     "static/css/2.e4a59c64.chunk.css": "/static/css/2.e4a59c64.chunk.css",
@@ -25,7 +25,7 @@
     "static/media/pullups.2353a6a1.svg": "/static/media/pullups.2353a6a1.svg",
     "static/media/pushups.82e7b7a9.svg": "/static/media/pushups.82e7b7a9.svg",
     "static/media/run.eee4c3df.svg": "/static/media/run.eee4c3df.svg",
-    "static/media/situps.487c4d9b.svg": "/static/media/situps.487c4d9b.svg",
+    "static/media/situps.260199dc.svg": "/static/media/situps.260199dc.svg",
     "static/media/stretch.22bae108.svg": "/static/media/stretch.22bae108.svg",
     "static/media/teeth.1aa6b881.svg": "/static/media/teeth.1aa6b881.svg",
     "static/media/trumpet.a799638f.svg": "/static/media/trumpet.a799638f.svg"
@@ -35,6 +35,6 @@
     "static/css/2.e4a59c64.chunk.css",
     "static/js/2.64163cec.chunk.js",
     "static/css/main.d24e8dbf.chunk.css",
-    "static/js/main.c0343415.chunk.js"
+    "static/js/main.0e773685.chunk.js"
   ]
 }
