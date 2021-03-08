@@ -62,7 +62,7 @@ router.patch("/:year/:month/:day", async (req, res) => {
       updateField = updateField + "pushups=" + req.body.pushups + ",";
   }
   if (req.body.pullups !== undefined) {
-      updateField = updateField + "pullups=" + req.body.guitar + ",";
+      updateField = updateField + "pullups=" + req.body.pullups + ",";
   }
   if (req.body.situps !== undefined) {
       updateField = updateField + "situps=" + req.body.situps + ",";
