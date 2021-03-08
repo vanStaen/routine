@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.be1c4059.chunk.css",
-    "main.js": "/static/js/main.c853a47e.chunk.js",
-    "main.js.map": "/static/js/main.c853a47e.chunk.js.map",
+    "main.js": "/static/js/main.bc8050d4.chunk.js",
+    "main.js.map": "/static/js/main.bc8050d4.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.6be20171.js",
     "runtime-main.js.map": "/static/js/runtime-main.6be20171.js.map",
     "static/js/2.33d41ec8.chunk.js": "/static/js/2.33d41ec8.chunk.js",
@@ -17,6 +17,7 @@
     "static/media/dutch.0d45338e.svg": "/static/media/dutch.0d45338e.svg",
     "static/media/guitar.c3922c9c.svg": "/static/media/guitar.c3922c9c.svg",
     "static/media/javascript.79934a25.svg": "/static/media/javascript.79934a25.svg",
+    "static/media/photo.8d6ce4c2.svg": "/static/media/photo.8d6ce4c2.svg",
     "static/media/piano.fa43c86a.svg": "/static/media/piano.fa43c86a.svg",
     "static/media/producing.a9835c6a.svg": "/static/media/producing.a9835c6a.svg",
     "static/media/pullups.2353a6a1.svg": "/static/media/pullups.2353a6a1.svg",
@@ -31,6 +32,6 @@
     "static/js/runtime-main.6be20171.js",
     "static/js/2.33d41ec8.chunk.js",
     "static/css/main.be1c4059.chunk.css",
-    "static/js/main.c853a47e.chunk.js"
+    "static/js/main.bc8050d4.chunk.js"
   ]
 }
