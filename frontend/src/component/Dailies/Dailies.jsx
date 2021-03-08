@@ -47,6 +47,7 @@ export const Dailies = () => {
         <Logo activity={activities} />
         <div className="dailies__text">
           {count} / {goal}
+          {goal > 1 && activities.unit}
         </div>
       </div>
     );
@@ -67,6 +68,6 @@ export const Dailies = () => {
       </div>
     </div>
   ) : (
-    <div className="dailies__main">{formattedDailies}</div>
-  );
+      <div className="dailies__main">{formattedDailies}</div>
+    );
 };
