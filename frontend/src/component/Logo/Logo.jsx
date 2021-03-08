@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import "./Logo.css";
 
 import logoTeeth from "../../images/teeth.svg";

@@ -2,13 +2,6 @@ import { useState, useEffect } from "react";
 import { getDailies } from "./getDailies";
 import { Logo } from "../Logo/Logo";
 
-import logoTeeth from "../../images/teeth.svg";
-import logoGuitar from "../../images/guitar.svg";
-import logoProducing from "../../images/producing.svg";
-import logoTrumpet from "../../images/trumpet.svg";
-import logoPiano from "../../images/piano.svg";
-import logoBass from "../../images/bass.svg";
-
 import "./Dailies.css";
 
 export const Dailies = () => {
@@ -31,8 +24,6 @@ export const Dailies = () => {
 
   //if (!dailies) return "no data";
   //if (!Array.isArray(dailies)) return "results are not array";
-
-  const i = "Teeth";
 
   const formattedDailies = dailies.map((daily) => {
     return (
