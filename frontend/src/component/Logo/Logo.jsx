@@ -16,6 +16,7 @@ import logoPullups from "../../images/pullups.svg";
 import logoCode from "../../images/code.svg";
 import logoRun from "../../images/run.svg";
 import logoStretch from "../../images/stretch.svg";
+import logoPhoto from "../../images/photo.svg";
 
 export const Logo = (props) => {
   let image = "";
@@ -61,6 +62,9 @@ export const Logo = (props) => {
       break;
     case "stretch":
       image = logoStretch;
+      break;
+    case "photo":
+      image = logoPhoto;
       break;
     default:
       image = null;
