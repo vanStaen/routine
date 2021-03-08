@@ -1,3 +1,4 @@
+import { Tooltip } from "antd";
 import "./Logo.css";
 
 import logoTeeth from "../../images/teeth.svg";
@@ -18,7 +19,7 @@ import logoPhoto from "../../images/photo.svg";
 
 export const Logo = (props) => {
   let image = "";
-  switch (props.activity) {
+  switch (props.activity.activity) {
     case "teeth":
       image = logoTeeth;
       break;
@@ -70,7 +71,9 @@ export const Logo = (props) => {
 
   return (
     <div>
-      <img className="logo" src={image} alt={props.activity} />
+      <Tooltip placement="top" title={props.activity.name}>
+        <img className="logo" src={image} alt={props.activity.activity} />
+      </Tooltip>
     </div>
   );
 };
