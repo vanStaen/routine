@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Logo } from "../../Logo/Logo";
+import { Logo } from "../Logo/Logo";
 import { CheckOutlined, PlusOutlined, MinusOutlined, CloseOutlined } from '@ant-design/icons';
 import { Tooltip } from "antd";
 import { patchDaily } from "./patchDaily";
@@ -95,6 +95,7 @@ export const Daily = (props) => {
                         (`${props.activity.unit}!`)}
 
                     {goal > 1 && props.activity.unit}
+                    {goal == 0 && <div>(optional)</div>}
                 </div>
             </div>
         </Tooltip>
