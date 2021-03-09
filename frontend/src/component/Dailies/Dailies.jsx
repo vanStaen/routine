@@ -55,7 +55,11 @@ export const Dailies = () => {
           </div>)}
           <Logo activity={activities} />
           <div className={`dailies__text ${count >= goal && "dailies__textdisabled"}`}>
-            {count} / {goal}
+            {goal > 1 ?
+              (`${count} / ${goal} `)
+              :
+              (`${activities.unit}!`)}
+
             {goal > 1 && activities.unit}
           </div>
         </div>
