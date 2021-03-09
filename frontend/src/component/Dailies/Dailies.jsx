@@ -29,6 +29,13 @@ export const Dailies = () => {
   };
 
   useEffect(() => {
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    console.log("year/month/day", `${year}/${month}/${day}`);
+
     fetchDailies();
     fetchActivities();
     setIsLoading(false);
