@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
 import { Logo } from "../Logo/Logo";
-import { CheckOutlined } from '@ant-design/icons';
+import { CheckOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import { Tooltip } from "antd";
 
 import "./Dailies.css";
@@ -39,20 +39,44 @@ export const Dailies = () => {
   console.log(dailies);
 
   const formattedDailies = activities.map((activities) => {
+
     const count = dailies[activities.activity]
       ? dailies[activities.activity]
       : 0;
     const increment = activities.increment;
     const goal = activities.goal;
     const done = goal ? count >= goal : false;
+
+    const handleMouseOver = () => {
+      document.getElementById(activities.activity + "_minus").style.display = 'block';
+      document.getElementById(activities.activity + "_plus").style.display = 'block';
+    }
+
+    const handleMouseLeave = () => {
+      document.getElementById(activities.activity + "_minus").style.display = 'none';
+      document.getElementById(activities.activity + "_plus").style.display = 'none';
+    }
+
+
     return (
       <Tooltip placement="top" title={activities.name}>
         <div key={activities.activity} className="dailies__item">
+
           {done && (<div className='dailies__doneContainer'>
             <div className='dailies__done'>
               < CheckOutlined />
             </div>
           </div>)}
+
+          <div className='dailies__actionContainer' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+            <div className='dailies__action' id={activities.activity + "_minus"}>
+              <MinusOutlined />
+            </div>
+            <div className='dailies__action' id={activities.activity + "_plus"}>
+              <PlusOutlined />
+            </div>
+          </div>
+
           <Logo activity={activities} />
           <div className={`dailies__text ${count >= goal && "dailies__textdisabled"}`}>
             {goal > 1 ?

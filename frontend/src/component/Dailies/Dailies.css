@@ -9,7 +9,6 @@
     width: 5em;
     margin: 1em;
     display: inline;
-    //border: 2px solid red;
 }
 
 .dailies__text {
@@ -24,12 +23,41 @@
 .dailies__doneContainer {
   position: absolute;
   width: 5em;
-  height: 5em;
+  height: 4em;
   background-color: rgba(40, 44, 52, 0.75);
 }
+
 .dailies__done {
+  position: relative;
+  top: -10px;
   color: green;
-  font-size: 2.2em;
+  font-size: 2.5em;
+}
+
+.dailies__actionContainer {
+  position: absolute;
+  display: flex;
+  width: 5em;
+  height: 4em;
+}
+
+.dailies__actionContainer:hover {
+  background-color: rgba(40, 44, 52, 0.75);
+}
+
+.dailies__action {
+  display: none;
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+  position: relative;
+  top: -10px;
+  color: white;
+  font-size: 1.7em;
+}
+
+.dailies__action:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .spinner {
