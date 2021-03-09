@@ -25,5 +25,5 @@
 }
 
 .App__container {
-  max-width: 860px;
+  max-width: calc(100% - 20vmin);
 } 
