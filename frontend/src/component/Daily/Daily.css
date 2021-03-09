@@ -6,8 +6,8 @@
 }
 
 .daily__text {
-    padding-top: 1em;
-    font-size: .4em;
+    padding-top: 1.5em;
+    font-size: .5em;
 }
 
 .daily__textdisabled {
@@ -17,7 +17,7 @@
 .daily__doneContainer {
   position: absolute;
   width: 5em;
-  height: 4em;
+  height: 3.9em;
   background-color: rgba(40, 44, 52, 0.75);
 }
 
@@ -25,17 +25,17 @@
   position: relative;
   top: -10px;
   color: green;
-  font-size: 2.5em;
+  font-size: 2.6em;
 }
 
 .daily__actionContainer {
   position: absolute;
   display: flex;
   width: 5em;
-  height: 4em;
+  height: 3.9em;
 }
 
-.daily__actionContainer:hover {
+.daily__actionContainerHover:hover {
   background-color: rgba(40, 44, 52, 0.75);
 }
 

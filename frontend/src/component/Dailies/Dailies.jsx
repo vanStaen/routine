@@ -39,6 +39,7 @@ export const Dailies = () => {
     fetchDailies();
     fetchActivities();
     setIsLoading(false);
+
   }, []);
 
   const formattedDailies = activities.map((activities) => {
