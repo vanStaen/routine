@@ -10,7 +10,6 @@ export const Daily = (props) => {
     const [count, setCount] = useState(props.dailies[props.activity.activity]
         ? props.dailies[props.activity.activity]
         : 0)
-    const [done, setDone] = useState(props.activity.goal ? count >= props.activity.goal : false);
 
     const activity = props.activity.activity;
     const increment = props.activity.increment;
@@ -35,14 +34,15 @@ export const Daily = (props) => {
     }
 
     return (
-        <Tooltip placement="top" title={activity.name}>
+        <Tooltip placement="top" title={props.activity.name}>
             <div key={activity} className="daily__item">
 
-                {done && (<div className='daily__doneContainer'>
-                    <div className='daily__done'>
-                        < CheckOutlined />
-                    </div>
-                </div>)}
+                {count >= props.activity.goal && (props.activity.goal ?
+                    (<div className='daily__doneContainer'>
+                        <div className='daily__done'>
+                            < CheckOutlined />
+                        </div>
+                    </div>) : "")}
 
                 <div className='daily__actionContainer' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
                     <div className='daily__action' id={activity + "_minus"}>
