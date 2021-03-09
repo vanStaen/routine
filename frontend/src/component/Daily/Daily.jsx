@@ -8,6 +8,15 @@ import "./Daily.css";
 
 export const Daily = (props) => {
 
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    console.log("day", day);
+    console.log("month", month);
+    console.log("year", year);
+
     const [count, setCount] = useState(props.dailies[props.activity.activity]
         ? props.dailies[props.activity.activity]
         : 0)
