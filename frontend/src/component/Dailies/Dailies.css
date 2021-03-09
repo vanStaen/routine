@@ -5,61 +5,6 @@
     justify-content: center;
 }
 
-.dailies__item {
-    width: 5em;
-    margin: 1em;
-    display: inline;
-}
-
-.dailies__text {
-    padding-top: 1em;
-    font-size: .4em;
-}
-
-.dailies__textdisabled {
-  color: #282c34;
-}
-
-.dailies__doneContainer {
-  position: absolute;
-  width: 5em;
-  height: 4em;
-  background-color: rgba(40, 44, 52, 0.75);
-}
-
-.dailies__done {
-  position: relative;
-  top: -10px;
-  color: green;
-  font-size: 2.5em;
-}
-
-.dailies__actionContainer {
-  position: absolute;
-  display: flex;
-  width: 5em;
-  height: 4em;
-}
-
-.dailies__actionContainer:hover {
-  background-color: rgba(40, 44, 52, 0.75);
-}
-
-.dailies__action {
-  display: none;
-  width: 50%;
-  padding: 10px;
-  margin: auto;
-  position: relative;
-  top: -10px;
-  color: white;
-  font-size: 1.7em;
-}
-
-.dailies__action:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
 .spinner {
     min-height: calc(100vh - 50px);
     width: 100%;
