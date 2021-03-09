@@ -17,8 +17,8 @@
 .daily__doneContainer {
   position: absolute;
   width: 5em;
-  height: 3.9em;
-  background-color: rgba(40, 44, 52, 0.75);
+  height: 5em;
+  background-color: rgba(40, 44, 52, 0.90);
 }
 
 .daily__done {

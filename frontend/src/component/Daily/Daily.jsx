@@ -52,7 +52,7 @@ export const Daily = (props) => {
         <Tooltip placement="top" title={`${props.activity.name}`}>
             <div className="daily__item">
 
-                {!goal && <div className='daily__optional' />}
+                {(!goal && !done) && <div className='daily__optional' />}
 
                 {done &&
                     (<div className='daily__doneContainer'>
