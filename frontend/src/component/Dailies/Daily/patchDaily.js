@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getDailies = async (activity, value) => {
+export const patchDaily = async (activity, value) => {
 
     const today = new Date();
 
@@ -9,7 +9,7 @@ export const getDailies = async (activity, value) => {
     const day = today.getDate();
 
     const requestBody = {
-        activity: value
+        [activity]: value
     };
 
     console.log(requestBody);

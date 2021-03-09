@@ -39,6 +39,14 @@
   background-color: rgba(40, 44, 52, 0.75);
 }
 
+.daily__optional {
+    position: absolute;
+    display: flex;
+    width: 5em;
+    height: 4em;
+    background-color: rgba(40, 44, 52, 0.75);
+  }
+
 .daily__action {
   display: none;
   width: 50%;
