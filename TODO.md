@@ -3,6 +3,8 @@
 ## To-dos:
 
 - [ ] Show yesterday 
+- [ ] Streak per activities
+- [ ] Password protect
  
 ## Completed ✓
 
