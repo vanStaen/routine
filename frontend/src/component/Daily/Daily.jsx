@@ -46,20 +46,20 @@ export const Daily = (props) => {
     }
 
     const handlePlusClick = async () => {
-        let newCount = count + increment;
-        let result = await patchDaily(activity, newCount);
-        if (result = 200) { setCount(newCount); }
+        const newCount = count + increment;
+        const resultPlus = await patchDaily(activity, newCount);
+        if (resultPlus === 200) { setCount(newCount); }
     }
 
     const handleMinusClick = async () => {
-        let newCount = count >= increment ? count - increment : 0;
-        let result = await patchDaily(activity, newCount);
-        if (result = 200) { setCount(newCount); }
+        const newCount = count >= increment ? count - increment : 0;
+        const resultMinus = await patchDaily(activity, newCount);
+        if (resultMinus === 200) { setCount(newCount); }
     }
 
     return (
         <Tooltip placement="top" title={`${props.activity.name}`}>
-            <div key={activity} className="daily__item">
+            <div className="daily__item">
 
                 {!goal && <div className='daily__optional' />}
 
@@ -73,22 +73,22 @@ export const Daily = (props) => {
                 <div className='daily__actionContainer' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
                     {goal > 1 ?
                         (<>
-                            <div className='daily__action' id={activity + "_minus"}>
-                                <MinusOutlined onClick={handleMinusClick} />
+                            <div className='daily__action' id={activity + "_minus"} onClick={handleMinusClick}>
+                                <MinusOutlined />
                             </div>
-                            <div className='daily__action' id={activity + "_plus"}>
-                                <PlusOutlined onClick={handlePlusClick} />
+                            <div className='daily__action' id={activity + "_plus"} onClick={handlePlusClick}>
+                                <PlusOutlined />
                             </div>
                         </>)
                         :
                         (!done ? (<>
-                            <div className='daily__action' id={activity + "_check"}>
-                                <CheckOutlined onClick={handlePlusClick} />
+                            <div className='daily__action' id={activity + "_check"} onClick={handlePlusClick}>
+                                <CheckOutlined />
                             </div>
                         </>) :
                             (<>
-                                <div className='daily__action' id={activity + "_check"}>
-                                    <CloseOutlined onClick={handleMinusClick} />
+                                <div className='daily__action' id={activity + "_check"} onClick={handleMinusClick} >
+                                    <CloseOutlined />
                                 </div>
                             </>)
                         )}
@@ -104,7 +104,7 @@ export const Daily = (props) => {
                         (`${props.activity.unit}!`)}
 
                     {goal > 1 && props.activity.unit}
-                    {goal == 0 && <div>(optional)</div>}
+                    {goal === 0 && <div>(optional)</div>}
                 </div>
             </div>
         </Tooltip>

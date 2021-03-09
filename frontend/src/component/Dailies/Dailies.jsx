@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
-import { Daily } from './Daily/Daily';
+import { Daily } from '../Daily/Daily';
 
 import "./Dailies.css";
 
@@ -41,17 +41,15 @@ export const Dailies = () => {
   });
 
   return isLoading ? (
-    <div className="spinner">
-      <div>
-        <img
-          src="https://avatars0.githubusercontent.com/u/12551446"
-          className="loader"
-          alt="Loading"
-        />
-        <br />
-        <div style={{ fontSize: 18, marginTop: 10, color: "white" }}>
-          Loading ...{" "}
-        </div>
+    <div className="spinner" key="spinner">
+      <img
+        src="https://avatars0.githubusercontent.com/u/12551446"
+        className="loader"
+        alt="Loading"
+      />
+      <br />
+      <div style={{ fontSize: 18, marginTop: 10, color: "white" }}>
+        Loading ...{" "}
       </div>
     </div>
   ) : (
