@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Logo } from "../../Logo/Logo";
-import { CheckOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';
+import { CheckOutlined, PlusOutlined, MinusOutlined, CloseOutlined } from '@ant-design/icons';
 import { Tooltip } from "antd";
 import { patchDaily } from "./patchDaily";
 
@@ -19,13 +19,21 @@ export const Daily = (props) => {
     const done = (count >= goal ? (goal ? true : count > goal ? true : false) : false);
 
     const handleMouseOver = () => {
-        document.getElementById(activity + "_minus").style.display = 'block';
-        document.getElementById(activity + "_plus").style.display = 'block';
+        if (goal > 1) {
+            document.getElementById(activity + "_minus").style.display = 'block';
+            document.getElementById(activity + "_plus").style.display = 'block';
+        } else {
+            document.getElementById(activity + "_check").style.display = 'block';
+        }
     }
 
     const handleMouseLeave = () => {
-        document.getElementById(activity + "_minus").style.display = 'none';
-        document.getElementById(activity + "_plus").style.display = 'none';
+        if (goal > 1) {
+            document.getElementById(activity + "_minus").style.display = 'none';
+            document.getElementById(activity + "_plus").style.display = 'none';
+        } else {
+            document.getElementById(activity + "_check").style.display = 'none';
+        }
     }
 
     const handlePlusClick = async () => {
@@ -54,12 +62,28 @@ export const Daily = (props) => {
                     </div>)}
 
                 <div className='daily__actionContainer' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
-                    <div className='daily__action' id={activity + "_minus"}>
-                        <MinusOutlined onClick={handleMinusClick} />
-                    </div>
-                    <div className='daily__action' id={activity + "_plus"}>
-                        <PlusOutlined onClick={handlePlusClick} />
-                    </div>
+                    {goal > 1 ?
+                        (<>
+                            <div className='daily__action' id={activity + "_minus"}>
+                                <MinusOutlined onClick={handleMinusClick} />
+                            </div>
+                            <div className='daily__action' id={activity + "_plus"}>
+                                <PlusOutlined onClick={handlePlusClick} />
+                            </div>
+                        </>)
+                        :
+                        (!done ? (<>
+                            <div className='daily__action' id={activity + "_check"}>
+                                <CheckOutlined onClick={handlePlusClick} />
+                            </div>
+                        </>) :
+                            (<>
+                                <div className='daily__action' id={activity + "_check"}>
+                                    <CloseOutlined onClick={handleMinusClick} />
+                                </div>
+                            </>)
+                        )}
+
                 </div>
 
                 <Logo activity={props.activity} />
