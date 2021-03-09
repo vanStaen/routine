@@ -1,4 +1,3 @@
-import { Tooltip } from "antd";
 import "./Logo.css";
 
 import logoTeeth from "../../images/teeth.svg";
@@ -71,9 +70,7 @@ export const Logo = (props) => {
 
   return (
     <div>
-      <Tooltip placement="top" title={props.activity.name}>
-        <img className="logo" src={image} alt={props.activity.activity} />
-      </Tooltip>
+      <img className="logo" src={image} alt={props.activity.activity} />
     </div>
   );
 };

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
 import { Logo } from "../Logo/Logo";
+import { CheckOutlined } from '@ant-design/icons';
+import { Tooltip } from "antd";
 
 import "./Dailies.css";
 
@@ -42,14 +44,22 @@ export const Dailies = () => {
       : 0;
     const increment = activities.increment;
     const goal = activities.goal;
+    const done = goal ? count >= goal : false;
     return (
-      <div key={activities.activity} className={`dailies__item ${count >= goal && "dailies__textdisabled"}`}>
-        <Logo activity={activities} />
-        <div className="dailies__text">
-          {count} / {goal}
-          {goal > 1 && activities.unit}
+      <Tooltip placement="top" title={activities.name}>
+        <div key={activities.activity} className="dailies__item">
+          {done && (<div className='dailies__doneContainer'>
+            <div className='dailies__done'>
+              < CheckOutlined />
+            </div>
+          </div>)}
+          <Logo activity={activities} />
+          <div className={`dailies__text ${count >= goal && "dailies__textdisabled"}`}>
+            {count} / {goal}
+            {goal > 1 && activities.unit}
+          </div>
         </div>
-      </div>
+      </Tooltip>
     );
   });
 

@@ -7,8 +7,6 @@
 
 .dailies__item {
     width: 5em;
-    height: 5.2em;
-    padding: 0.5em;
     margin: 1em;
     display: inline;
     //border: 2px solid red;
@@ -21,6 +19,17 @@
 
 .dailies__textdisabled {
   color: #555;
+}
+
+.dailies__doneContainer {
+  position: absolute;
+  width: 5em;
+  height: 5em;
+  background-color: rgba(40, 44, 52, 0.75);
+}
+.dailies__done {
+  color: green;
+  font-size: 2.2em;
 }
 
 .spinner {
