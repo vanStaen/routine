@@ -43,7 +43,7 @@ export const Dailies = () => {
     const increment = activities.increment;
     const goal = activities.goal;
     return (
-      <div key={activities.activity} className="dailies__item">
+      <div key={activities.activity} className={`dailies__item ${count >= goal && "dailies__textdisabled"}`}>
         <Logo activity={activities} />
         <div className="dailies__text">
           {count} / {goal}

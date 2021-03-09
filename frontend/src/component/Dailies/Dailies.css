@@ -7,6 +7,7 @@
 
 .dailies__item {
     width: 5em;
+    height: 5.2em;
     padding: 0.5em;
     margin: 1em;
     display: inline;
@@ -14,8 +15,12 @@
 }
 
 .dailies__text {
-    padding-top: 2em;
+    padding-top: 1em;
     font-size: .4em;
+}
+
+.dailies__textdisabled {
+  color: #555;
 }
 
 .spinner {
