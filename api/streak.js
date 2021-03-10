@@ -19,7 +19,7 @@ client.connect((err) => {
   }
 });
 
-// today
+// Today
 const today = new Date();
 const year = today.getFullYear();
 const month = today.getMonth() + 1;
@@ -102,6 +102,9 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay) => {
                     updateField = updateField + `${activity},`;
             }
           }
+          const yesterdayDaily = await client.query(
+            `SELECT * FROM dailies WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]}`
+          );
         for (const activity in yesterdayStreakResult) {
                 if (activity === "year" || activity === "month" || activity === "day") {
                 } else {
