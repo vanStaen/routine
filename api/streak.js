@@ -84,10 +84,12 @@ router.get("/:year/:month/:day", async (req, res) => {
 // Function to update the Streak table
 const updateStreakBasedonYesterday = async (toYear, toMonth, toDay) => {
   try {
+
     const yesterdayDate = getYesterdayDate(toYear, toMonth, toDay);
     const yesterdayStreak = await client.query(
       `SELECT * FROM streak WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]}`
     );
+
     if (yesterdayStreak.rows.length === 0) {
       await client.query(
         `INSERT INTO streak (year, month, day) VALUES (${toYear}, ${toMonth}, ${toDay})`
@@ -96,25 +98,43 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay) => {
         const yesterdayStreakResult = yesterdayStreak.rows[0];
         let updateField = "";
         let updateValues = "";
+
         for (const activity in yesterdayStreakResult) {
                 if (activity === "year" || activity === "month" || activity === "day") {
                 } else {
                     updateField = updateField + `${activity},`;
             }
           }
-          const yesterdayDaily = await client.query(
-            `SELECT * FROM dailies WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]}`
-          );
+
+        // GET Data for yesterday (dailies)
+        const yesterdayDailyData = await client.query(
+          `SELECT * FROM dailies WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]}`
+        );
+        const yesterdayDailyDataResult = yesterdayDailyData.rows[0];
+
+        // GET goal (activity)
+        const activityGoal = await client.query(
+          `SELECT * FROM activities`
+        );
+        const activityGoalResult = activityGoal.rows;
+
         for (const activity in yesterdayStreakResult) {
                 if (activity === "year" || activity === "month" || activity === "day") {
                 } else {
-                    if (yesterdayStreakResult[activity]) {
-                        updateValues = updateValues + `${yesterdayStreakResult[activity]+1},`;
+                    const activityFiltered = activityGoalResult.filter(item => item.activity === activity);
+                    const activityFilteredGoal = activityFiltered[0].goal;
+                    if (yesterdayDailyDataResult[activity] >= activityFilteredGoal) {
+                        if (yesterdayDailyDataResult[activity]) {
+                            updateValues = updateValues + `${yesterdayStreakResult[activity]+1},`;
+                        } else {
+                            updateValues = updateValues + `0,`;
+                        }
                     } else {
-                        updateValues = updateValues + `${yesterdayStreakResult[activity]},`;
+                        updateValues = updateValues + `0,`;
                     }
                 }   
             }
+
         const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
         const updateValuesEdited = updateValues.slice(0, -1) // delete the last comma
         const updateStreakQuery = `INSERT INTO streak (year, month, day, ${updateFieldEdited}) VALUES (${toYear}, ${toMonth}, ${toDay}, ${updateValuesEdited})`;
