@@ -2,19 +2,21 @@ const express = require("express");
 const router = express.Router();
 const { Client } = require("pg");
 
-
 // Init Postgres
-const client = new Client({ connectionString: process.env.DATABASE_URL, ssl: true })
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+});
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; // This bypasses the SSL verification
 
-// Connect to Postgres 
-client.connect(err => {
+// Connect to Postgres
+client.connect((err) => {
     if (err) {
-        console.error('connection error', err.stack)
+        console.error("connection error", err.stack);
     } else {
-        console.log('Activity API:', 'Connected to postgres db!')
+        console.log("Streak API:", "Connected to postgres db!");
     }
-})
+});
 
 // GET  streak data for all activities
 router.get("/", async (req, res) => {
@@ -40,3 +42,5 @@ router.get("/:activity", async (req, res) => {
         });
     }
 });
+
+module.exports = router;
