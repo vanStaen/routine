@@ -58,17 +58,22 @@ router.get("/:table", async (req, res) => {
 // DELETE single column from a table (based on column_name 'activity')
 router.delete("/", async (req, res) => {
     const deleteQuery1 = `
-                        ALTER TABLE ${req.body.table}
+                        ALTER TABLE daily
                         DROP COLUMN ${req.body.activity};
                         `;
     const deleteQuery2 = `
                         DELETE FROM activities 
                         WHERE activity='${req.body.activity}'
                         `;
+    const deleteQuery3 = `
+                        ALTER TABLE streak
+                        DROP COLUMN ${req.body.activity};
+                        `;
     try {
         await client.query(deleteQuery1);
         await client.query(deleteQuery2);
-        res.status(201).json({ success: `Column ${req.body.activity} deleted from ${req.body.table}.` });
+        await client.query(deleteQuery3);
+        res.status(201).json({ success: `Activity ${req.body.activity} deleted from daily, activities and streak.` });
     } catch (err) {
         res.status(400).json({
             error: `${err})`,
@@ -119,7 +124,7 @@ router.patch("/", async (req, res) => {
         updateField = updateField + "goal='" + req.body.goal + "',";
     }
     const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
-    
+
     const updateQuery = `UPDATE activities SET ${updateFieldEdited} WHERE activity='${req.body.activity}'`;
     try {
         const udpate = await client.query(updateQuery);
