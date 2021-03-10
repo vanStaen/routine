@@ -105,7 +105,11 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay) => {
         for (const activity in yesterdayStreakResult) {
                 if (activity === "year" || activity === "month" || activity === "day") {
                 } else {
-                    updateValues = updateValues + `${yesterdayStreakResult[activity]+1},`;
+                    if (yesterdayStreakResult[activity]) {
+                        updateValues = updateValues + `${yesterdayStreakResult[activity]+1},`;
+                    } else {
+                        updateValues = updateValues + `${yesterdayStreakResult[activity]},`;
+                    }
                 }   
             }
         const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
