@@ -1,7 +1,7 @@
-function getYesterdayDate(toYear, toMonth, toDay) {
+export function getYesterdayDate(toYear, toMonth, toDay) {
 
-    let today = new Date(toYear, toMonth + 1, toDay, 0, 0, 0, 0);
-    const yesterday = today.setDate(today.getDate() - 1);
+    let today = new Date(toYear, toMonth-1 , toDay, 0, 0, 0, 0);
+    var yesterday = new Date(today.valueOf() - 1000*60*60*24);
 
     const yesterYear = yesterday.getFullYear();
     const yesterMonth = yesterday.getMonth() +1;
