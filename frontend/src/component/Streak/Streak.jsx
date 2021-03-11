@@ -7,7 +7,7 @@ export const Streak = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const activity = props.activity.activity;
 
-  const fetchDailies = async () => {
+  const fetchStreak = async () => {
     try {
       const fetchedDailies = await getStreak();
       setStreak(fetchedDailies);
@@ -18,7 +18,7 @@ export const Streak = (props) => {
   };
 
   useEffect(() => {
-    fetchDailies();
+    fetchStreak();
   }, []);
 
   return isLoading ? (

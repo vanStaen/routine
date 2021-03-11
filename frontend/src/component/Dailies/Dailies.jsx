@@ -10,36 +10,36 @@ export const Dailies = () => {
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchDailies = async () => {
+  const fetchData = async () => {
     try {
-      const fetchedDailies = await getDailies();
+      const [fetchedDailies, fetchedActivities] = await Promise.all([
+        getDailies(),
+        getActivities(),
+      ]);
       setDailies(fetchedDailies);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  const fetchActivities = async () => {
-    try {
-      const fetchedActivities = await getActivities();
       setActivities(fetchedActivities);
     } catch (error) {
       console.log(error.message);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    fetchDailies();
-    fetchActivities();
-    setIsLoading(false);
+    fetchData();
   }, []);
 
   const formattedDailies = activities.map((activities) => {
-    return <Daily activity={activities} dailies={dailies} />;
+    return (
+      <Daily
+        activity={activities}
+        dailies={dailies}
+        key={activities.activity}
+      />
+    );
   });
 
   return isLoading ? (
-    <div className="spinner" key="spinner">
+    <div className="spinner">
       <img
         src="https://avatars0.githubusercontent.com/u/12551446"
         className="loader"
