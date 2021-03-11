@@ -18,21 +18,25 @@ client.connect((err) => {
   }
 });
 
-// GET data from dailies
-router.get("/:year/:month/:day", async (req, res) => {
+// GET data from dailies for today
+router.get("/", async (req, res) => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
   try {
     const daily = await client.query(
-      `SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`
+      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
     );
     if (daily.rows.length > 0) {
       res.status(201).json(daily.rows);
     } else {
       // there is no line for this day, so create one
       await client.query(
-        `INSERT INTO dailies (year, month, day) VALUES (${req.params.year}, ${req.params.month}, ${req.params.day})`
+        `INSERT INTO dailies (year, month, day) VALUES (${year}, ${month}, ${day})`
       );
       const freshyCreatedDaily = await client.query(
-        `SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`
+        `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
       );
       if (freshyCreatedDaily.rows.length > 0) {
         res.status(201).json(freshyCreatedDaily.rows);
@@ -41,6 +45,27 @@ router.get("/:year/:month/:day", async (req, res) => {
           error: `Something wrong happened!`,
         });
       }
+    }
+  } catch (err) {
+    res.status(400).json({
+      error: `${err}`,
+    });
+  }
+});
+
+
+// GET data from dailies for a specific date
+router.get("/:year/:month/:day", async (req, res) => {
+  try {
+    const daily = await client.query(
+      `SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`
+    );
+    if (daily.rows.length > 0) {
+      res.status(201).json(daily.rows);
+    } else {
+       res.status(400).json({
+          message: `o data for the ${req.params.day}.${req.params.month}.${req.params.year}!`,N
+        });
     }
   } catch (err) {
     res.status(400).json({

@@ -4,6 +4,7 @@
 
 - [ ] Show yesterday 
 - [ ] Streak per activities
+  - [x] Endpoint Streak
 - [ ] Password protect
  
 ## Completed ✓
