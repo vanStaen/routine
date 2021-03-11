@@ -61,7 +61,14 @@ export const Daily = (props) => {
   };
 
   return (
-    <Tooltip placement="top" title={`${props.activity.name}`}>
+    <Tooltip
+      placement="top"
+      title={
+        <>
+          {props.activity.name} <Streak activity={props.activity} />
+        </>
+      }
+    >
       <div className="daily__item">
         {!goal && !done && <div className="daily__optional" />}
 
@@ -118,8 +125,6 @@ export const Daily = (props) => {
               </div>
             </>
           )}
-
-          <Streak activity={props.activity} />
         </div>
 
         <Logo activity={props.activity} />
