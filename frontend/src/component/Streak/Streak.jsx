@@ -22,7 +22,7 @@ export const Streak = (props) => {
   }, []);
 
   return isLoading ? (
-    <></>
+    <div className="Streak__Main">?</div>
   ) : streak[activity] ? (
     <div className="Streak__Main">{streak[activity]}</div>
   ) : (
