@@ -1,0 +1,14 @@
+
+.Streak__Main {
+    position: absolute;
+    text-align: center;
+    top: -0.7em;
+    right: 1em;
+    padding-right: 4px;
+    padding-left: 4px;
+    font-size: .3em;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, .75);
+    background-color: rgba(220, 118, 51, .75);
+    border-radius: 25px;
+}

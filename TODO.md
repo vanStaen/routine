@@ -3,8 +3,6 @@
 ## To-dos:
 
 - [ ] Show yesterday 
-- [ ] Streak per activities
-  - [x] Endpoint Streak
 - [ ] Password protect
  
 ## Completed ✓
@@ -13,3 +11,4 @@
 - [x] Initialize Heroku
 - [x] Create Rest API
 - [x] UI to interact with API
+- [x] Streak per activities
