@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { getStreak } from "./getStreak";
-import { Spin } from "antd";
 import "./Streak.css";
 
 export const Streak = (props) => {

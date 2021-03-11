@@ -4,6 +4,7 @@
 
 - [ ] Show yesterday 
 - [ ] Password protect
+- [ ] Click on streak badge will open activity history
  
 ## Completed ✓
 

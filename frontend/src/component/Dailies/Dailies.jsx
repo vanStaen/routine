@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
-import { Daily } from '../Daily/Daily';
+import { Daily } from "../Daily/Daily";
 
 import "./Dailies.css";
 
@@ -29,23 +29,13 @@ export const Dailies = () => {
   };
 
   useEffect(() => {
-
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
-    console.log("year/month/day", `${year}/${month}/${day}`);
-
     fetchDailies();
     fetchActivities();
     setIsLoading(false);
-
   }, []);
 
   const formattedDailies = activities.map((activities) => {
-    return (
-      <Daily activity={activities} dailies={dailies} />
-    );
+    return <Daily activity={activities} dailies={dailies} />;
   });
 
   return isLoading ? (
@@ -61,6 +51,6 @@ export const Dailies = () => {
       </div>
     </div>
   ) : (
-      <div className="dailies__main">{formattedDailies}</div>
-    );
+    <div className="dailies__main">{formattedDailies}</div>
+  );
 };
