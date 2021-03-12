@@ -85,7 +85,8 @@ router.delete("/", async (req, res) => {
 router.post("/", async (req, res) => {
     const alterQuery = `
                         ALTER TABLE ${req.body.table}
-                        ADD ${req.body.activity} ${req.body.datatype};
+                        ADD ${req.body.activity} ${req.body.datatype}
+                        SET DEFAULT 0;;
                         `;
     const insertQuery = `
                         INSERT INTO activities (name, activity, category, unit, datatype, increment, goal) 
