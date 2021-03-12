@@ -51,8 +51,7 @@ export const Daily = (props) => {
       setCount(newCount);
     } else {
       notification.error({
-        message: "Error!",
-        description: resultPlus.message,
+        message: resultPlus.message,
       });
     }
   };
@@ -64,8 +63,7 @@ export const Daily = (props) => {
       setCount(newCount);
     } else {
       notification.error({
-        message: "Error!",
-        description: resultMinus.message,
+        message: resultMinus.message,
       });
     }
   };
