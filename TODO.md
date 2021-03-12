@@ -1,6 +1,6 @@
 # Watchlist
 
-## To-dos:
+## Backlog:
 
 - [ ] Show yesterday 
   - scroll event > letzte element in liste 
@@ -10,6 +10,7 @@
     Offset + limit. 
 - [ ] Password protect
 - [ ] Click on streak badge will open activity history
+- [ ] Admin panel (drawer) to set up increment and goals
  
 ## Completed ✓
 
