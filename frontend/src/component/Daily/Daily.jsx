@@ -7,7 +7,7 @@ import {
   MinusOutlined,
   CloseOutlined,
 } from "@ant-design/icons";
-import { Tooltip } from "antd";
+import { Tooltip, notification } from "antd";
 import { patchDaily } from "./patchDaily";
 
 import "./Daily.css";
@@ -47,16 +47,26 @@ export const Daily = (props) => {
   const handlePlusClick = async () => {
     const newCount = count + increment;
     const resultPlus = await patchDaily(activity, newCount);
-    if (resultPlus === 200) {
+    if (resultPlus.status === 200) {
       setCount(newCount);
+    } else {
+      notification.error({
+        message: "Error!",
+        description: resultPlus.message,
+      });
     }
   };
 
   const handleMinusClick = async () => {
     const newCount = count >= increment ? count - increment : 0;
     const resultMinus = await patchDaily(activity, newCount);
-    if (resultMinus === 200) {
+    if (resultMinus.status === 200) {
       setCount(newCount);
+    } else {
+      notification.error({
+        message: "Error!",
+        description: resultMinus.message,
+      });
     }
   };
 

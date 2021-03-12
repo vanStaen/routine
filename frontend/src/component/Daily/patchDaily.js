@@ -20,8 +20,8 @@ export const patchDaily = async (activity, value) => {
         data: requestBody,
     });
     if ((response.status !== 200) & (response.status !== 201)) {
-        throw new Error("Error!");
+       throw new Error("Error!");
     }
 
-    return response.status;
+    return { "status" : response.status, "message" : response.error};
 }
