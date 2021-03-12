@@ -45,12 +45,8 @@ export const Dailies = () => {
         className="loader"
         alt="Loading"
       />
-      <br />
-      <div style={{ fontSize: 18, marginTop: 10, color: "white" }}>
-        Loading ...{" "}
-      </div>
     </div>
   ) : (
-    <div className="dailies__main">{formattedDailies}</div>
-  );
+      <div className="dailies__main">{formattedDailies}</div>
+    );
 };

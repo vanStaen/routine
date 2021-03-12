@@ -30,21 +30,23 @@ export const Streak = (props) => {
       return 0.3;
     } else if (value < 8) {
       return 0.4;
-    } else if (value < 15) {
+    } else if (value < 12) {
       return 0.5;
-    } else if (value < 30) {
+    } else if (value < 20) {
       return 0.55;
-    } else if (value < 55) {
+    } else if (value < 30) {
+      return 0.60;
+    } else if (value < 40) {
       return 0.65;
-    } else if (value < 90) {
+    } else if (value < 50) {
       return 0.7;
-    } else if (value < 120) {
+    } else if (value < 60) {
       return 0.75;
-    } else if (value < 180) {
+    } else if (value < 70) {
       return 0.8;
-    } else if (value < 250) {
+    } else if (value < 80) {
       return 0.85;
-    } else if (value < 350) {
+    } else if (value < 99) {
       return 0.9;
     } else {
       return 1;
@@ -62,9 +64,9 @@ export const Streak = (props) => {
         )})`,
       }}
     >
-      {streak[activity]}
+      {streak[activity] > 99 ? "99+" : streak[activity]}
     </div>
   ) : (
-    <></>
-  );
+        <></>
+      );
 };
