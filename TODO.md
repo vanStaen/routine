@@ -2,7 +2,6 @@
 
 ## Backlog:
 
-- [ ] Show error notification when backend problem
 - [ ] Show yesterday 
   - scroll event > letzte element in liste 
     check if letzte element top position is close to the end
@@ -20,3 +19,4 @@
 - [x] Create Rest API
 - [x] UI to interact with API
 - [x] Streak per activities
+- [x] Show notification when backend throw error
