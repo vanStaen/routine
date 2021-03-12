@@ -2,6 +2,7 @@
 
 ## Backlog:
 
+- [ ] Show error notification when backend problem
 - [ ] Show yesterday 
   - scroll event > letzte element in liste 
     check if letzte element top position is close to the end
