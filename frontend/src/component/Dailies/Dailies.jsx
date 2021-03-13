@@ -52,7 +52,7 @@ export const Dailies = () => {
     listDailies.push(
       <>
         <div className="Dailies__full">
-          {dailies.length > 0 ? (<div>{dailies[i].day}.{dailies[i].month}.{dailies[i].year}</div>) : ""}
+          <div className="dailies__date">{dailies.length > 0 ? (<div>{dailies[i].day}.{dailies[i].month}.{dailies[i].year}</div>) : ""}</div>
           <div className="dailies__main">{formattedDaily(i)}</div>
         </div>
       </>

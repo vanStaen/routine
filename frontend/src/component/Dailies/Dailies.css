@@ -7,16 +7,26 @@
   justify-content: center;
 } 
 
+.dailies__date {
+  max-width: 960px;
+  justify-content: center;
+  font-size: .5em;
+  color: rgba(255,255,255,0.2);
+  padding: .1em .3em;
+  margin: 2em 0 1em 0;
+  font-style: italic;
+}
+
 .Dailies__full:nth-child(even) {
   background: #43464D;
 }
 
 .dailies__main {
-    max-width: 960px;
-    display: flex;     
-    flex-wrap: wrap; 
-    justify-content: center;
-    padding: 2.5em 0 2.5em 0;
+  max-width: 960px;
+  display: flex;     
+  flex-wrap: wrap; 
+  justify-content: center;
+  padding: .5em 0 2.5em 0;
 }
 
 .spinner {
