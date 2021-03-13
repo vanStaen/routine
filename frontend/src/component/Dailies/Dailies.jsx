@@ -7,7 +7,7 @@ import "./Dailies.css";
 
 export const Dailies = () => {
   const [dailies, setDailies] = useState([]);
-  const [limit, setLimit] = useState(2);
+  const [limit, setLimit] = useState(3);
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);

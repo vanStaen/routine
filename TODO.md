@@ -11,6 +11,7 @@
 - [ ] Password protect
 - [ ] Click on streak badge will open activity history
 - [ ] Admin panel (drawer) to set up increment and goals
+- [ ] Deactivate actions on other days
  
 ## Completed ✓
 
