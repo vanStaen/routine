@@ -63,9 +63,9 @@ router.get("/:year/:month/:day", async (req, res) => {
     if (daily.rows.length > 0) {
       res.status(201).json(daily.rows);
     } else {
-       res.status(400).json({
-          message: `o data for the ${req.params.day}.${req.params.month}.${req.params.year}!`,N
-        });
+      res.status(400).json({
+        message: `No data for the ${req.params.day}.${req.params.month}.${req.params.year}!`,
+      });
     }
   } catch (err) {
     res.status(400).json({

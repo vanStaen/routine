@@ -64,7 +64,7 @@ export const Streak = (props) => {
         )})`,
       }}
     >
-      {streak[activity] > 99 ? "99+" : streak[activity]}
+      {streak[activity] > 999 ? "999+" : streak[activity]}
     </div>
   ) : (
         <></>
