@@ -24,28 +24,30 @@ const year = today.getFullYear();
 const month = today.getMonth() + 1;
 const day = today.getDate();
 
-
-// GET data from dailies for today
+// GET all daily data (and create today if not exist)
 router.get("/", async (req, res) => {
   try {
-    const daily = await client.query(
+    const dailyToday = await client.query(
       `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
     );
-    if (daily.rows.length > 0) {
-      res.status(201).json(daily.rows);
+    if (dailyToday.rows.length > 0) {
+      const daily = await client.query(
+        `SELECT * FROM dailies LIMIT 2`
+      );
+      res.status(201).json(dailyToday.rows);
     } else {
       // there is no line for this day, so create one
       await client.query(
         `INSERT INTO dailies (year, month, day) VALUES (${year}, ${month}, ${day})`
       );
-      const freshyCreatedDaily = await client.query(
-        `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
+      const dailyNew = await client.query(
+        `SELECT * FROM dailies LIMIT 2`
       );
-      if (freshyCreatedDaily.rows.length > 0) {
-        res.status(201).json(freshyCreatedDaily.rows);
+      if (dailyNew.rows.length > 0) {
+        res.status(201).json(dailyNew.rows);
       } else {
         res.status(400).json({
-          error: `Something wrong happened!`,
+          error: `Something wrong happened! No data found.`,
         });
       }
     }
@@ -56,106 +58,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-
-// GET data from dailies for a specific date
-router.get("/:year/:month/:day", async (req, res) => {
+// GET all data with variable limit
+router.get("/:limit", async (req, res) => {
   try {
-    const daily = await client.query(
-      `SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`
+    const dailyToday = await client.query(
+      `SELECT * FROM dailies LIMIT ${req.params.limit}`
     );
-    if (daily.rows.length > 0) {
-      res.status(201).json(daily.rows);
-    } else {
-      if (year === req.params.year && month === req.params.month && day === req.params.day) {
-        // there is no line for this day, so create one
-        await client.query(
-          `INSERT INTO dailies (year, month, day) VALUES (${year}, ${month}, ${day})`
-        );
-        const freshyCreatedDaily = await client.query(
-          `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
-        );
-        if (freshyCreatedDaily.rows.length > 0) {
-          res.status(201).json(freshyCreatedDaily.rows);
-        } else {
-          res.status(400).json({
-            error: `Something wrong happened!`,
-          });
-        }
-      } else {
-        res.status(400).json({
-          message: `No data for the ${req.params.day}.${req.params.month}.${req.params.year}!`,
-        });
-      }
-    }
-  } catch (err) {
-    res.status(400).json({
-      error: `${err}`,
-    });
-  }
-});
-
-// PATCH single data from daily (based on date)
-router.patch("/:year/:month/:day", async (req, res) => {
-  let updateField = '';
-  if (req.body.dutch !== undefined) {
-    updateField = updateField + "dutch=" + req.body.dutch + ",";
-  }
-  if (req.body.guitar !== undefined) {
-    updateField = updateField + "guitar=" + req.body.guitar + ",";
-  }
-  if (req.body.pushups !== undefined) {
-    updateField = updateField + "pushups=" + req.body.pushups + ",";
-  }
-  if (req.body.pullups !== undefined) {
-    updateField = updateField + "pullups=" + req.body.pullups + ",";
-  }
-  if (req.body.situps !== undefined) {
-    updateField = updateField + "situps=" + req.body.situps + ",";
-  }
-  if (req.body.javascript !== undefined) {
-    updateField = updateField + "javascript=" + req.body.javascript + ",";
-  }
-  if (req.body.teeth !== undefined) {
-    updateField = updateField + "teeth=" + req.body.teeth + ",";
-  }
-  if (req.body.producing !== undefined) {
-    updateField = updateField + "producing=" + req.body.producing + ",";
-  }
-  if (req.body.bass !== undefined) {
-    updateField = updateField + "bass=" + req.body.bass + ",";
-  }
-  if (req.body.piano !== undefined) {
-    updateField = updateField + "piano=" + req.body.piano + ",";
-  }
-  if (req.body.trumpet !== undefined) {
-    updateField = updateField + "trumpet=" + req.body.trumpet + ",";
-  }
-  if (req.body.run !== undefined) {
-    updateField = updateField + "run=" + req.body.run + ",";
-  }
-  if (req.body.stretch !== undefined) {
-    updateField = updateField + "stretch=" + req.body.stretch + ",";
-  }
-  if (req.body.photo !== undefined) {
-    updateField = updateField + "photo=" + req.body.photo + ",";
-  }
-  if (req.body.water !== undefined) {
-    updateField = updateField + "water=" + req.body.water + ",";
-  }
-  if (req.body.climb !== undefined) {
-    updateField = updateField + "climb=" + req.body.climb + ",";
-  }
-  const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
-  const updateQuery = `UPDATE dailies SET ${updateFieldEdited} WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`;
-  try {
-    const udpate = await client.query(updateQuery);
-    if (udpate.rowCount > 0) {
-      res.status(200).json({
-        success: `Daily updated.`,
-      });
+    if (dailyToday.rows.length > 0) {
+      res.status(201).json(dailyToday.rows);
     } else {
       res.status(400).json({
-        error: `No daily found for date ${req.params.year}/${req.params.month}/${req.params.day}`,
+        message: `Something wrong happened! No data found.`,
       });
     }
   } catch (err) {
@@ -164,5 +77,6 @@ router.patch("/:year/:month/:day", async (req, res) => {
     });
   }
 });
+
 
 module.exports = router;
