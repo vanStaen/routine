@@ -6,9 +6,7 @@ function App() {
     <div className="App">
       <header className="App__header">
         <div className="App__day">
-          <div className="App__container">
-            <Dailies />
-          </div>
+          <Dailies />
         </div>
       </header>
     </div>

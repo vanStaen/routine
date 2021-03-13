@@ -10,9 +10,9 @@ import {
 import { Tooltip, notification } from "antd";
 import { patchDaily } from "./patchDaily";
 
-import "./Daily.css";
+import "./Activity.css";
 
-export const Daily = (props) => {
+export const Activity = (props) => {
   const [count, setCount] = useState(
     props.dailies[props.activity.activity]
       ? props.dailies[props.activity.activity]
@@ -89,9 +89,8 @@ export const Daily = (props) => {
         )}
 
         <div
-          className={`daily__actionContainer ${
-            goal === 0 ? "" : "daily__actionContainerHover"
-          }`}
+          className={`daily__actionContainer ${goal === 0 ? "" : "daily__actionContainerHover"
+            }`}
           onMouseOver={handleMouseOver}
           onMouseLeave={handleMouseLeave}
         >
@@ -123,16 +122,16 @@ export const Daily = (props) => {
               </div>
             </>
           ) : (
-            <>
-              <div
-                className="daily__action"
-                id={activity + "_check"}
-                onClick={handleMinusClick}
-              >
-                <CloseOutlined />
-              </div>
-            </>
-          )}
+                <>
+                  <div
+                    className="daily__action"
+                    id={activity + "_check"}
+                    onClick={handleMinusClick}
+                  >
+                    <CloseOutlined />
+                  </div>
+                </>
+              )}
         </div>
 
         <Logo activity={props.activity} />

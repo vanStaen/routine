@@ -1,20 +1,14 @@
 import axios from 'axios';
 
-export const getDailies = async () => {
-
-    const today = new Date();
-
-    const year = today.getFullYear();
-    const month = today.getMonth() +1;
-    const day = today.getDate();
+export const getDailies = async (limit) => {
 
     const response = await axios({
-        url: process.env.REACT_APP_API_URL + `dailies/${year}/${month}/${day}`,
+        url: process.env.REACT_APP_API_URL + `dailies/${limit}`,
         method: "GET",
     });
     if ((response.status !== 200) & (response.status !== 201)) {
         throw new Error("Error!");
     }
-    const dailies = await response.data[0];
+    const dailies = await response.data;
     return dailies;
 }
