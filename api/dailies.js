@@ -18,12 +18,15 @@ client.connect((err) => {
   }
 });
 
+// Today
+const today = new Date();
+const year = today.getFullYear();
+const month = today.getMonth() + 1;
+const day = today.getDate();
+
+
 // GET data from dailies for today
 router.get("/", async (req, res) => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
   try {
     const daily = await client.query(
       `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
@@ -63,9 +66,26 @@ router.get("/:year/:month/:day", async (req, res) => {
     if (daily.rows.length > 0) {
       res.status(201).json(daily.rows);
     } else {
-      res.status(400).json({
-        message: `No data for the ${req.params.day}.${req.params.month}.${req.params.year}!`,
-      });
+      if (year === req.params.year && month === req.params.month && day === req.params.day) {
+        // there is no line for this day, so create one
+        await client.query(
+          `INSERT INTO dailies (year, month, day) VALUES (${year}, ${month}, ${day})`
+        );
+        const freshyCreatedDaily = await client.query(
+          `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
+        );
+        if (freshyCreatedDaily.rows.length > 0) {
+          res.status(201).json(freshyCreatedDaily.rows);
+        } else {
+          res.status(400).json({
+            error: `Something wrong happened!`,
+          });
+        }
+      } else {
+        res.status(400).json({
+          message: `No data for the ${req.params.day}.${req.params.month}.${req.params.year}!`,
+        });
+      }
     }
   } catch (err) {
     res.status(400).json({
