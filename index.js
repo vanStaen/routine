@@ -32,6 +32,7 @@ app.get('/', (req, res) => { res.sendFile(path.join(__dirname, "build", "index.h
 
 // Router to API endpoints
 app.use("/dailies", require("./api/dailies"));
+app.use("/daily", require("./api/daily"));
 app.use("/activity", require("./api/activity"));
 app.use("/streak", require("./api/streak"));
 

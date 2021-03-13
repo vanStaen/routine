@@ -62,7 +62,7 @@ router.get("/", async (req, res) => {
 router.get("/:limit", async (req, res) => {
   try {
     const dailyToday = await client.query(
-      `SELECT * FROM dailies LIMIT ${req.params.limit}`
+      `SELECT * FROM dailies ORDER BY id DESC LIMIT ${req.params.limit}`
     );
     if (dailyToday.rows.length > 0) {
       res.status(201).json(dailyToday.rows);

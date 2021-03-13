@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const patchDaily = async (activity, value) => {
+export const patchActvitiy = async (activity, value) => {
   const today = new Date();
 
   const year = today.getFullYear();
@@ -11,7 +11,7 @@ export const patchDaily = async (activity, value) => {
     [activity]: value,
   };
 
-   try {
+  try {
     const response = await axios({
       url: process.env.REACT_APP_API_URL + `dailies/${year}/${month}/${day}`,
       method: "PATCH",

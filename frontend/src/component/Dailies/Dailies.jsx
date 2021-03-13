@@ -11,6 +11,7 @@ export const Dailies = () => {
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [reachedLast, setReachedLast] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -20,7 +21,8 @@ export const Dailies = () => {
       ]);
       setDailies(fetchedDailies);
       setActivities(fetchedActivities);
-      !fetchedDailies.length && setError(true);
+      if (!fetchedDailies.length) { setError(true) };
+      if (fetchedDailies.length < limit) { setReachedLast(true) };
     } catch (error) {
       console.log(error.message);
     }
@@ -30,6 +32,9 @@ export const Dailies = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+
+  console.log(reachedLast);
 
   const formattedDaily = (dayFromToday) => {
     return activities.map((activities) => {
@@ -41,6 +46,19 @@ export const Dailies = () => {
         />
       );
     });
+  }
+
+  let listDailies = [];
+  let i;
+  for (i = 0; i < limit; i++) {
+    listDailies.push(
+      <>
+        <div className="Dailies__full">
+          <div>{dailies[0].day}.{dailies[0].month}.{dailies[0].year}</div>
+          <div className="dailies__main">{formattedDaily(i)}</div>
+        </div>
+      </>
+    )
   }
 
   return isLoading ? (
@@ -57,12 +75,7 @@ export const Dailies = () => {
     </div>
   ) : (
         <>
-          <div className="Dailies__full">
-            <div className="dailies__main">{formattedDaily(0)}</div>
-          </div>
-          <div className="Dailies__full">
-            <div className="dailies__main">{formattedDaily(1)}</div>
-          </div>
+          {listDailies}
         </>
       );
 };
