@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
 import { Activity } from "../Activity/Activity";
+import { notification } from "antd";
 
 import "./Dailies.css";
 
@@ -25,6 +26,9 @@ export const Dailies = () => {
       if (fetchedDailies.length < limit) { setReachedLast(fetchedDailies.length) };
     } catch (error) {
       console.log(error.message);
+      notification.error({
+        message: error.message,
+      });
     }
     setIsLoading(false);
   };
