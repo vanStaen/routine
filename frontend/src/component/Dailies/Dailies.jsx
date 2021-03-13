@@ -7,7 +7,7 @@ import "./Dailies.css";
 
 export const Dailies = () => {
   const [dailies, setDailies] = useState([]);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(2);
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -47,8 +47,8 @@ export const Dailies = () => {
   }
 
   let listDailies = [];
-  let i;
-  for (i = 0; i < limit; i++) {
+  const max = reachedLast > limit ? limit : reachedLast ? reachedLast : limit;
+  for (let i = 0; i < max; i++) {
     listDailies.push(
       <>
         <div className="Dailies__full">
