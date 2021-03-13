@@ -13,7 +13,7 @@ export const patchActvitiy = async (activity, value) => {
 
   try {
     const response = await axios({
-      url: process.env.REACT_APP_API_URL + `dailies/${year}/${month}/${day}`,
+      url: process.env.REACT_APP_API_URL + `daily/${year}/${month}/${day}`,
       method: "PATCH",
       data: requestBody,
       timeout: 1000, // wait for max 1 second

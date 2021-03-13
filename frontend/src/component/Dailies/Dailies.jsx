@@ -7,11 +7,11 @@ import "./Dailies.css";
 
 export const Dailies = () => {
   const [dailies, setDailies] = useState([]);
-  const [limit, setLimit] = useState(2);
+  const [limit, setLimit] = useState(6);
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [reachedLast, setReachedLast] = useState(false);
+  const [reachedLast, setReachedLast] = useState();
 
   const fetchData = async () => {
     try {
@@ -22,7 +22,7 @@ export const Dailies = () => {
       setDailies(fetchedDailies);
       setActivities(fetchedActivities);
       if (!fetchedDailies.length) { setError(true) };
-      if (fetchedDailies.length < limit) { setReachedLast(true) };
+      if (fetchedDailies.length < limit) { setReachedLast(fetchedDailies.length) };
     } catch (error) {
       console.log(error.message);
     }
@@ -33,8 +33,6 @@ export const Dailies = () => {
     fetchData();
   }, []);
 
-
-  console.log(reachedLast);
 
   const formattedDaily = (dayFromToday) => {
     return activities.map((activities) => {
@@ -54,7 +52,7 @@ export const Dailies = () => {
     listDailies.push(
       <>
         <div className="Dailies__full">
-          <div>{dailies[0].day}.{dailies[0].month}.{dailies[0].year}</div>
+          {dailies.length > 0 ? (<div>{dailies[i].day}.{dailies[i].month}.{dailies[i].year}</div>) : ""}
           <div className="dailies__main">{formattedDaily(i)}</div>
         </div>
       </>
