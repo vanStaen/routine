@@ -97,20 +97,24 @@ export const Activity = (props) => {
         >
           {goal > 1 ? (
             <>
-              <div
-                className="daily__action"
-                id={activity + "_minus"}
-                onClick={handleMinusClick}
-              >
-                <MinusOutlined />
-              </div>
-              <div
-                className="daily__action"
-                id={activity + "_plus"}
-                onClick={handlePlusClick}
-              >
-                <PlusOutlined />
-              </div>
+              {!props.disabled && (
+                <>
+                  <div
+                    className="daily__action"
+                    id={activity + "_minus"}
+                    onClick={handleMinusClick}
+                  >
+                    <MinusOutlined />
+                  </div>
+                  <div
+                    className="daily__action"
+                    id={activity + "_plus"}
+                    onClick={handlePlusClick}
+                  >
+                    <PlusOutlined />
+                  </div>
+                </>
+              )}
             </>
           ) : !done ? (
             <>
