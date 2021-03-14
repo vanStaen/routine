@@ -38,10 +38,16 @@ router.get("/:year/:month/:day", async (req, res) => {
 });
 
 // PATCH single data from daily (based on date)
-router.patch("/:year/:month/:day", async (req, res) => {
+router.patch("/:id", async (req, res) => {
   let updateField = '';
-  if (req.body.id !== undefined) {
-    updateField = updateField + "id=" + req.body.id + ",";
+  if (req.body.day !== undefined) {
+    updateField = updateField + "day=" + req.body.day + ",";
+  }
+  if (req.body.month !== undefined) {
+    updateField = updateField + "month=" + req.body.month + ",";
+  }
+  if (req.body.year !== undefined) {
+    updateField = updateField + "year=" + req.body.year + ",";
   }
   if (req.body.dutch !== undefined) {
     updateField = updateField + "dutch=" + req.body.dutch + ",";
@@ -92,7 +98,7 @@ router.patch("/:year/:month/:day", async (req, res) => {
     updateField = updateField + "climb=" + req.body.climb + ",";
   }
   const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
-  const updateQuery = `UPDATE dailies SET ${updateFieldEdited} WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`;
+  const updateQuery = `UPDATE dailies SET ${updateFieldEdited} WHERE id=${req.params.id}`;
   try {
     const udpate = await client.query(updateQuery);
     if (udpate.rowCount > 0) {
@@ -101,7 +107,7 @@ router.patch("/:year/:month/:day", async (req, res) => {
       });
     } else {
       res.status(400).json({
-        error: `No daily found for date ${req.params.year}/${req.params.month}/${req.params.day}`,
+        error: `No daily found with id#${req.params.id}`,
       });
     }
   } catch (err) {

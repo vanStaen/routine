@@ -19,6 +19,7 @@ export const Activity = (props) => {
       : 0
   );
 
+  const id = props.dailies.id;
   const activity = props.activity.activity;
   const increment = props.activity.increment;
   const goal = props.activity.goal;
@@ -46,7 +47,7 @@ export const Activity = (props) => {
 
   const handlePlusClick = async () => {
     const newCount = count + increment;
-    const resultPlus = await patchActvitiy(activity, newCount);
+    const resultPlus = await patchActvitiy(id, activity, newCount);
     if (resultPlus.status === 200) {
       setCount(newCount);
     } else {
@@ -58,7 +59,7 @@ export const Activity = (props) => {
 
   const handleMinusClick = async () => {
     const newCount = count >= increment ? count - increment : 0;
-    const resultMinus = await patchActvitiy(activity, newCount);
+    const resultMinus = await patchActvitiy(id, activity, newCount);
     if (resultMinus.status === 200) {
       setCount(newCount);
     } else {
