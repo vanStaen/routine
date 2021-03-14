@@ -31,9 +31,6 @@ router.get("/", async (req, res) => {
       `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
     );
     if (dailyToday.rows.length > 0) {
-      const daily = await client.query(
-        `SELECT * FROM dailies LIMIT 2`
-      );
       res.status(201).json(dailyToday.rows);
     } else {
       // there is no line for this day, so create one
@@ -62,14 +59,28 @@ router.get("/", async (req, res) => {
 router.get("/:limit", async (req, res) => {
   try {
     const dailyToday = await client.query(
-      `SELECT * FROM dailies ORDER BY id DESC LIMIT ${req.params.limit}`
+      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
     );
     if (dailyToday.rows.length > 0) {
-      res.status(201).json(dailyToday.rows);
+      const daily = await client.query(
+        `SELECT * FROM dailies ORDER BY id DESC LIMIT ${req.params.limit}`
+      );
+      res.status(201).json(daily.rows);
     } else {
-      res.status(400).json({
-        message: `Something wrong happened! No data found.`,
-      });
+      // there is no line for this day, so create one
+      await client.query(
+        `INSERT INTO dailies (year, month, day) VALUES (${year}, ${month}, ${day})`
+      );
+      const dailyNew = await client.query(
+        `SELECT * FROM dailies SELECT * FROM dailies ORDER BY id DESC LIMIT ${req.params.limit}`
+      );
+      if (dailyNew.rows.length > 0) {
+        res.status(201).json(dailyNew.rows);
+      } else {
+        res.status(400).json({
+          error: `Something wrong happened! No data found.`,
+        });
+      }
     }
   } catch (err) {
     res.status(400).json({
