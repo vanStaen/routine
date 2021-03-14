@@ -13,6 +13,9 @@ export const Dailies = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [reachedLast, setReachedLast] = useState();
+  const [lastknownWindowPosition, setLastknownWindowPosition] = useState(window.scrollY);
+
+  const windowsHeight = window.screen.height;
 
   const fetchData = async () => {
     try {
@@ -33,9 +36,34 @@ export const Dailies = () => {
     setIsLoading(false);
   };
 
+  const handlerScroll = (event) => {
+    if (lastknownWindowPosition < window.scrollY) {
+      const dailyTargetDownTop = document.getElementById("daily2").getBoundingClientRect().top + window.scrollY;
+      console.log(dailyTargetDownTop);
+      /*window.scrollTo({
+        top: dailyTargetDownTop,
+        behavior: 'smooth'
+      });*/
+    } else if (lastknownWindowPosition > window.scrollY) {
+      const dailyTargetUpTop = document.getElementById("daily1").getBoundingClientRect().top + window.scrollY;
+      console.log(dailyTargetUpTop);
+      /*window.scrollTo({
+        top: dailyTargetUpTop,
+        behavior: 'smooth'
+      });*/
+    }
+    setLastknownWindowPosition(window.scrollY);
+  }
+
   useEffect(() => {
     fetchData();
   }, []);
+
+
+  useEffect(() => {
+    window.addEventListener("scroll", handlerScroll);
+    return () => window.removeEventListener("scroll", handlerScroll);
+  });
 
 
   const formattedDaily = (dayFromToday) => {
@@ -56,13 +84,15 @@ export const Dailies = () => {
   for (let i = 0; i < max; i++) {
     listDailies.push(
       <>
-        <div className="Dailies__full">
+        <div className="Dailies__full" id={`daily${i}`}>
           <div className="dailies__date">{dailies.length > 0 ? (<div>{dailies[i].day}.{dailies[i].month}.{dailies[i].year}</div>) : ""}</div>
           <div className="dailies__main">{formattedDaily(i)}</div>
         </div>
       </>
     )
   }
+
+  //window.scrollTo(windowsHeight, 0);
 
   return isLoading ? (
     <div className="spinner">
