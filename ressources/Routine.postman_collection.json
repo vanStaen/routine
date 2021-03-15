@@ -11,15 +11,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5005/activity/dailies",
+					"raw": "http://localhost:5005/activity",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5005",
 					"path": [
-						"activity",
-						"dailies"
+						"activity"
 					]
 				},
 				"description": "GET request : list of all users\nTo localserver on port 5000\n"
@@ -70,7 +69,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{  \n   \"table\": \"dailies\",\n   \"activity\": \"javascript\"\n}"
+					"raw": "{  \n   \"activity\": \"javascript\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5005/activity/",
@@ -101,7 +100,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{  \n   \"activity\": \"producing\",\n   \"datatype\": \"boolean\",\n   \"increment\": \"1\",\n   \"name\" : \"Producing\"\n}"
+					"raw": "{  \n   \"activity\": \"teeth\",\n   \"name\" : \"Brush your teeth!\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5005/activity/",
@@ -125,7 +124,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5005/dailies/2021/02/24",
+					"raw": "http://localhost:5005/dailies/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -133,9 +132,7 @@
 					"port": "5005",
 					"path": [
 						"dailies",
-						"2021",
-						"02",
-						"24"
+						"5"
 					]
 				},
 				"description": "GET request : list of all users\nTo localserver on port 5000\n"
@@ -143,7 +140,7 @@
 			"response": []
 		},
 		{
-			"name": "ROUTINE: localhost:5001/dailies",
+			"name": "ROUTINE: localhost:5001/daily",
 			"request": {
 				"method": "PATCH",
 				"header": [
@@ -155,23 +152,77 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"teeth\" : true\n}"
+					"raw": "{\n        \"water\": 0,\n        \"bass\": 0,\n        \"piano\": 0,\n        \"trumpet\": 0,\n        \"run\": 0,\n        \"stretch\": 0,\n        \"photo\": 0\n    }"
 				},
 				"url": {
-					"raw": "http://localhost:5005/dailies/2021/3/8",
+					"raw": "http://localhost:5005/daily/2021/3/8",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5005",
 					"path": [
-						"dailies",
+						"daily",
 						"2021",
 						"3",
 						"8"
 					]
 				},
 				"description": "GET request : list of all users\nTo localserver on port 5000\n"
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTINE: localhost:5001/streak",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5005/streak/2021/3/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"streak",
+						"2021",
+						"3",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTINE: localhost:5001/streak",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"teeth\": 6\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5005/streak/2021/3/15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"streak",
+						"2021",
+						"3",
+						"15"
+					]
+				}
 			},
 			"response": []
 		}
