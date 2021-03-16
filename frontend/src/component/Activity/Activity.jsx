@@ -6,6 +6,7 @@ import {
   PlusOutlined,
   MinusOutlined,
   CloseOutlined,
+  SyncOutlined,
 } from "@ant-design/icons";
 import { Tooltip, notification } from "antd";
 import { patchActvitiy } from "./patchActvitiy";
@@ -13,6 +14,8 @@ import { patchActvitiy } from "./patchActvitiy";
 import "./Activity.css";
 
 export const Activity = (props) => {
+  const [updateLoading, setUpdateLoading] = useState(false);
+  const [updateLoadingError, setUpdateLoadingError] = useState(false);
   const [count, setCount] = useState(
     props.dailies[props.activity.activity]
       ? props.dailies[props.activity.activity]
@@ -46,26 +49,32 @@ export const Activity = (props) => {
   };
 
   const handlePlusClick = async () => {
+    setUpdateLoading(true);
     const newCount = count + increment;
     const resultPlus = await patchActvitiy(id, activity, newCount);
     if (resultPlus.status === 200) {
       setCount(newCount);
+      setUpdateLoading(false);
     } else {
       notification.error({
         message: resultPlus.message,
       });
+      setUpdateLoadingError(true);
     }
   };
 
   const handleMinusClick = async () => {
+    setUpdateLoading(true);
     const newCount = count >= increment ? count - increment : 0;
     const resultMinus = await patchActvitiy(id, activity, newCount);
     if (resultMinus.status === 200) {
       setCount(newCount);
+      setUpdateLoading(false);
     } else {
       notification.error({
         message: resultMinus.message,
       });
+      setUpdateLoadingError(true);
     }
   };
 
@@ -142,7 +151,17 @@ export const Activity = (props) => {
         <Logo activity={props.activity} />
 
         <div className={`daily__text }`}>
-          {goal > 1 ? `${count} / ${goal} ` : `${props.activity.unit}!`}
+          {updateLoading ?
+            <>
+              {goal > 1 ? <><SyncOutlined spin style={{ color: "#999" }} /> / {goal}</>
+                :
+                <SyncOutlined spin style={{ color: "#999" }} />}
+            </>
+            :
+            <>
+              {goal > 1 ? `${count} / ${goal} ` : `${props.activity.unit}!`}
+            </>
+          }
           {goal > 1 && props.activity.unit}
           {goal === 0 && (
             <div style={{ fontStyle: "italic", fontSize: ".7em" }}>
