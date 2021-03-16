@@ -156,7 +156,7 @@ export const Activity = (props) => {
             :
             updateLoading ?
               <>
-                {goal > 1 ? <><SyncOutlined spin style={{ color: "#999" }} /> / {goal}</>
+                {goal > 1 ? <><SyncOutlined spin style={{ color: "#999" }} />{" "}/ {goal}</>
                   :
                   <SyncOutlined spin style={{ color: "#999" }} />}
                 {goal > 1 && props.activity.unit}
