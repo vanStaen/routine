@@ -31,20 +31,24 @@ export const Activity = (props) => {
     count >= goal ? (goal ? true : count > goal ? true : false) : false;
 
   const handleMouseOver = () => {
-    if (goal > 1) {
-      document.getElementById(activity + "_minus").style.display = "block";
-      document.getElementById(activity + "_plus").style.display = "block";
-    } else {
-      document.getElementById(activity + "_check").style.display = "block";
+    if (!props.disabled) {
+      if (goal > 1) {
+        document.getElementById(activity + "_minus").style.display = "block";
+        document.getElementById(activity + "_plus").style.display = "block";
+      } else {
+        document.getElementById(activity + "_check").style.display = "block";
+      }
     }
   };
 
   const handleMouseLeave = () => {
-    if (goal > 1) {
-      document.getElementById(activity + "_minus").style.display = "none";
-      document.getElementById(activity + "_plus").style.display = "none";
-    } else {
-      document.getElementById(activity + "_check").style.display = "none";
+    if (!props.disabled) {
+      if (goal > 1) {
+        document.getElementById(activity + "_minus").style.display = "none";
+        document.getElementById(activity + "_plus").style.display = "none";
+      } else {
+        document.getElementById(activity + "_check").style.display = "none";
+      }
     }
   };
 
@@ -99,31 +103,34 @@ export const Activity = (props) => {
         )}
 
         <div
-          className={`daily__actionContainer ${goal === 0 ? "" : "daily__actionContainerHover"
-            }`}
+          className={`daily__actionContainer ${
+            goal === 0
+              ? ""
+              : props.disabled
+              ? ""
+              : "daily__actionContainerHover"
+          }`}
           onMouseOver={handleMouseOver}
           onMouseLeave={handleMouseLeave}
         >
           {goal > 1 ? (
             <>
-              {!props.disabled && (
-                <>
-                  <div
-                    className="daily__action"
-                    id={activity + "_minus"}
-                    onClick={handleMinusClick}
-                  >
-                    <MinusOutlined />
-                  </div>
-                  <div
-                    className="daily__action"
-                    id={activity + "_plus"}
-                    onClick={handlePlusClick}
-                  >
-                    <PlusOutlined />
-                  </div>
-                </>
-              )}
+              <>
+                <div
+                  className="daily__action"
+                  id={activity + "_minus"}
+                  onClick={handleMinusClick}
+                >
+                  <MinusOutlined />
+                </div>
+                <div
+                  className="daily__action"
+                  id={activity + "_plus"}
+                  onClick={handlePlusClick}
+                >
+                  <PlusOutlined />
+                </div>
+              </>
             </>
           ) : !done ? (
             <>
@@ -136,38 +143,40 @@ export const Activity = (props) => {
               </div>
             </>
           ) : (
-                <>
-                  <div
-                    className="daily__action"
-                    id={activity + "_check"}
-                    onClick={handleMinusClick}
-                  >
-                    <CloseOutlined />
-                  </div>
-                </>
-              )}
+            <>
+              <div
+                className="daily__action"
+                id={activity + "_check"}
+                onClick={handleMinusClick}
+              >
+                <CloseOutlined />
+              </div>
+            </>
+          )}
         </div>
 
         <Logo activity={props.activity} />
 
         <div className={`daily__text }`}>
-          {updateLoadingError ?
+          {updateLoadingError ? (
             <CloseOutlined style={{ color: "#C70039" }} />
-            :
-            updateLoading ?
-              <>
-                {goal > 1 ? <><SyncOutlined spin style={{ color: "#999" }} />{" "}/ {goal}</>
-                  :
-                  <SyncOutlined spin style={{ color: "#999" }} />}
-                {goal > 1 && props.activity.unit}
-              </>
-              :
-              <>
-                {goal > 1 ? `${count} / ${goal} ` : `${props.activity.unit}!`}
-                {goal > 1 && props.activity.unit}
-              </>
-
-          }
+          ) : updateLoading ? (
+            <>
+              {goal > 1 ? (
+                <>
+                  <SyncOutlined spin style={{ color: "#999" }} /> / {goal}
+                </>
+              ) : (
+                <SyncOutlined spin style={{ color: "#999" }} />
+              )}
+              {goal > 1 && props.activity.unit}
+            </>
+          ) : (
+            <>
+              {goal > 1 ? `${count} / ${goal} ` : `${props.activity.unit}!`}
+              {goal > 1 && props.activity.unit}
+            </>
+          )}
           {goal === 0 && (
             <div style={{ fontStyle: "italic", fontSize: ".7em" }}>
               <i>optional</i>
