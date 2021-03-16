@@ -151,18 +151,23 @@ export const Activity = (props) => {
         <Logo activity={props.activity} />
 
         <div className={`daily__text }`}>
-          {updateLoading ?
-            <>
-              {goal > 1 ? <><SyncOutlined spin style={{ color: "#999" }} /> / {goal}</>
-                :
-                <SyncOutlined spin style={{ color: "#999" }} />}
-            </>
+          {updateLoadingError ?
+            <CloseOutlined style={{ color: "#C70039" }} />
             :
-            <>
-              {goal > 1 ? `${count} / ${goal} ` : `${props.activity.unit}!`}
-            </>
+            updateLoading ?
+              <>
+                {goal > 1 ? <><SyncOutlined spin style={{ color: "#999" }} /> / {goal}</>
+                  :
+                  <SyncOutlined spin style={{ color: "#999" }} />}
+                {goal > 1 && props.activity.unit}
+              </>
+              :
+              <>
+                {goal > 1 ? `${count} / ${goal} ` : `${props.activity.unit}!`}
+                {goal > 1 && props.activity.unit}
+              </>
+
           }
-          {goal > 1 && props.activity.unit}
           {goal === 0 && (
             <div style={{ fontStyle: "italic", fontSize: ".7em" }}>
               <i>optional</i>
