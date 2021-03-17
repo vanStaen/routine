@@ -13,7 +13,9 @@ export const Dailies = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [reachedLast, setReachedLast] = useState();
-  const [lastknownWindowPosition, setLastknownWindowPosition] = useState(window.scrollY);
+  const [lastknownWindowPosition, setLastknownWindowPosition] = useState(
+    window.scrollY
+  );
 
   const windowsHeight = window.screen.height;
 
@@ -25,8 +27,12 @@ export const Dailies = () => {
       ]);
       setDailies(fetchedDailies);
       setActivities(fetchedActivities);
-      if (!fetchedDailies.length) { setError(true) };
-      if (fetchedDailies.length < limit) { setReachedLast(fetchedDailies.length) };
+      if (!fetchedDailies.length) {
+        setError(true);
+      }
+      if (fetchedDailies.length < limit) {
+        setReachedLast(fetchedDailies.length);
+      }
     } catch (error) {
       console.log(error.message);
       notification.error({
@@ -38,14 +44,18 @@ export const Dailies = () => {
 
   const handlerScroll = (event) => {
     if (lastknownWindowPosition < window.scrollY) {
-      const dailyTargetDownTop = document.getElementById("daily2").getBoundingClientRect().top + window.scrollY;
+      const dailyTargetDownTop =
+        document.getElementById("daily2").getBoundingClientRect().top +
+        window.scrollY;
       console.log(dailyTargetDownTop);
       /*window.scrollTo({
         top: dailyTargetDownTop,
         behavior: 'smooth'
       });*/
     } else if (lastknownWindowPosition > window.scrollY) {
-      const dailyTargetUpTop = document.getElementById("daily1").getBoundingClientRect().top + window.scrollY;
+      const dailyTargetUpTop =
+        document.getElementById("daily1").getBoundingClientRect().top +
+        window.scrollY;
       console.log(dailyTargetUpTop);
       /*window.scrollTo({
         top: dailyTargetUpTop,
@@ -53,18 +63,16 @@ export const Dailies = () => {
       });*/
     }
     setLastknownWindowPosition(window.scrollY);
-  }
+  };
 
   useEffect(() => {
     fetchData();
   }, []);
 
-
   useEffect(() => {
     window.addEventListener("scroll", handlerScroll);
     return () => window.removeEventListener("scroll", handlerScroll);
   });
-
 
   const formattedDaily = (dayFromToday) => {
     return activities.map((activities) => {
@@ -77,7 +85,7 @@ export const Dailies = () => {
         />
       );
     });
-  }
+  };
 
   let listDailies = [];
   const max = reachedLast > limit ? limit : reachedLast ? reachedLast : limit;
@@ -85,11 +93,11 @@ export const Dailies = () => {
     listDailies.push(
       <>
         <div className="Dailies__full" id={`daily${i}`}>
-          <div className="dailies__date">{dailies.length > 0 ? (<div>{dailies[i].day}.{dailies[i].month}.{dailies[i].year}</div>) : ""}</div>
+          {/*<div className="dailies__date">{dailies.length > 0 ? (<div>{dailies[i].day}.{dailies[i].month}.{dailies[i].year}</div>) : ""}</div>*/}
           <div className="dailies__main">{formattedDaily(i)}</div>
         </div>
       </>
-    )
+    );
   }
 
   //window.scrollTo(windowsHeight, 0);
@@ -103,12 +111,8 @@ export const Dailies = () => {
       />
     </div>
   ) : error ? (
-    <div>
-      Error! Something terrible must have happened.
-    </div>
+    <div>Error! Something terrible must have happened.</div>
   ) : (
-        <>
-          {listDailies}
-        </>
-      );
+    <>{listDailies}</>
+  );
 };
