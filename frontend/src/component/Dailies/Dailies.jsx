@@ -8,24 +8,18 @@ import "./Dailies.css";
 
 export const Dailies = () => {
   const [dailies, setDailies] = useState([]);
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(2);
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [reachedLast, setReachedLast] = useState();
-  const [lastknownWindowPosition, setLastknownWindowPosition] = useState(
-    window.scrollY
-  );
   const [displayedDaily, setDisplayedDaily] = useState(0);
+  const [maxDaily, setMaxDaily] = useState(limit);
 
-  // Max daily counting from zero
-  const maxDaily =
-    (reachedLast > limit ? limit : reachedLast ? reachedLast : limit) - 1;
-
-  const fetchData = async () => {
+  const fetchData = async (limitFilter) => {
+    console.log("here", limitFilter);
     try {
       const [fetchedDailies, fetchedActivities] = await Promise.all([
-        getDailies(limit),
+        getDailies(limitFilter),
         getActivities(),
       ]);
       setDailies(fetchedDailies);
@@ -33,9 +27,8 @@ export const Dailies = () => {
       if (!fetchedDailies.length) {
         setError(true);
       }
-      if (fetchedDailies.length < limit) {
-        setReachedLast(fetchedDailies.length);
-      }
+      setMaxDaily(fetchedDailies.length);
+      console.log("maxDaily", fetchedDailies.length);
     } catch (error) {
       console.log(error.message);
       notification.error({
@@ -46,36 +39,49 @@ export const Dailies = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(limit);
   }, []);
 
-  // Throttlingvs debounce
-  // after 100ms consume event again
-  useEffect(() => {
-    const keyDownHandler = (event) => {
-      event.preventDefault();
-      const keyPressed = event.key.toLowerCase();
-      if (keyPressed === "arrowdown") {
-        const dailyTargetTop =
-          document
-            .getElementById(`daily${displayedDaily + 1}`)
-            .getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: dailyTargetTop,
-          behavior: "smooth",
-        });
-      } else if (keyPressed === "arrowup") {
-        const dailyTargetTop =
-          document
-            .getElementById(`daily${displayedDaily}`)
-            .getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: dailyTargetTop,
-          behavior: "smooth",
-        });
-      }
-    };
+  const keyDownHandler = (event) => {
+    event.preventDefault();
+    document.removeEventListener("keydown", keyDownHandler);
 
+    const keyPressed = event.key.toLowerCase();
+    if (keyPressed === "arrowdown") {
+      const displayDaily =
+        displayedDaily !== maxDaily ? displayedDaily + 1 : displayedDaily;
+      console.log("displayDaily", displayDaily);
+      setDisplayedDaily(displayDaily);
+      const dailyTargetTop =
+        document.getElementById(`daily${displayDaily}`).getBoundingClientRect()
+          .top + window.scrollY;
+      window.scrollTo({
+        top: dailyTargetTop,
+        behavior: "smooth",
+      });
+      const fetchOneMore = limit + 1;
+      fetchData(fetchOneMore);
+      setLimit(fetchOneMore);
+    } else if (keyPressed === "arrowup") {
+      const displayDaily = displayedDaily ? displayedDaily - 1 : displayedDaily;
+      console.log("displayDaily", displayDaily);
+      setDisplayedDaily(displayDaily);
+      const dailyTargetTop =
+        document
+          .getElementById(`daily${displayedDaily}`)
+          .getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: dailyTargetTop,
+        behavior: "smooth",
+      });
+    }
+
+    setTimeout(() => {
+      document.addEventListener("keydown", keyDownHandler);
+    }, 100);
+  };
+
+  useEffect(() => {
     document.addEventListener("keydown", keyDownHandler);
   }, []);
 
@@ -93,7 +99,7 @@ export const Dailies = () => {
   };
 
   let listDailies = [];
-  for (let i = 0; i <= maxDaily; i++) {
+  for (let i = 0; i < maxDaily; i++) {
     listDailies.push(
       <>
         <div className="Dailies__full" id={`daily${i}`}>
