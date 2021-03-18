@@ -16,8 +16,11 @@ export const Dailies = () => {
   const [lastknownWindowPosition, setLastknownWindowPosition] = useState(
     window.scrollY
   );
+  const [displayedDaily, setDisplayedDaily] = useState(0);
 
-  const windowsHeight = window.screen.height;
+  // Max daily counting from zero
+  const maxDaily =
+    (reachedLast > limit ? limit : reachedLast ? reachedLast : limit) - 1;
 
   const fetchData = async () => {
     try {
@@ -42,37 +45,39 @@ export const Dailies = () => {
     setIsLoading(false);
   };
 
-  const handlerScroll = (event) => {
-    if (lastknownWindowPosition < window.scrollY) {
-      const dailyTargetDownTop =
-        document.getElementById("daily2").getBoundingClientRect().top +
-        window.scrollY;
-      console.log(dailyTargetDownTop);
-      /*window.scrollTo({
-        top: dailyTargetDownTop,
-        behavior: 'smooth'
-      });*/
-    } else if (lastknownWindowPosition > window.scrollY) {
-      const dailyTargetUpTop =
-        document.getElementById("daily1").getBoundingClientRect().top +
-        window.scrollY;
-      console.log(dailyTargetUpTop);
-      /*window.scrollTo({
-        top: dailyTargetUpTop,
-        behavior: 'smooth'
-      });*/
-    }
-    setLastknownWindowPosition(window.scrollY);
-  };
-
   useEffect(() => {
     fetchData();
   }, []);
 
+  // Throttlingvs debounce
+  // after 100ms consume event again
   useEffect(() => {
-    window.addEventListener("scroll", handlerScroll);
-    return () => window.removeEventListener("scroll", handlerScroll);
-  });
+    const keyDownHandler = (event) => {
+      event.preventDefault();
+      const keyPressed = event.key.toLowerCase();
+      if (keyPressed === "arrowdown") {
+        const dailyTargetTop =
+          document
+            .getElementById(`daily${displayedDaily + 1}`)
+            .getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: dailyTargetTop,
+          behavior: "smooth",
+        });
+      } else if (keyPressed === "arrowup") {
+        const dailyTargetTop =
+          document
+            .getElementById(`daily${displayedDaily}`)
+            .getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: dailyTargetTop,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    document.addEventListener("keydown", keyDownHandler);
+  }, []);
 
   const formattedDaily = (dayFromToday) => {
     return activities.map((activities) => {
@@ -88,8 +93,7 @@ export const Dailies = () => {
   };
 
   let listDailies = [];
-  const max = reachedLast > limit ? limit : reachedLast ? reachedLast : limit;
-  for (let i = 0; i < max; i++) {
+  for (let i = 0; i <= maxDaily; i++) {
     listDailies.push(
       <>
         <div className="Dailies__full" id={`daily${i}`}>
@@ -107,8 +111,6 @@ export const Dailies = () => {
       </>
     );
   }
-
-  //window.scrollTo(windowsHeight, 0);
 
   return isLoading ? (
     <div className="spinner">
