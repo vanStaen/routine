@@ -72,7 +72,7 @@ router.get("/:limit", async (req, res) => {
         `INSERT INTO dailies (year, month, day) VALUES (${year}, ${month}, ${day})`
       );
       const dailyNew = await client.query(
-        `SELECT * FROM dailies SELECT * FROM dailies ORDER BY id DESC LIMIT ${req.params.limit}`
+        `SELECT * FROM dailies ORDER BY id DESC LIMIT ${req.params.limit}`
       );
       if (dailyNew.rows.length > 0) {
         res.status(201).json(dailyNew.rows);
