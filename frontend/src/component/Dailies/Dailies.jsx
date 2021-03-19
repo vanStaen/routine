@@ -12,6 +12,7 @@ export const Dailies = () => {
   const [isLoading, setIsLoading] = useState(true);
   const limit = useRef(2);
   const displayedDaily = useRef(0);
+  const lastDaily = useRef(null);
   const lastDailyreached = useRef(false);
 
   const fetchData = async (limitFilter) => {
@@ -22,12 +23,10 @@ export const Dailies = () => {
       ]);
       setDailies(fetchedDailies);
       setActivities(fetchedActivities);
-      console.log("limitFilter +1 ", limitFilter + 1);
-      console.log("fetchedDailies.length", fetchedDailies.length);
       if (limitFilter + 1 > fetchedDailies.length) {
         lastDailyreached.current = true;
+        lastDaily.current = displayedDaily.current + 1;
       }
-      console.log("lastDailyreached", lastDailyreached.current);
     } catch (error) {
       console.log(error.message);
       notification.error({
@@ -47,39 +46,40 @@ export const Dailies = () => {
     const keyPressed = event.key.toLowerCase();
 
     if (keyPressed === "arrowdown") {
-      displayedDaily.current++;
-      const displayDaily = displayedDaily.current;
-      const dailyTargetTop =
-        document.getElementById(`daily${displayDaily}`).getBoundingClientRect()
-          .top + window.scrollY;
-      window.scrollTo({
-        top: dailyTargetTop,
-        behavior: "smooth",
-      });
-      console.log("<-- ARROW DOWN -->");
-      console.log("displayDaily", displayDaily);
+      if (lastDaily.current !== displayedDaily.current) {
+        displayedDaily.current++;
+        const displayDaily = displayedDaily.current;
+        const dailyTargetTop =
+          document
+            .getElementById(`daily${displayDaily}`)
+            .getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: dailyTargetTop,
+          behavior: "smooth",
+        });
+      }
       if (!lastDailyreached.current) {
         limit.current++;
         const fetchOneMore = limit.current;
-        console.log("fetchOneMore", fetchOneMore);
         fetchData(fetchOneMore);
       }
     } else if (keyPressed === "arrowup") {
-      displayedDaily.current--;
-      const displayDaily = displayedDaily.current;
-      const dailyTargetTop =
-        document.getElementById(`daily${displayDaily}`).getBoundingClientRect()
-          .top + window.scrollY;
-      window.scrollTo({
-        top: dailyTargetTop,
-        behavior: "smooth",
-      });
-      console.log("<-- ARROW UP -->");
-      console.log("displayDaily", displayDaily);
+      if (displayedDaily.current > 0) {
+        displayedDaily.current--;
+        const displayDaily = displayedDaily.current;
+        const dailyTargetTop =
+          document
+            .getElementById(`daily${displayDaily}`)
+            .getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: dailyTargetTop,
+          behavior: "smooth",
+        });
+      }
     }
     setTimeout(() => {
       document.addEventListener("keydown", keyDownHandler);
-    }, 100);
+    }, 50);
   };
 
   useEffect(() => {
