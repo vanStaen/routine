@@ -93,6 +93,12 @@ export const Dailies = () => {
     const scrollHandler = (event) => {
       //Scroll position define displayedDaily
       displayedDaily.current = Math.round(window.scrollY / window.innerHeight);
+      if (!lastDailyreached.current) {
+        if (limit.current === displayedDaily.current + 1) {
+          limit.current = displayedDaily.current + 2;
+          fetchData(displayedDaily.current + 2);
+        }
+      }
     };
 
     document.addEventListener("keydown", keyDownHandler);
