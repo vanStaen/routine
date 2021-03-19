@@ -10,7 +10,6 @@ export const Dailies = () => {
   const [dailies, setDailies] = useState([]);
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const maxDaily = useRef(1);
   const limit = useRef(2);
   const displayedDaily = useRef(0);
   const lastDailyreached = useRef(false);
@@ -18,15 +17,17 @@ export const Dailies = () => {
   const fetchData = async (limitFilter) => {
     try {
       const [fetchedDailies, fetchedActivities] = await Promise.all([
-        getDailies(limitFilter),
+        getDailies(limitFilter + 1),
         getActivities(),
       ]);
       setDailies(fetchedDailies);
-      maxDaily.current++;
       setActivities(fetchedActivities);
-      if (limitFilter >= fetchedDailies.length) {
+      console.log("limitFilter +1 ", limitFilter + 1);
+      console.log("fetchedDailies.length", fetchedDailies.length);
+      if (limitFilter + 1 > fetchedDailies.length) {
         lastDailyreached.current = true;
       }
+      console.log("lastDailyreached", lastDailyreached.current);
     } catch (error) {
       console.log(error.message);
       notification.error({
@@ -55,16 +56,17 @@ export const Dailies = () => {
         top: dailyTargetTop,
         behavior: "smooth",
       });
-      const fetchOneMore = displayDaily + 2;
-      fetchData(fetchOneMore);
       console.log("<-- ARROW DOWN -->");
-      console.log("maxDaily", maxDaily.current);
-      console.log("displayDaily", displayDaily + 1);
-      console.log("fetchOneMore", fetchOneMore);
+      console.log("displayDaily", displayDaily);
+      if (!lastDailyreached.current) {
+        limit.current++;
+        const fetchOneMore = limit.current;
+        console.log("fetchOneMore", fetchOneMore);
+        fetchData(fetchOneMore);
+      }
     } else if (keyPressed === "arrowup") {
-      const displayDaily = displayedDaily.current
-        ? --displayedDaily.current
-        : displayedDaily.current;
+      displayedDaily.current--;
+      const displayDaily = displayedDaily.current;
       const dailyTargetTop =
         document.getElementById(`daily${displayDaily}`).getBoundingClientRect()
           .top + window.scrollY;
@@ -72,6 +74,8 @@ export const Dailies = () => {
         top: dailyTargetTop,
         behavior: "smooth",
       });
+      console.log("<-- ARROW UP -->");
+      console.log("displayDaily", displayDaily);
     }
     setTimeout(() => {
       document.addEventListener("keydown", keyDownHandler);
@@ -96,7 +100,7 @@ export const Dailies = () => {
   };
 
   let listDailies = [];
-  for (let i = 0; i < maxDaily.current; i++) {
+  for (let i = 0; i < limit.current; i++) {
     listDailies.push(
       <div className="Dailies__full" id={`daily${i}`} key={i}>
         <div className="dailies__date">
