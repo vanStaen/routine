@@ -54,6 +54,7 @@ export const Activity = (props) => {
 
   const handlePlusClick = async () => {
     setUpdateLoading(true);
+    setUpdateLoadingError(false);
     const newCount = count + increment;
     const resultPlus = await patchActvitiy(id, activity, newCount);
     if (resultPlus.status === 200) {
@@ -69,6 +70,7 @@ export const Activity = (props) => {
 
   const handleMinusClick = async () => {
     setUpdateLoading(true);
+    setUpdateLoadingError(false);
     const newCount = count >= increment ? count - increment : 0;
     const resultMinus = await patchActvitiy(id, activity, newCount);
     if (resultMinus.status === 200) {
