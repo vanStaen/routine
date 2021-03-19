@@ -13,10 +13,9 @@ export const Dailies = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [displayedDaily, setDisplayedDaily] = useState(0);
-  const [maxDaily, setMaxDaily] = useState(limit);
+  const [maxDaily, setMaxDaily] = useState(limit - 1);
 
   const fetchData = async (limitFilter) => {
-    console.log("here", limitFilter);
     try {
       const [fetchedDailies, fetchedActivities] = await Promise.all([
         getDailies(limitFilter),
@@ -28,7 +27,7 @@ export const Dailies = () => {
         setError(true);
       }
       setMaxDaily(fetchedDailies.length);
-      console.log("maxDaily", fetchedDailies.length);
+      console.log("maxDaily", fetchedDailies.length - 1);
     } catch (error) {
       console.log(error.message);
       notification.error({
@@ -45,13 +44,14 @@ export const Dailies = () => {
   const keyDownHandler = (event) => {
     event.preventDefault();
     document.removeEventListener("keydown", keyDownHandler);
-
     const keyPressed = event.key.toLowerCase();
+
     if (keyPressed === "arrowdown") {
       const displayDaily =
         displayedDaily !== maxDaily ? displayedDaily + 1 : displayedDaily;
       console.log("displayDaily", displayDaily);
       setDisplayedDaily(displayDaily);
+
       const dailyTargetTop =
         document.getElementById(`daily${displayDaily}`).getBoundingClientRect()
           .top + window.scrollY;
@@ -59,6 +59,7 @@ export const Dailies = () => {
         top: dailyTargetTop,
         behavior: "smooth",
       });
+
       const fetchOneMore = limit + 1;
       fetchData(fetchOneMore);
       setLimit(fetchOneMore);
@@ -66,6 +67,7 @@ export const Dailies = () => {
       const displayDaily = displayedDaily ? displayedDaily - 1 : displayedDaily;
       console.log("displayDaily", displayDaily);
       setDisplayedDaily(displayDaily);
+
       const dailyTargetTop =
         document
           .getElementById(`daily${displayedDaily}`)
