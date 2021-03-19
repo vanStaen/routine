@@ -76,6 +76,15 @@ export const Dailies = () => {
           behavior: "smooth",
         });
       }
+    } else if (keyPressed === "enter") {
+      displayedDaily.current = 0;
+      const dailyTargetTop =
+        document.getElementById(`daily0`).getBoundingClientRect().top +
+        window.scrollY;
+      window.scrollTo({
+        top: dailyTargetTop,
+        behavior: "smooth",
+      });
     }
     setTimeout(() => {
       document.addEventListener("keydown", keyDownHandler);
