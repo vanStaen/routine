@@ -40,59 +40,68 @@ export const Dailies = () => {
     fetchData(limit.current);
   }, []);
 
-  const keyDownHandler = (event) => {
-    event.preventDefault();
-    document.removeEventListener("keydown", keyDownHandler);
-    const keyPressed = event.key.toLowerCase();
-
-    if (keyPressed === "arrowdown") {
-      if (lastDaily.current !== displayedDaily.current) {
-        displayedDaily.current++;
-        const displayDaily = displayedDaily.current;
-        const dailyTargetTop =
-          document
-            .getElementById(`daily${displayDaily}`)
-            .getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: dailyTargetTop,
-          behavior: "smooth",
-        });
-      }
-      if (!lastDailyreached.current) {
-        limit.current++;
-        const fetchOneMore = limit.current;
-        fetchData(fetchOneMore);
-      }
-    } else if (keyPressed === "arrowup") {
-      if (displayedDaily.current > 0) {
-        displayedDaily.current--;
-        const displayDaily = displayedDaily.current;
-        const dailyTargetTop =
-          document
-            .getElementById(`daily${displayDaily}`)
-            .getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: dailyTargetTop,
-          behavior: "smooth",
-        });
-      }
-    } else if (keyPressed === "enter") {
-      displayedDaily.current = 0;
-      const dailyTargetTop =
-        document.getElementById(`daily0`).getBoundingClientRect().top +
-        window.scrollY;
-      window.scrollTo({
-        top: dailyTargetTop,
-        behavior: "smooth",
-      });
-    }
-    setTimeout(() => {
-      document.addEventListener("keydown", keyDownHandler);
-    }, 50);
-  };
-
   useEffect(() => {
+    const keyDownHandler = (event) => {
+      event.preventDefault();
+      document.removeEventListener("keydown", keyDownHandler);
+      const keyPressed = event.key.toLowerCase();
+
+      if (keyPressed === "arrowdown") {
+        if (lastDaily.current !== displayedDaily.current - 1) {
+          const displayDaily = displayedDaily.current + 1;
+          const dailyTargetTop =
+            document
+              .getElementById(`daily${displayDaily}`)
+              .getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: dailyTargetTop,
+            behavior: "smooth",
+          });
+        }
+        if (!lastDailyreached.current) {
+          limit.current++;
+          const fetchOneMore = limit.current;
+          fetchData(fetchOneMore);
+        }
+      } else if (keyPressed === "arrowup") {
+        if (displayedDaily.current > 0) {
+          const displayDaily = displayedDaily.current - 1;
+          const dailyTargetTop =
+            document
+              .getElementById(`daily${displayDaily}`)
+              .getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: dailyTargetTop,
+            behavior: "smooth",
+          });
+        }
+      } else if (keyPressed === "enter") {
+        displayedDaily.current = 0;
+        const dailyTargetTop =
+          document.getElementById(`daily0`).getBoundingClientRect().top +
+          window.scrollY;
+        window.scrollTo({
+          top: dailyTargetTop,
+          behavior: "smooth",
+        });
+      }
+      setTimeout(() => {
+        document.addEventListener("keydown", keyDownHandler);
+      }, 50);
+    };
+
+    const scrollHandler = (event) => {
+      //Scroll position define displayedDaily
+      displayedDaily.current = Math.round(window.scrollY / window.innerHeight);
+    };
+
     document.addEventListener("keydown", keyDownHandler);
+    document.addEventListener("scroll", scrollHandler);
+
+    return () => {
+      window.removeEventListener("keydown", keyDownHandler);
+      window.removeEventListener("scroll", scrollHandler);
+    };
   }, []);
 
   const formattedDaily = (dayFromToday) => {
