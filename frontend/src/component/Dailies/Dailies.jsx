@@ -124,7 +124,10 @@ export const Dailies = () => {
         <div className="dailies__date">
           {dailies.length > 0 ? (
             <div>
-              {dailies[i].day}.{dailies[i].month}.{dailies[i].year}
+              {i === 0 && `Today`}
+              {i === 1 && `Yesterday`}
+              {i > 1 &&
+                `${dailies[i].day}.${dailies[i].month}.${dailies[i].year}`}
             </div>
           ) : (
             ""

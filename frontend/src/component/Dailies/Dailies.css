@@ -14,7 +14,8 @@
   font-size: .5em;
   color: rgba(255,255,255,0.2);
   margin: 0 0 1em 0;
-  font-style: italic;
+  font-weight: 200;
+  letter-spacing: 2.7px;
 }
 
 .Dailies__full:nth-child(even) {
