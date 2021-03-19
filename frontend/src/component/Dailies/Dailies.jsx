@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
 import { Activity } from "../Activity/Activity";
@@ -8,12 +8,12 @@ import "./Dailies.css";
 
 export const Dailies = () => {
   const [dailies, setDailies] = useState([]);
-  const [limit, setLimit] = useState(2);
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [displayedDaily, setDisplayedDaily] = useState(0);
-  const [maxDaily, setMaxDaily] = useState(limit - 1);
+  const maxDaily = useRef(1);
+  const limit = useRef(2);
+  const displayedDaily = useRef(0);
+  const lastDailyreached = useRef(false);
 
   const fetchData = async (limitFilter) => {
     try {
@@ -22,12 +22,11 @@ export const Dailies = () => {
         getActivities(),
       ]);
       setDailies(fetchedDailies);
+      maxDaily.current++;
       setActivities(fetchedActivities);
-      if (!fetchedDailies.length) {
-        setError(true);
+      if (limitFilter >= fetchedDailies.length) {
+        lastDailyreached.current = true;
       }
-      setMaxDaily(fetchedDailies.length);
-      console.log("maxDaily", fetchedDailies.length - 1);
     } catch (error) {
       console.log(error.message);
       notification.error({
@@ -38,7 +37,7 @@ export const Dailies = () => {
   };
 
   useEffect(() => {
-    fetchData(limit);
+    fetchData(limit.current);
   }, []);
 
   const keyDownHandler = (event) => {
@@ -47,11 +46,8 @@ export const Dailies = () => {
     const keyPressed = event.key.toLowerCase();
 
     if (keyPressed === "arrowdown") {
-      const displayDaily =
-        displayedDaily !== maxDaily ? displayedDaily + 1 : displayedDaily;
-      console.log("displayDaily", displayDaily);
-      setDisplayedDaily(displayDaily);
-
+      displayedDaily.current++;
+      const displayDaily = displayedDaily.current;
       const dailyTargetTop =
         document.getElementById(`daily${displayDaily}`).getBoundingClientRect()
           .top + window.scrollY;
@@ -59,25 +55,24 @@ export const Dailies = () => {
         top: dailyTargetTop,
         behavior: "smooth",
       });
-
-      const fetchOneMore = limit + 1;
+      const fetchOneMore = displayDaily + 2;
       fetchData(fetchOneMore);
-      setLimit(fetchOneMore);
+      console.log("<-- ARROW DOWN -->");
+      console.log("maxDaily", maxDaily.current);
+      console.log("displayDaily", displayDaily + 1);
+      console.log("fetchOneMore", fetchOneMore);
     } else if (keyPressed === "arrowup") {
-      const displayDaily = displayedDaily ? displayedDaily - 1 : displayedDaily;
-      console.log("displayDaily", displayDaily);
-      setDisplayedDaily(displayDaily);
-
+      const displayDaily = displayedDaily.current
+        ? --displayedDaily.current
+        : displayedDaily.current;
       const dailyTargetTop =
-        document
-          .getElementById(`daily${displayedDaily}`)
-          .getBoundingClientRect().top + window.scrollY;
+        document.getElementById(`daily${displayDaily}`).getBoundingClientRect()
+          .top + window.scrollY;
       window.scrollTo({
         top: dailyTargetTop,
         behavior: "smooth",
       });
     }
-
     setTimeout(() => {
       document.addEventListener("keydown", keyDownHandler);
     }, 100);
@@ -101,22 +96,20 @@ export const Dailies = () => {
   };
 
   let listDailies = [];
-  for (let i = 0; i < maxDaily; i++) {
+  for (let i = 0; i < maxDaily.current; i++) {
     listDailies.push(
-      <>
-        <div className="Dailies__full" id={`daily${i}`}>
-          <div className="dailies__date">
-            {dailies.length > 0 ? (
-              <div>
-                {dailies[i].day}.{dailies[i].month}.{dailies[i].year}
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="dailies__main">{formattedDaily(i)}</div>
+      <div className="Dailies__full" id={`daily${i}`} key={i}>
+        <div className="dailies__date">
+          {dailies.length > 0 ? (
+            <div>
+              {dailies[i].day}.{dailies[i].month}.{dailies[i].year}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-      </>
+        <div className="dailies__main">{formattedDaily(i)}</div>
+      </div>
     );
   }
 
@@ -128,8 +121,6 @@ export const Dailies = () => {
         alt="Loading"
       />
     </div>
-  ) : error ? (
-    <div>Error! Something terrible must have happened.</div>
   ) : (
     <>{listDailies}</>
   );
