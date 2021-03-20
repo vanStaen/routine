@@ -2,12 +2,7 @@
 
 ## Backlog:
 
-- [ ] Show yesterday 
-  - scroll event > letzte element in liste 
-    check if letzte element top position is close to the end
-    is the last element close to be there
-    GET call with pagination 
-    Offset + limit. 
+- [ ] Add throtting on KeyDown
 - [ ] Password protect
 - [ ] Click on streak badge will open activity history
 - [ ] Admin panel (drawer) to set up increment and goals
@@ -21,3 +16,4 @@
 - [x] Streak per activities
 - [x] Show notification when backend throw error
 - [x] Deactivate actions for past days
+- [x] Show yesterday 
