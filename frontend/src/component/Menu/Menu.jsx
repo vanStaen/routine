@@ -1,13 +1,15 @@
-import { EditOutlined, LoginOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { UserOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 
 import "./Menu.css";
 
 export const Menu = () => {
+  const [showDrawer, setShowDrawer] = useState(false);
   return (
-    <Tooltip title="Login">
+    <Tooltip title="Profil">
       <div className="Menu__float">
-        <LoginOutlined />
+        <UserOutlined className="Menu__icon" />
       </div>
     </Tooltip>
   );

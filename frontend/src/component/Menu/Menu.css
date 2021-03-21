@@ -1,17 +1,22 @@
 .Menu__float {
 	position:fixed;
-	width: 1.6em;
-	height: 1.6em;
+	width: 1.7em;
+	height: 1.65em;
 	top:1em;
 	right:1em;
-    background-color: rgba(67, 70, 77, 0.75);
-	border: #282c34;
-	color:#282c34;
+    background-color: rgba(255, 255, 255, .25);
+	border: 1px solid rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, .75);
 	border-radius:50px;
 	text-align:center;
 	z-index: 10;
 }
 
 .Menu__float:hover {
-    color: rgba(255, 255, 255, 0.5);
+	border: 1px solid rgba(40, 44, 52, .5);
+    color: rgba(40, 44, 52, .75);
+}
+
+.Menu__icon {
+	font-size: .9em;
 }
