@@ -1,0 +1,16 @@
+.Menu__float {
+	position:fixed;
+	width: 1.6em;
+	height: 1.6em;
+	top:1em;
+	right:1em;
+    background-color: rgba(67, 70, 77, 0.75);
+	border: #282c34;
+	color:#282c34;
+	border-radius:50px;
+	text-align:center;
+}
+
+.Menu__float:hover {
+    color: rgba(255, 255, 255, 0.5);
+}
