@@ -9,6 +9,7 @@
 	color:#282c34;
 	border-radius:50px;
 	text-align:center;
+	z-index: 10;
 }
 
 .Menu__float:hover {
