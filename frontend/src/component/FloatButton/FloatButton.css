@@ -1,0 +1,37 @@
+.FloatButton__float {
+	position:fixed;
+	width: 1.7em;
+	height: 1.65em;
+	top:1em;
+	right:1em;
+	border: 1px solid rgba(40, 44, 52, .5);
+    color: rgba(255, 255, 255, .75);
+	border-radius:50px;
+	text-align:center;
+	z-index: 10;
+	opacity: .75;
+}
+
+.FloatButton__float:hover {
+	opacity: 1;
+}
+
+.FloatButton__background {
+	background-color: rgba(255, 255, 255, .25);
+}
+
+.FloatButton__background:hover {
+	border: 1px solid rgba(255, 255, 255, .5);
+	opacity: 1;
+}
+
+.FloatButton__icon {
+	position: relative;
+	font-size: .9em;
+	top: -.1em;
+}
+
+.FloatButton__close {
+	font-size: .9em;
+}
+

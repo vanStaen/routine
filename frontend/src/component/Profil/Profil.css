@@ -1,0 +1,63 @@
+.Profil__full {
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} 
+
+.Profil__title {
+  justify-content: center;
+  font-size: .5em;
+  color: rgba(255,255,255,0.2);
+  margin: 0 0 1em 0;
+  font-weight: 200;
+  letter-spacing: 2.7px;
+}
+
+.Profil__main {
+  max-width: 1200px;
+  width: calc(100% - 2em);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 2em 0;
+  font-size: .75em;
+}
+
+.spinner {
+    min-height: calc(100vh - 50px);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+.loader {
+    height: 40vmin;
+    pointer-events: none;
+    border: 1px solid #333;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .loader {
+      animation: logo-spin infinite 5s linear;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
