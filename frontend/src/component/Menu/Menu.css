@@ -4,12 +4,15 @@
 	height: 1.65em;
 	top:1em;
 	right:1em;
-    background-color: rgba(255, 255, 255, .25);
 	border: 1px solid rgba(255, 255, 255, .5);
     color: rgba(255, 255, 255, .75);
 	border-radius:50px;
 	text-align:center;
 	z-index: 10;
+}
+
+.Menu__background {
+	background-color: rgba(255, 255, 255, .25);
 }
 
 .Menu__float:hover {
