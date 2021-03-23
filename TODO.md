@@ -11,7 +11,10 @@
 - [ ] Password protect
 - [ ] Click on streak badge will open activity history
 - [ ] Admin panel (drawer) to set up increment and goals
- 
+- [ ] Graph libraries: 
+  - [ ] https://nivo.rocks/area-bump/
+  - [ ] https://github.com/uber/react-vis
+
 ## Completed ✓
 
 - [x] Create React App
