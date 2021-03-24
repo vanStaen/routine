@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { UserOutlined, CloseOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
+import { ConditionalWrapper } from "../../helpers/ConditionnalWrapper";
 
 import "./FloatButton.css";
 
 export const FloatButton = (props) => {
   const [hasImage, setHasImage] = useState(true);
   return (
-    <Tooltip title={props.showProfil ? "Go back to main" : "Profil"}>
+    <ConditionalWrapper
+      condition={!props.showProfil}
+      wrap={(children) => <Tooltip title="Edit profil">{children}</Tooltip>}
+    >
       {props.showProfil ? (
         <div
           className="FloatButton__float"
@@ -33,8 +37,6 @@ export const FloatButton = (props) => {
           <UserOutlined className="FloatButton__icon" />
         </div>
       )}
-    </Tooltip>
+    </ConditionalWrapper>
   );
 };
-
-/* */
