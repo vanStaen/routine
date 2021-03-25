@@ -25,7 +25,7 @@
   width: 100%;
 }
 
-a:link {
+a:link, a:visited {
   color: rgba(214, 137, 16, .75) !important;
 }
 
