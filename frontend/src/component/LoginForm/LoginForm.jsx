@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 
 import { authStore } from "../../store/authStore";
-import { openNotification } from "../../helpers/openNotification";
 import { postCreateUser } from "./postCreateUser";
 import { postFetchToken } from "./postFetchToken";
 import { getUser } from "./getUser";
@@ -48,7 +47,6 @@ export const LoginForm = () => {
       }
       setIsLoading(false);
       authStore.login(userData.token, userData.refreshToken);
-      openNotification("You have successully log in.", "", 3, "success");
     }
   };
 

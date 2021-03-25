@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { observer } from "mobx-react";
 
 import { Profil } from "./component/Profil/Profil";
 import { Dailies } from "./component/Dailies/Dailies";
@@ -16,7 +17,7 @@ const defineVariableHeight = () => {
 
 window.addEventListener("resize", defineVariableHeight);
 
-const App = () => {
+const App = observer(() => {
   const [showProfil, setShowProfil] = useState(false);
 
   useEffect(() => {
@@ -67,6 +68,6 @@ const App = () => {
       </header>
     </div>
   );
-};
+});
 
 export default App;

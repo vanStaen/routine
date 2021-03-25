@@ -1,5 +1,4 @@
 import axios from "axios";
-import { openNotification } from "../../helpers/openNotification";
 
 //TODO!
 
@@ -17,7 +16,6 @@ export const postCreateUser = async (email, password) => {
 
     if ((response.status !== 200) & (response.status !== 201)) {
       const error = response.json();
-      openNotification(error.errors[0].message, "", 3, "warning");
       const message = `An error has occured: ${response.status} - ${error.errors[0].message}`;
       console.log("Error!", message);
     }

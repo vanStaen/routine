@@ -1,5 +1,4 @@
 import axios from "axios";
-import { openNotification } from "../../helpers/openNotification";
 
 export const postFetchToken = async (email, password) => {
 
@@ -14,7 +13,6 @@ export const postFetchToken = async (email, password) => {
     });
     if ((response.status !== 200) & (response.status !== 201)) {
       const error = await response.json();
-      openNotification(error.error, "", 3, "warning");
       const message = `An error has occured: ${response.status} - ${error.error}`;
       throw new Error(message);
     }

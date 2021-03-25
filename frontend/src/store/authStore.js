@@ -1,5 +1,4 @@
 import { action, makeObservable, observable } from "mobx";
-import { openNotification } from "../helpers/openNotification";
 import jsonwebtoken from "jsonwebtoken";
 
 export class AuthStore {
@@ -41,11 +40,8 @@ export class AuthStore {
         })
             .then((res) => {
                 if (res.status !== 204) {
-                    openNotification("Error " + res.status,
-                        "Error on logout: The refresh token was not found in the token database.", 3, "error");
-                    throw new Error("Error when logout!"); // Probably was the refresh not found in the db
+                    throw new Error("Error when logout!"); 
                 }
-                openNotification("You have successfully logged out.", "", 3, "success");
             })
             .catch((err) => {
                 console.log(err);

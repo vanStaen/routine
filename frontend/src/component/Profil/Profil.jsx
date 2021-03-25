@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { authStore } from "../../store/authStore";
 import "./Profil.css";
 
 export const Profil = () => {
   const [isLoading, setIsLoading] = useState(false);
+
   return isLoading ? (
     <div className="spinner">
       <img
@@ -19,6 +21,7 @@ export const Profil = () => {
         <div>Add activity</div>
         <div>Manage Goal</div>
         <div>Make optional/mandatory</div>
+        <div onClick={() => authStore.logout()}>logout</div>
       </div>
     </div>
   );
