@@ -23,11 +23,9 @@ const App = () => {
   return (
     <div className="App">
       <header className="App__header">
-        <LoginForm />
-        {/*
+        {/*<LoginForm />*/}
         <FloatButton showProfil={showProfil} setShowProfil={setShowProfil} />
         <div className="App__day">{showProfil ? <Profil /> : <Dailies />}</div>
-         */}
       </header>
     </div>
   );
