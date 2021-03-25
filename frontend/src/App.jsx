@@ -34,7 +34,6 @@ const App = observer(() => {
         const token = authStore.token
           ? authStore.token
           : await authStore.getNewToken();
-        console.log("token", token);
         config.headers = {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
