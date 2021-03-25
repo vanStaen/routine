@@ -28,7 +28,7 @@
 .daily__done {
   position: relative;
   top: -15px;
-  color: rgba(214, 137, 16, .75);
+  color: green;
   font-size: 2.6em;
 }
 
