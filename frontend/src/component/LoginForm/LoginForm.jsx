@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { openNotification } from "../../helpers/openNotification";
+import logoRoutine from "../../images/routine.svg";
 import {
   UserOutlined,
   MailOutlined,
@@ -171,6 +172,11 @@ export const LoginForm = () => {
 
   return (
     <div className="login__full">
+      <div className="login__header">
+        <img className="login__logo" src={logoRoutine} alt="logo" />
+        Routine
+      </div>
+
       <Form
         name="normal_login"
         className="login__form"
