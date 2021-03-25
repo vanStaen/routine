@@ -45,6 +45,9 @@ export const Dailies = () => {
 
   useEffect(() => {
     const keyDownHandler = (event) => {
+      if (event.key === undefined) {
+        return;
+      }
       event.preventDefault();
       const keyPressed = event.key.toLowerCase();
 
