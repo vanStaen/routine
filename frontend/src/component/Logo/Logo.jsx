@@ -17,6 +17,13 @@ import logoStretch from "../../images/stretch.svg";
 import logoPhoto from "../../images/photo.svg";
 import logoWater from "../../images/water.svg";
 import logoClimb from "../../images/climb.svg";
+import logoSort from "../../images/bye.svg";
+import logoClean from "../../images/clean.svg";
+import logoFrench from "../../images/french.svg";
+import logoMeditation from "../../images/meditation.svg";
+import logoFriends from "../../images/friends.svg";
+import logoSteps from "../../images/steps.svg";
+import logoYoga from "../../images/yoga.svg";
 
 export const Logo = (props) => {
   let image = "";
@@ -71,6 +78,27 @@ export const Logo = (props) => {
       break;
     case "climb":
       image = logoClimb;
+      break;
+    case "sort":
+      image = logoSort;
+      break;
+    case "clean":
+      image = logoClean;
+      break;
+    case "french":
+      image = logoFrench;
+      break;
+    case "meditation":
+      image = logoMeditation;
+      break;
+    case "friends":
+      image = logoFriends;
+      break;
+    case "steps":
+      image = logoSteps;
+      break;
+    case "yoga":
+      image = logoYoga;
       break;
     default:
       image = null;
