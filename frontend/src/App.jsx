@@ -21,16 +21,17 @@ const App = observer(() => {
   const [showProfil, setShowProfil] = useState(false);
 
   useEffect(() => {
-    // Define variable height
-    defineVariableHeight();
-
     // On mount, update token
     authStore.refreshToken &&
       authStore.login(authStore.getNewToken(), authStore.refreshToken);
 
+    // Define variable height
+    defineVariableHeight();
+
     // Axios Interceptors
     axios.interceptors.request.use(
       async (config) => {
+        //debugger;
         const token = authStore.token
           ? authStore.token
           : await authStore.getNewToken();
