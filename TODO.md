@@ -13,7 +13,6 @@
   - [ ] Admin panel to set up increment and goals
 - [ ] Password protect
 - [ ] Click on streak badge will open activity history
-- [ ] User info
  
 ## Completed ✓
 
