@@ -2,7 +2,6 @@
 
 ## Backlog:
 
-- [ ] Add throtting on KeyDown
 - [ ] Manage different user
   - [ ] Create user table
     - [ ] With user infos
@@ -25,4 +24,5 @@
 - [x] Streak per activities
 - [x] Show notification when backend throw error
 - [x] Deactivate actions for past days
-- [x] Show yesterday 
+- [x] Show yesterday(s)
+- [x] Add throtting on KeyDown
