@@ -1,3 +1,11 @@
-.countdown {  
-    color: red !important;
+.countdown__alert {
+  color:  #b30000 !important;
+  font-weight: 400 !important;
+  animation: blinker 1s linear infinite;
+}
+  
+@keyframes blinker {
+  50% {
+    opacity: 0.5;
   }
+}

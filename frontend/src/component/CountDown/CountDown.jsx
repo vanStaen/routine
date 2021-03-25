@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import getTomorrowDate from "../../helpers/getTomorrowDate";
 
 import "./CountDown.css";
@@ -7,15 +8,24 @@ const year = today.getFullYear();
 const month = today.getMonth() + 1;
 const day = today.getDate();
 
-const addLeadingZeros = (value) => {
-  value = String(value);
-  while (value.length < 2) {
-    value = "0" + value;
+const formatTimeStamp = (timeInSec) => {
+  var sec_num = parseInt(timeInSec, 10);
+  var hours = Math.floor(sec_num / 3600);
+  var minutes = Math.floor((sec_num - hours * 3600) / 60);
+  var seconds = sec_num - hours * 3600 - minutes * 60;
+  if (hours < 10) {
+    hours = "0" + hours;
   }
-  return value;
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  return hours + ":" + minutes + ":" + seconds;
 };
 
-const CountDown = () => {
+const timeLeftUntilTomorrow = () => {
   const nowInSecond = Math.floor(Date.now() / 1000);
   const tomorrowArray = getTomorrowDate(year, month, day);
   const tomorrowInSecond = Math.floor(
@@ -23,15 +33,32 @@ const CountDown = () => {
       Date.UTC(
         tomorrowArray[0],
         tomorrowArray[1] - 1,
-        tomorrowArray[0],
+        tomorrowArray[2],
         "00",
         "00",
         "00"
       )
     ) / 1000
   );
-  const differenceInSecond = tomorrowInSecond - nowInSecond;
-  return <div className="countdown">{differenceInSecond}</div>;
+  const differenceInSecond = tomorrowInSecond - nowInSecond - 3600;
+  return differenceInSecond;
+};
+
+const CountDown = () => {
+  const [timeLeft, setTimeLeft] = useState(timeLeftUntilTomorrow());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(timeLeftUntilTomorrow());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className={timeLeft < 3600 && "countdown__alert"}>
+      {formatTimeStamp(timeLeft)}
+    </div>
+  );
 };
 
 export default CountDown;
