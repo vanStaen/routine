@@ -3,6 +3,11 @@
 ## Backlog:
 
 - [ ] Manage different user
+  - [ ] Authorisation process
+    - [ ] login form
+    - [ ] axios interceptors
+    - [ ] bearer in request
+    - [ ] auth middelware in BE
   - [ ] Create user table
     - [ ] With user infos
     - [ ] with activities user specific details (as array)
@@ -11,7 +16,6 @@
   - [ ] Add user info in dailies table
   - [ ] AWS S3 Bucket for profil pic upload 
   - [ ] Admin panel to set up increment and goals
-- [ ] Password protect
 - [ ] Click on streak badge will open activity history
  
 ## Completed ✓
