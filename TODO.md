@@ -4,9 +4,9 @@
 
 - [ ] Manage different user
   - [ ] Authorisation process
-    - [ ] login form
-    - [ ] axios interceptors
-    - [ ] bearer in request
+    - [x] login form
+    - [x] axios interceptors
+    - [x] bearer in request
     - [ ] auth middelware in BE
   - [ ] Create user table
     - [ ] With user infos
@@ -14,6 +14,7 @@
   - [ ] Filter all querry per user
   - [ ] Delete user specific infos from table array
   - [ ] Add user info in dailies table
+  - [ ] Get user detail in MObx Store on login
   - [ ] AWS S3 Bucket for profil pic upload 
   - [ ] Admin panel to set up increment and goals
 - [ ] Click on streak badge will open activity history
