@@ -4,7 +4,7 @@ import axios from "axios";
 import { Profil } from "./component/Profil/Profil";
 import { Dailies } from "./component/Dailies/Dailies";
 import { FloatButton } from "./component/FloatButton/FloatButton";
-import { authStore } from "./stores/authStore";
+import { authStore } from "./store/authStore";
 import { LoginForm } from "./component/LoginForm/LoginForm";
 
 import "./App.css";
@@ -18,8 +18,6 @@ window.addEventListener("resize", defineVariableHeight);
 
 const App = () => {
   const [showProfil, setShowProfil] = useState(false);
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     // Define variable height

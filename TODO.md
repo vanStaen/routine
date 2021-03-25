@@ -17,6 +17,8 @@
   - [ ] AWS S3 Bucket for profil pic upload 
   - [ ] Admin panel to set up increment and goals
 - [ ] Click on streak badge will open activity history
+- [ ] Finish create-user path : `postCreateUser`
+
  
 ## Completed ✓
 

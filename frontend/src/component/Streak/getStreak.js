@@ -9,7 +9,7 @@ export const getStreak = async () => {
     const day = today.getDate();
 
     const response = await axios({
-        url: process.env.REACT_APP_API_URL + `streak/${year}/${month}/${day}`,
+        url: process.env.REACT_APP_API_URL + `/streak/${year}/${month}/${day}`,
         method: "GET",
     });
     if ((response.status !== 200) & (response.status !== 201)) {
