@@ -15,6 +15,7 @@ export const Dailies = () => {
   const displayedDaily = useRef(0);
   const lastDaily = useRef(null);
   const lastDailyreached = useRef(false);
+  const throttling = useRef(false);
 
   const fetchData = async (limitFilter) => {
     try {
@@ -41,8 +42,6 @@ export const Dailies = () => {
     fetchData(limit.current);
   }, []);
 
-  let throttling = false;
-
   useEffect(() => {
     const keyDownHandler = (event) => {
       if (event.key === undefined) {
@@ -51,8 +50,8 @@ export const Dailies = () => {
       event.preventDefault();
       const keyPressed = event.key.toLowerCase();
 
-      if (throttling === false) {
-        throttling = true;
+      if (throttling.current === false) {
+        throttling.current = true;
         if (keyPressed === "arrowdown") {
           if (lastDaily.current !== displayedDaily.current - 1) {
             const displayDaily = displayedDaily.current + 1;
@@ -93,7 +92,7 @@ export const Dailies = () => {
           });
         }
         setTimeout(() => {
-          throttling = false;
+          throttling.current = false;
         }, 500);
       }
     };

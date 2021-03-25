@@ -17,7 +17,6 @@ export const postFetchToken = async (email, password) => {
       throw new Error(message);
     }
     const userData = await response.json();
-    console.log(userData);
     return userData;
 
   }
