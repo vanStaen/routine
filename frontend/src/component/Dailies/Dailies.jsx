@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
 import { Activity } from "../Activity/Activity";
+import CountDown from "../CountDown/CountDown";
 import { notification } from "antd";
 
 import "./Dailies.css";
@@ -130,7 +131,7 @@ export const Dailies = () => {
         <div className="dailies__date">
           {dailies.length > 0 ? (
             <div>
-              {i === 0 && `Today`}
+              {i === 0 && <CountDown />}
               {i === 1 && `Yesterday`}
               {i > 1 &&
                 `${dailies[i].day}.${dailies[i].month}.${dailies[i].year}`}
