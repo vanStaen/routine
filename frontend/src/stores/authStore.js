@@ -1,5 +1,5 @@
 import { action, makeObservable, observable } from "mobx";
-import { openNotification } from "../helpers/openNotification/openNotification";
+import { openNotification } from "../helpers/openNotification";
 import jsonwebtoken from "jsonwebtoken";
 
 export class AuthStore {
