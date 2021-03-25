@@ -27,14 +27,20 @@ const day = today.getDate();
 
 // GET  streak data for all activities
 router.get("/", async (req, res) => {
+    if (!req.isAuth) {
+      res.status(401).json({
+        error: "Unauthorized",
+      });
+      return;
+    }
     try {
         const activities = await client.query(
-            `SELECT * FROM streak WHERE year=${year} AND month=${month} AND day=${day}`
+            `SELECT * FROM streak WHERE year=${year} AND month=${month} AND day=${day} AND userid=${req.userId}`
         );
         if (activities.rows.length === 0) {
-            await updateStreakBasedonYesterday(year, month, day);
+            await updateStreakBasedonYesterday(year, month, day, req.userId);
             const activitiesSecond = await client.query(
-                `SELECT * FROM streak WHERE year=${year} AND month=${month} AND day=${day}`
+                `SELECT * FROM streak WHERE year=${year} AND month=${month} AND day=${day} AND userid=${req.userId}`
             );
             if (activitiesSecond.rows.length > 0) {
                 res.status(201).json(activitiesSecond.rows);
@@ -55,14 +61,20 @@ router.get("/", async (req, res) => {
 
 // GET streak data for specific date
 router.get("/:year/:month/:day", async (req, res) => {
+    if (!req.isAuth) {
+      res.status(401).json({
+        error: "Unauthorized",
+      });
+      return;
+    }
     try {
         const activities = await client.query(
-            `SELECT * FROM streak WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`
+            `SELECT * FROM streak WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day} AND userid=${req.userId}`
         );
         if (activities.rows.length === 0) {
-            await updateStreakBasedonYesterday(year, month, day);
+            await updateStreakBasedonYesterday(year, month, day, req.userId);
             const activitiesSecond = await client.query(
-                `SELECT * FROM streak WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`
+                `SELECT * FROM streak WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day} AND userid=${req.userId}`
             );
             if (activitiesSecond.rows.length > 0) {
                 res.status(201).json(activitiesSecond.rows);
@@ -84,6 +96,12 @@ router.get("/:year/:month/:day", async (req, res) => {
 
 // PATCH single data from streak for specific date
 router.patch("/:year/:month/:day", async (req, res) => {
+    if (!req.isAuth) {
+      res.status(401).json({
+        error: "Unauthorized",
+      });
+      return;
+    }
     let updateField = '';
     if (req.body.day !== undefined) {
         updateField = updateField + "day=" + req.body.day + ",";
@@ -143,7 +161,7 @@ router.patch("/:year/:month/:day", async (req, res) => {
         updateField = updateField + "climb=" + req.body.climb + ",";
     }
     const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
-    const updateQuery = `UPDATE streak SET ${updateFieldEdited}  WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`;
+    const updateQuery = `UPDATE streak SET ${updateFieldEdited}  WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day} AND userid=${req.userId}`;
     try {
         const udpate = await client.query(updateQuery);
         if (udpate.rowCount > 0) {
@@ -164,17 +182,16 @@ router.patch("/:year/:month/:day", async (req, res) => {
 
 
 // Function to update the Streak table
-const updateStreakBasedonYesterday = async (toYear, toMonth, toDay) => {
+const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
     try {
-
         const yesterdayDate = getYesterdayDate(toYear, toMonth, toDay);
         const yesterdayStreak = await client.query(
-            `SELECT * FROM streak WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]}`
+            `SELECT * FROM streak WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]} AND userid=${userId}`
         );
 
         if (yesterdayStreak.rows.length === 0) {
             await client.query(
-                `INSERT INTO streak (year, month, day) VALUES (${toYear}, ${toMonth}, ${toDay})`
+                `INSERT INTO streak (year, month, day, userid) VALUES (${toYear}, ${toMonth}, ${toDay}, ${userid})`
             );
         } else {
             const yesterdayStreakResult = yesterdayStreak.rows[0];
@@ -190,7 +207,7 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay) => {
 
             // GET Data for yesterday (dailies)
             const yesterdayDailyData = await client.query(
-                `SELECT * FROM dailies WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]}`
+                `SELECT * FROM dailies WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]} AND userid=${userId}`
             );
             const yesterdayDailyDataResult = yesterdayDailyData.rows[0];
 
@@ -219,7 +236,7 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay) => {
 
             const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
             const updateValuesEdited = updateValues.slice(0, -1) // delete the last comma
-            const updateStreakQuery = `INSERT INTO streak (year, month, day, ${updateFieldEdited}) VALUES (${toYear}, ${toMonth}, ${toDay}, ${updateValuesEdited})`;
+            const updateStreakQuery = `INSERT INTO streak (year, month, day, userid, ${updateFieldEdited}) VALUES (${toYear}, ${toMonth}, ${toDay}, ${userid}, ${updateValuesEdited})`;
             await client.query(updateStreakQuery);
         }
     } catch (err) {

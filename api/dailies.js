@@ -26,19 +26,25 @@ const day = today.getDate();
 
 // GET all daily data (and create today if not exist)
 router.get("/", async (req, res) => {
+  if (!req.isAuth) {
+    res.status(401).json({
+      error: "Unauthorized",
+    });
+    return;
+  }
   try {
     const dailyToday = await client.query(
-      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
+      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid=${req.userId}`
     );
     if (dailyToday.rows.length > 0) {
       res.status(201).json(dailyToday.rows);
     } else {
       // there is no line for this day, so create one
       await client.query(
-        `INSERT INTO dailies (year, month, day) VALUES (${year}, ${month}, ${day})`
+        `INSERT INTO dailies (year, month, day, userid) VALUES (${year}, ${month}, ${day}, ${req.userId})`
       );
       const dailyNew = await client.query(
-        `SELECT * FROM dailies LIMIT 2`
+        `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid=${req.userId}`
       );
       if (dailyNew.rows.length > 0) {
         res.status(201).json(dailyNew.rows);
@@ -57,22 +63,28 @@ router.get("/", async (req, res) => {
 
 // GET all data with variable limit
 router.get("/:limit", async (req, res) => {
+  if (!req.isAuth) {
+    res.status(401).json({
+      error: "Unauthorized",
+    });
+    return;
+  }
   try {
     const dailyToday = await client.query(
-      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day}`
+      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid=${req.userId}`
     );
     if (dailyToday.rows.length > 0) {
       const daily = await client.query(
-        `SELECT * FROM dailies ORDER BY id DESC LIMIT ${req.params.limit}`
+        `SELECT * FROM dailies WHERE userid=${req.userId} ORDER BY id DESC LIMIT ${req.params.limit}`
       );
       res.status(201).json(daily.rows);
     } else {
       // there is no line for this day, so create one
       await client.query(
-        `INSERT INTO dailies (year, month, day) VALUES (${year}, ${month}, ${day})`
+        `INSERT INTO dailies (year, month, day, userid) VALUES (${year}, ${month}, ${day}, ${req.userId})`
       );
       const dailyNew = await client.query(
-        `SELECT * FROM dailies ORDER BY id DESC LIMIT ${req.params.limit}`
+        `SELECT * FROM dailies WHERE userid=${req.userId} ORDER BY id DESC LIMIT ${req.params.limit}`
       );
       if (dailyNew.rows.length > 0) {
         res.status(201).json(dailyNew.rows);

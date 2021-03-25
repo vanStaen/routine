@@ -20,6 +20,10 @@
 - [ ] Click on streak badge will open activity history
 - [ ] Finish create-user path : `postCreateUser`
 
+- [ ] AUTH : Why is login a POST instead of GET
+- [ ] AUTH : Password update feature
+- [ ] AUTH : Create user feature
+
  
 ## Completed ✓
 

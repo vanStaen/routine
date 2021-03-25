@@ -20,9 +20,15 @@ client.connect((err) => {
 
 // GET data from dailies for a specific date
 router.get("/:year/:month/:day", async (req, res) => {
+  if (!req.isAuth) {
+    res.status(401).json({
+      error: "Unauthorized",
+    });
+    return;
+  }
   try {
     const daily = await client.query(
-      `SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day}`
+      `SELECT * FROM dailies WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day} AND userid=${req.userId}`
     );
     if (daily.rows.length > 0) {
       res.status(201).json(daily.rows);
