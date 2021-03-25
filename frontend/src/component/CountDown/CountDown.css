@@ -1,6 +1,6 @@
 .countdown__alert {
-  color:  #b30000 !important;
-  font-weight: 400 !important;
+  color:  #b30000;
+  font-weight: 400;
   animation: blinker 1s linear infinite;
 }
   
