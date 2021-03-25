@@ -48,11 +48,10 @@ const CountDown = () => {
   const [timeLeft, setTimeLeft] = useState(timeLeftUntilTomorrow());
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    setTimeout(() => {
       setTimeLeft(timeLeftUntilTomorrow());
     }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  }, [timeLeft]);
 
   return (
     <div className={timeLeft < 3600 && "countdown__alert"}>

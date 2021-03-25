@@ -41,54 +41,58 @@ export const Dailies = () => {
     fetchData(limit.current);
   }, []);
 
+  let throttling = false;
+
   useEffect(() => {
     const keyDownHandler = (event) => {
       event.preventDefault();
-      document.removeEventListener("keydown", keyDownHandler);
       const keyPressed = event.key.toLowerCase();
 
-      if (keyPressed === "arrowdown") {
-        if (lastDaily.current !== displayedDaily.current - 1) {
-          const displayDaily = displayedDaily.current + 1;
+      if (throttling === false) {
+        throttling = true;
+        if (keyPressed === "arrowdown") {
+          if (lastDaily.current !== displayedDaily.current - 1) {
+            const displayDaily = displayedDaily.current + 1;
+            const dailyTargetTop =
+              document
+                .getElementById(`daily${displayDaily}`)
+                .getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+              top: dailyTargetTop,
+              behavior: "smooth",
+            });
+          }
+          if (!lastDailyreached.current) {
+            limit.current++;
+            const fetchOneMore = limit.current;
+            fetchData(fetchOneMore);
+          }
+        } else if (keyPressed === "arrowup") {
+          if (displayedDaily.current > 0) {
+            const displayDaily = displayedDaily.current - 1;
+            const dailyTargetTop =
+              document
+                .getElementById(`daily${displayDaily}`)
+                .getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+              top: dailyTargetTop,
+              behavior: "smooth",
+            });
+          }
+        } else if (keyPressed === "enter") {
+          displayedDaily.current = 0;
           const dailyTargetTop =
-            document
-              .getElementById(`daily${displayDaily}`)
-              .getBoundingClientRect().top + window.scrollY;
+            document.getElementById(`daily0`).getBoundingClientRect().top +
+            window.scrollY;
           window.scrollTo({
             top: dailyTargetTop,
             behavior: "smooth",
           });
         }
-        if (!lastDailyreached.current) {
-          limit.current++;
-          const fetchOneMore = limit.current;
-          fetchData(fetchOneMore);
-        }
-      } else if (keyPressed === "arrowup") {
-        if (displayedDaily.current > 0) {
-          const displayDaily = displayedDaily.current - 1;
-          const dailyTargetTop =
-            document
-              .getElementById(`daily${displayDaily}`)
-              .getBoundingClientRect().top + window.scrollY;
-          window.scrollTo({
-            top: dailyTargetTop,
-            behavior: "smooth",
-          });
-        }
-      } else if (keyPressed === "enter") {
-        displayedDaily.current = 0;
-        const dailyTargetTop =
-          document.getElementById(`daily0`).getBoundingClientRect().top +
-          window.scrollY;
-        window.scrollTo({
-          top: dailyTargetTop,
-          behavior: "smooth",
-        });
+        setTimeout(() => {
+          throttling = false;
+        }, 500);
       }
-      setTimeout(() => {
-        document.addEventListener("keydown", keyDownHandler);
-      }, 50);
     };
 
     const scrollHandler = (event) => {
