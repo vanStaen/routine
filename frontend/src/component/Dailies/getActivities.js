@@ -7,7 +7,7 @@ export const getActivities = async () => {
         method: "GET",
     });
     if ((response.status !== 200) & (response.status !== 201)) {
-        throw new Error("Error!");
+        throw new Error("Error! 'GetActivities' failed.");
     }
     const activities = await response.data;
     return activities;

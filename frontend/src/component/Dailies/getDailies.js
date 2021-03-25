@@ -7,7 +7,7 @@ export const getDailies = async (limit) => {
         method: "GET",
     });
     if ((response.status !== 200) & (response.status !== 201)) {
-        throw new Error("Error!");
+        throw new Error("Error! 'GetDailies' failed.");
     }
     const dailies = await response.data;
     return dailies;

@@ -34,17 +34,17 @@ router.get("/", async (req, res) => {
   }
   try {
     const dailyToday = await client.query(
-      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid=${req.userId}`
+      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
     );
     if (dailyToday.rows.length > 0) {
       res.status(201).json(dailyToday.rows);
     } else {
       // there is no line for this day, so create one
       await client.query(
-        `INSERT INTO dailies (year, month, day, userid) VALUES (${year}, ${month}, ${day}, ${req.userId})`
+        `INSERT INTO dailies (year, month, day, userid) VALUES (${year}, ${month}, ${day}, '${req.userId}')`
       );
       const dailyNew = await client.query(
-        `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid=${req.userId}`
+        `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
       );
       if (dailyNew.rows.length > 0) {
         res.status(201).json(dailyNew.rows);
@@ -71,20 +71,20 @@ router.get("/:limit", async (req, res) => {
   }
   try {
     const dailyToday = await client.query(
-      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid=${req.userId}`
+      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
     );
     if (dailyToday.rows.length > 0) {
       const daily = await client.query(
-        `SELECT * FROM dailies WHERE userid=${req.userId} ORDER BY id DESC LIMIT ${req.params.limit}`
+        `SELECT * FROM dailies WHERE userid='${req.userId}' ORDER BY id DESC LIMIT ${req.params.limit}`
       );
       res.status(201).json(daily.rows);
     } else {
       // there is no line for this day, so create one
       await client.query(
-        `INSERT INTO dailies (year, month, day, userid) VALUES (${year}, ${month}, ${day}, ${req.userId})`
+        `INSERT INTO dailies (year, month, day, userid) VALUES (${year}, ${month}, ${day}, '${req.userId}')`
       );
       const dailyNew = await client.query(
-        `SELECT * FROM dailies WHERE userid=${req.userId} ORDER BY id DESC LIMIT ${req.params.limit}`
+        `SELECT * FROM dailies WHERE userid='${req.userId}' ORDER BY id DESC LIMIT ${req.params.limit}`
       );
       if (dailyNew.rows.length > 0) {
         res.status(201).json(dailyNew.rows);
