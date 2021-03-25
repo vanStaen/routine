@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Profil } from "./component/Profil/Profil";
 import { Dailies } from "./component/Dailies/Dailies";
 import { FloatButton } from "./component/FloatButton/FloatButton";
+import { LoginForm } from "./component/LoginForm/LoginForm";
 
 import "./App.css";
 
@@ -22,8 +23,11 @@ const App = () => {
   return (
     <div className="App">
       <header className="App__header">
+        <LoginForm />
+        {/*
         <FloatButton showProfil={showProfil} setShowProfil={setShowProfil} />
         <div className="App__day">{showProfil ? <Profil /> : <Dailies />}</div>
+         */}
       </header>
     </div>
   );

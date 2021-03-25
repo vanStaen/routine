@@ -1,0 +1,62 @@
+.login__full {
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #282c34;
+} 
+
+.login__form {
+  width: 300px;
+}
+.login__formforgot {
+  padding-right: 15px;
+  float: right;
+}
+.ant-col-rtl .login__formforgot {
+  float: left;
+}
+.login__formbutton {
+  width: 100%;
+}
+
+a:link {
+  color: rgba(214, 137, 16, .5) !important;
+}
+
+a:hover {
+  color: rgba(214, 137, 16, .95) !important;
+}
+
+.login__switchmode {
+  padding-top: 15px;
+  color: rgba(255, 255, 255, .5);
+}
+
+.login__switchmodetext {
+  cursor: pointer;
+  color: rgba(214, 137, 16, .5);
+}
+
+.login__switchmodetext:hover {
+  cursor: pointer;
+  color: rgba(214, 137, 16, .95);
+}
+
+.login__remember {
+  color: rgba(255, 255, 255, .5);
+}
+
+.ant-btn-primary {
+  background: #43464D !important;
+  border-color: #43464D !important;
+}
+
+.ant-checkbox-checked, .ant-checkbox-inner {
+  border-color: #43464D !important;
+  background: #43464D !important;
+  border-radius: 5px;
+}
