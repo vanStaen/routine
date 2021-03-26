@@ -4,8 +4,8 @@ import { notification } from "antd";
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
 import { Activity } from "../Activity/Activity";
-import CountDown from "../CountDown/CountDown";
-import logoRoutine from "../../images/routine.svg";
+import { CountDown } from "../CountDown/CountDown";
+import { Spinner } from '../Spinner/Spinner';
 
 import "./Dailies.css";
 
@@ -142,19 +142,13 @@ export const Dailies = () => {
                 `${dailies[i].day}.${dailies[i].month}.${dailies[i].year}`}
             </div>
           ) : (
-            ""
-          )}
+              ""
+            )}
         </div>
         <div className="dailies__main">{formattedDaily(i)}</div>
       </div>
     );
   }
 
-  return isLoading ? (
-    <div className="spinner">
-      <img src={logoRoutine} className="loader" alt="Loading" />
-    </div>
-  ) : (
-    <>{listDailies}</>
-  );
+  return isLoading ? <Spinner /> : listDailies;
 };

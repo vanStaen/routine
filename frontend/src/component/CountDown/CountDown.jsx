@@ -44,7 +44,7 @@ const timeLeftUntilTomorrow = () => {
   return differenceInSecond;
 };
 
-const CountDown = () => {
+export const CountDown = () => {
   const [timeLeft, setTimeLeft] = useState(timeLeftUntilTomorrow());
 
   useEffect(() => {
@@ -59,5 +59,3 @@ const CountDown = () => {
     </div>
   );
 };
-
-export default CountDown;

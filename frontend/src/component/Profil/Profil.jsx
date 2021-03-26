@@ -1,18 +1,14 @@
 import { useState } from "react";
 
 import { authStore } from "../../store/authStore";
-import logoRoutine from "../../images/routine.svg";
+import { Spinner } from '../Spinner/Spinner';
 
 import "./Profil.css";
 
 export const Profil = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  return isLoading ? (
-    <div className="spinner">
-      <img src={logoRoutine} className="loader" alt="Loading" />
-    </div>
-  ) : (
+  return isLoading ? <Spinner /> : (
     <div className="Profil__full">
       <div className="Profil__title">Profil</div>
       <div className="Profil__main">
