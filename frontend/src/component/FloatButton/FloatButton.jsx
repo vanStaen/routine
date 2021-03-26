@@ -10,7 +10,11 @@ export const FloatButton = (props) => {
   return (
     <ConditionalWrapper
       condition={!props.showProfil}
-      wrap={(children) => <Tooltip title="Edit profil">{children}</Tooltip>}
+      wrap={(children) => (
+        <Tooltip placement="bottom" title="Edit profil">
+          {children}
+        </Tooltip>
+      )}
     >
       {props.showProfil ? (
         <div
