@@ -33,9 +33,6 @@ export const LoginForm = () => {
     const remember = values.remember;
     const username = values.username;
 
-    console.log("email", email);
-    console.log("password", password);
-
     if (!isLogin) {
       // TODO! Create a user on auth service + in routine
       //postCreateUser()

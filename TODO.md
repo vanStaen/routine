@@ -8,6 +8,7 @@
     - [x] axios interceptors
     - [x] bearer in request
     - [ ] auth middelware in BE
+    - [ ] Handle wrong password! 
   - [ ] Create user table
     - [ ] With user infos
     - [ ] with activities user specific details (as array)
