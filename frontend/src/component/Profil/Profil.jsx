@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { authStore } from "../../store/authStore";
 import { Spinner } from '../Spinner/Spinner';
@@ -6,7 +6,11 @@ import { Spinner } from '../Spinner/Spinner';
 import "./Profil.css";
 
 export const Profil = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, [])
 
   return isLoading ? <Spinner /> : (
     <div className="Profil__full">
