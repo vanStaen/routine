@@ -20,9 +20,6 @@
   - [ ] Admin panel to set up increment and goals
 - [ ] Click on streak badge will open activity history
 - [ ] Finish create-user path : `postCreateUser`
-
-- [ ] AUTH : Password update feature
-- [ ] AUTH : Create user feature
  
 ## Completed ✓
 
