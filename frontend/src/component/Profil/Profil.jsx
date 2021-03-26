@@ -19,7 +19,8 @@ export const Profil = () => {
       <div className="Profil__main">
         <div>Here comes the stuff</div>
         <div>Add activity</div>
-        <div>Manage Goal</div>
+        <div>Manage Goal / increment</div>
+        <div>Edit activity title </div>
         <div>Make optional/mandatory</div>
         <div onClick={() => authStore.logout()}>logout</div>
       </div>
