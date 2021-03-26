@@ -54,7 +54,7 @@ const CountDown = () => {
   }, [timeLeft]);
 
   return (
-    <div className={timeLeft < 3600 && "countdown__alert"}>
+    <div className={timeLeft < 7200 && "countdown__alert"}>
       {formatTimeStamp(timeLeft)}
     </div>
   );
