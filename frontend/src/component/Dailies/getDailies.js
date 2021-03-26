@@ -8,7 +8,11 @@ export const getDailies = async (limit) => {
   });
 
   if ((response.status !== 200) & (response.status !== 201)) {
-    throw new Error("Error! 'GetDailies' failed.");
+    if (response.status === 401) {
+      throw new Error(`Error! Unauthorized (401)`);
+    } else {
+      throw new Error(`Error! Status ${response.status}`);
+    }
   }
   const dailies = await response.data;
   return dailies;
