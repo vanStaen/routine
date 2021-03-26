@@ -38,82 +38,79 @@ export const Dailies = () => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    fetchData(limit.current);
-  }, []);
+  const keyDownHandler = (event) => {
+    event.preventDefault();
+    const keyPressed = event.key.toLowerCase();
 
-  useEffect(() => {
-    const keyDownHandler = (event) => {
-      if (event.key === undefined) {
-        return;
-      }
-      event.preventDefault();
-      const keyPressed = event.key.toLowerCase();
-
-      if (throttling.current === false) {
-        throttling.current = true;
-        if (keyPressed === "arrowdown") {
-          if (lastDaily.current !== displayedDaily.current - 1) {
-            const displayDaily = displayedDaily.current + 1;
-            const dailyTargetTop =
-              document
-                .getElementById(`daily${displayDaily}`)
-                .getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({
-              top: dailyTargetTop,
-              behavior: "smooth",
-            });
-          }
-          if (!lastDailyreached.current) {
-            limit.current++;
-            const fetchOneMore = limit.current;
-            fetchData(fetchOneMore);
-          }
-        } else if (keyPressed === "arrowup") {
-          if (displayedDaily.current > 0) {
-            const displayDaily = displayedDaily.current - 1;
-            const dailyTargetTop =
-              document
-                .getElementById(`daily${displayDaily}`)
-                .getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({
-              top: dailyTargetTop,
-              behavior: "smooth",
-            });
-          }
-        } else if (keyPressed === "enter") {
-          displayedDaily.current = 0;
+    if (throttling.current === false) {
+      throttling.current = true;
+      if (keyPressed === "arrowdown") {
+        if (lastDaily.current !== displayedDaily.current - 1) {
+          const displayDaily = displayedDaily.current + 1;
           const dailyTargetTop =
-            document.getElementById(`daily0`).getBoundingClientRect().top +
-            window.scrollY;
+            document
+              .getElementById(`daily${displayDaily}`)
+              .getBoundingClientRect().top + window.scrollY;
           window.scrollTo({
             top: dailyTargetTop,
             behavior: "smooth",
           });
         }
-        setTimeout(() => {
-          throttling.current = false;
-        }, 500);
-      }
-    };
-
-    const scrollHandler = (event) => {
-      //Scroll position define displayedDaily
-      displayedDaily.current = Math.round(window.scrollY / window.innerHeight);
-      if (!lastDailyreached.current) {
-        if (limit.current === displayedDaily.current + 1) {
-          limit.current = displayedDaily.current + 2;
-          fetchData(displayedDaily.current + 2);
+        if (!lastDailyreached.current) {
+          limit.current++;
+          const fetchOneMore = limit.current;
+          fetchData(fetchOneMore);
         }
+      } else if (keyPressed === "arrowup") {
+        if (displayedDaily.current > 0) {
+          const displayDaily = displayedDaily.current - 1;
+          const dailyTargetTop =
+            document
+              .getElementById(`daily${displayDaily}`)
+              .getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: dailyTargetTop,
+            behavior: "smooth",
+          });
+        }
+      } else if (keyPressed === "enter") {
+        displayedDaily.current = 0;
+        const dailyTargetTop =
+          document.getElementById(`daily0`).getBoundingClientRect().top +
+          window.scrollY;
+        window.scrollTo({
+          top: dailyTargetTop,
+          behavior: "smooth",
+        });
       }
-    };
+      setTimeout(() => {
+        throttling.current = false;
+      }, 500);
+    }
+  };
 
+  const scrollHandler = (event) => {
+    //Scroll position define displayedDaily
+    displayedDaily.current = Math.round(window.scrollY / window.innerHeight);
+    if (!lastDailyreached.current) {
+      if (limit.current === displayedDaily.current + 1) {
+        limit.current = displayedDaily.current + 2;
+        fetchData(displayedDaily.current + 2);
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchData(limit.current);
+  }, []);
+
+  useEffect(() => {
     document.addEventListener("keydown", keyDownHandler);
     document.addEventListener("scroll", scrollHandler);
 
     return () => {
-      window.removeEventListener("keydown", keyDownHandler);
-      window.removeEventListener("scroll", scrollHandler);
+      document.removeEventListener("keydown", keyDownHandler);
+      document.removeEventListener("scroll", scrollHandler);
     };
   }, []);
 
