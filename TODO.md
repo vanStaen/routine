@@ -7,12 +7,12 @@
     - [x] login form
     - [x] axios interceptors
     - [x] bearer in request
-    - [ ] auth middelware in BE
+    - [x] auth middelware in BE
+    - [x] Filter all querry per user
     - [ ] Handle wrong password! 
   - [ ] Create user table
     - [ ] With user infos
     - [ ] with activities user specific details (as array)
-  - [ ] Filter all querry per user
   - [ ] Delete user specific infos from table array
   - [ ] Add user info in dailies table
   - [ ] Get user detail in MObx Store on login
