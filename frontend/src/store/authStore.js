@@ -60,16 +60,18 @@ export class AuthStore {
                 this.refreshToken = refreshToken;
             }
         }
-        // Check if token is expired
+        // Check if token exist and/or is expired
         if (this.token) {
             let decodedToken = jsonwebtoken.decode(this.token, { complete: true });
             let dateNow = new Date();
             if (decodedToken.exp < Math.floor(dateNow.getTime() / 1000)) {
                 this.token = null;
-            }
+            } else {
+                return this.token
+            }            
         }
         // Refresh token if token missing
-        if (!this.token) {            
+        else {            
             let requestBody = { refreshToken: this.refreshToken };
             return fetch(process.env.REACT_APP_AUTH_URL + "/token", {
                 method: "POST",

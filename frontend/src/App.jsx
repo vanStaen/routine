@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { observer } from "mobx-react";
+import axios from "axios";
 
 import { Profil } from "./component/Profil/Profil";
 import { Dailies } from "./component/Dailies/Dailies";
@@ -8,6 +8,7 @@ import { FloatButton } from "./component/FloatButton/FloatButton";
 import { authStore } from "./store/authStore";
 import { LoginForm } from "./component/LoginForm/LoginForm";
 
+import "./helpers/axiosInterceptor";
 import "./App.css";
 
 const defineVariableHeight = () => {
@@ -27,27 +28,6 @@ const App = observer(() => {
 
     // Define variable height
     defineVariableHeight();
-
-    // Axios Interceptors
-    axios.interceptors.request.use(
-      async (config) => {
-        //debugger;
-        const token = authStore.token
-          ? authStore.token
-          : await authStore.getNewToken();
-        config.headers = {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        };
-        config.validateStatus = (status) => {
-          return true;
-        };
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
   }, []);
 
   return (
