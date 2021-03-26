@@ -186,7 +186,7 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
     try {
         const yesterdayDate = getYesterdayDate(toYear, toMonth, toDay);
         const yesterdayStreak = await client.query(
-            `SELECT * FROM streak WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]} AND userid='${userId}'`
+            `SELECT * FROM streak WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]} AND userid='${userid}'`
         );
 
         if (yesterdayStreak.rows.length === 0) {
@@ -199,7 +199,7 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
             let updateValues = "";
 
             for (const activity in yesterdayStreakResult) {
-                if (activity === "year" || activity === "month" || activity === "day") {
+                if (activity === "year" || activity === "month" || activity === "day" || activity === "userid") {
                 } else {
                     updateField = updateField + `${activity},`;
                 }
@@ -207,7 +207,7 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
 
             // GET Data for yesterday (dailies)
             const yesterdayDailyData = await client.query(
-                `SELECT * FROM dailies WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]} AND userid='${userId}'`
+                `SELECT * FROM dailies WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]} AND userid='${userid}'`
             );
             const yesterdayDailyDataResult = yesterdayDailyData.rows[0];
 
@@ -218,7 +218,7 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
             const activityGoalResult = activityGoal.rows;
 
             for (const activity in yesterdayStreakResult) {
-                if (activity === "year" || activity === "month" || activity === "day") {
+                if (activity === "year" || activity === "month" || activity === "day" || activity === "userid") {
                 } else {
                     const activityFiltered = activityGoalResult.filter(item => item.activity === activity);
                     const activityFilteredGoal = activityFiltered[0].goal;
