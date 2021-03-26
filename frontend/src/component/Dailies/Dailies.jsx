@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
+import { notification } from "antd";
+
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
 import { Activity } from "../Activity/Activity";
 import CountDown from "../CountDown/CountDown";
-import { notification } from "antd";
+import logoRoutine from "../../images/routine.svg";
 
 import "./Dailies.css";
 
@@ -150,11 +152,7 @@ export const Dailies = () => {
 
   return isLoading ? (
     <div className="spinner">
-      <img
-        src="https://avatars0.githubusercontent.com/u/12551446"
-        className="loader"
-        alt="Loading"
-      />
+      <img src={logoRoutine} className="loader" alt="Loading" />
     </div>
   ) : (
     <>{listDailies}</>

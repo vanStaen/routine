@@ -1,5 +1,8 @@
 import { useState } from "react";
+
 import { authStore } from "../../store/authStore";
+import logoRoutine from "../../images/routine.svg";
+
 import "./Profil.css";
 
 export const Profil = () => {
@@ -7,11 +10,7 @@ export const Profil = () => {
 
   return isLoading ? (
     <div className="spinner">
-      <img
-        src="https://avatars0.githubusercontent.com/u/12551446"
-        className="loader"
-        alt="Loading"
-      />
+      <img src={logoRoutine} className="loader" alt="Loading" />
     </div>
   ) : (
     <div className="Profil__full">
