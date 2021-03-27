@@ -4,14 +4,26 @@ import { observer } from "mobx-react";
 import { authStore } from "../../store/authStore";
 import { userStore } from "../../store/userStore";
 import { Spinner } from "../Spinner/Spinner";
+import { getUser } from "./getUser";
 
 import "./Profil.css";
 
 export const Profil = observer(() => {
   const [isLoading, setIsLoading] = useState(true);
 
+  const fetchUserData = async () => {
+    try {
+      const userData = await getUser();
+      userStore.setUserName(userData.name);
+      userStore.setPicUrl(userData.picurl);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    setIsLoading(false);
+    fetchUserData();
   }, []);
 
   return isLoading ? (
@@ -20,7 +32,7 @@ export const Profil = observer(() => {
     <div className="Profil__full">
       <div className="Profil__title">Profil</div>
       <div className="Profil__main">
-        <div>hello Clément,</div>
+        <div>hello {userStore.userName},</div>
         <br />
         <div>Add activity</div>
         <div>Manage Goal / increment</div>
