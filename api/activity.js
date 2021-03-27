@@ -85,12 +85,12 @@ router.delete("/", async (req, res) => {
 router.post("/", async (req, res) => {
     const alterQuery = `
                         ALTER TABLE ${req.body.table}
-                        ADD ${req.body.activity} ${req.body.datatype}
+                        ADD ${req.body.activity} SMALLINT
                         SET DEFAULT 0;;
                         `;
     const insertQuery = `
-                        INSERT INTO activities (name, activity, category, unit, datatype, increment, goal) 
-                        VALUES ('${req.body.name}', '${req.body.activity}','${req.body.category}', '${req.body.unit}', '${req.body.datatype}', ${req.body.increment}, ${req.body.goal})
+                        INSERT INTO activities (name, activity, category, unit, increment, goal) 
+                        VALUES ('${req.body.name}', '${req.body.activity}','${req.body.category}', '${req.body.unit}', ${req.body.increment}, ${req.body.goal})
                         `;
     try {
         await client.query(alterQuery);
@@ -114,9 +114,6 @@ router.patch("/", async (req, res) => {
     }
     if (req.body.unit !== undefined) {
         updateField = updateField + "unit='" + req.body.unit + "',";
-    }
-    if (req.body.datatype) {
-        updateField = updateField + "datatype='" + req.body.datatype + "',";
     }
     if (req.body.increment) {
         updateField = updateField + "increment='" + req.body.increment + "',";

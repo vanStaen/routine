@@ -38,7 +38,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{  \n   \"table\": \"dailies\",\n   \"name\" : \"Javascript\",\n   \"activity\": \"javascript\",\n   \"datatype\": \"BOOLEAN\",\n   \"category\": \"learning\",\n   \"increment\": 1,\n   \"unit\": \"commits\"\n}"
+					"raw": "{  \n   \"table\": \"dailies\",\n   \"name\" : \"Javascript\",\n   \"activity\": \"javascript\",\n   \"category\": \"learning\",\n   \"increment\": 1,\n   \"unit\": \"commits\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5005/activity/",
