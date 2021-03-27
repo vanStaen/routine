@@ -24,6 +24,7 @@ import logoMeditation from "../../images/meditation.svg";
 import logoFriends from "../../images/friends.svg";
 import logoSteps from "../../images/steps.svg";
 import logoYoga from "../../images/yoga.svg";
+import logoBye from "../../images/bye.svg";
 
 export const Logo = (props) => {
   let image = "";
@@ -99,6 +100,9 @@ export const Logo = (props) => {
       break;
     case "yoga":
       image = logoYoga;
+      break;
+    case "bye":
+      image = logoBye;
       break;
     default:
       image = null;

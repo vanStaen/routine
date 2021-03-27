@@ -85,14 +85,15 @@ router.delete("/", async (req, res) => {
 router.post("/", async (req, res) => {
     const alterDailiesQuery = `
                         ALTER TABLE dailies
-                        ADD ${req.body.activity} SMALLINT
-                        SET DEFAULT 0;;
+                        ADD COLUMN ${req.body.activity} SMALLINT
+                        DEFAULT 0;
                         `;
     const insertQuery = `
                         INSERT INTO activities (name, activity, category, unit, increment, goal) 
                         VALUES ('${req.body.name}', '${req.body.activity}','${req.body.category}', '${req.body.unit}', ${req.body.increment}, ${req.body.goal})
                         `;
     try {
+        console.log(insertQuery);
         await client.query(alterDailiesQuery);
         await client.query(insertQuery);
         res.status(201).json({ success: `Column ${req.body.activity} added to dailies.` });
