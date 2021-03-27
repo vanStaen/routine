@@ -7,7 +7,7 @@ import { Spinner } from "../Spinner/Spinner";
 
 import "./Profil.css";
 
-export const Profil = () => {
+export const Profil = observer(() => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export const Profil = () => {
     <div className="Profil__full">
       <div className="Profil__title">Profil</div>
       <div className="Profil__main">
-        <div>hello {userStore.userName},</div>
+        <div>hello {userStore.userId},</div>
         <div>Add activity</div>
         <div>Manage Goal / increment</div>
         <div>Edit activity title </div>
@@ -29,4 +29,4 @@ export const Profil = () => {
       </div>
     </div>
   );
-};
+});
