@@ -5,7 +5,6 @@ import { authStore } from "../../store/authStore";
 import { userStore } from "../../store/userStore";
 import { postFetchToken } from "./postFetchToken";
 import { postCreateUser } from "./postCreateUser";
-import { getUser } from "./getUser";
 
 import logoRoutine from "../../images/routine.svg";
 import {

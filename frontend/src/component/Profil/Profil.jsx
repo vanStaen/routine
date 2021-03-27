@@ -20,7 +20,8 @@ export const Profil = observer(() => {
     <div className="Profil__full">
       <div className="Profil__title">Profil</div>
       <div className="Profil__main">
-        <div>hello {userStore.userId},</div>
+        <div>hello Clément,</div>
+        <br />
         <div>Add activity</div>
         <div>Manage Goal / increment</div>
         <div>Edit activity title </div>

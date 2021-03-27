@@ -11,8 +11,18 @@
     - [x] Filter all querry per user
     - [x] Handle wrong password!
   - [ ] Create user table
-    - [ ] With user infos
-    - [ ] with activities user specific details (as array)
+    - [x] Userid
+    - [x] Name
+    - [x] PicUrl
+    - [x] Activities
+      - [ ] Activity (as ref)
+      - [ ] Goal
+      - [ ] Increment
+      - [ ] Desc
+      - [ ] Unit
+      - [ ] Daily (boolean)
+      - [ ] Optional (boolean)
+            https://stackoverflow.com/questions/20095475/how-to-create-and-store-array-of-objects-in-postgresql
   - [ ] Delete user specific infos from activities
   - [x] Add user info in dailies/streak table
   - [x] create UserStore

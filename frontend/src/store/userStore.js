@@ -4,6 +4,7 @@ export class UserStore {
 
     userId = localStorage.getItem("userId") || null;
     userName = null;
+    picUrl = null;
 
     constructor() {
         makeObservable(this, {
@@ -11,6 +12,8 @@ export class UserStore {
             setUserId: action,
             userName: observable,
             setUserName: action,
+            picUrl: observable,
+            setPicUrl: action,
         });
     }
 
@@ -21,6 +24,11 @@ export class UserStore {
     setUserName = (userName) => {
         this.userName = userName;
     };
+
+    setPicUrl = (picUrl) => {
+        this.picUrl = picUrl;
+    };
+
 
 }
 
