@@ -26,8 +26,8 @@ router.get("/", async (req, res) => {
         return;
     }
     try {
-        const activities = await client.query(`SELECT * FROM user WHERE userid='${req.userId}'`);
-        res.status(201).json(activities.rows);
+        const user = await client.query(`SELECT * FROM users WHERE userid='${req.userId}'`);
+        res.status(201).json(user.rows);
     } catch (err) {
         res.status(400).json({
             error: `${err})`,

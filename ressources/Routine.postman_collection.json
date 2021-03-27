@@ -122,7 +122,18 @@
 			"name": "ROUTINE: localhost:5001/dailies",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmFkNThiMGM2YjgzYTc3MDQyZDZiM2EiLCJlbWFpbCI6ImNsZW1lbnQudmFuc3RhZW5AZ21haWwuY29tIiwiaWF0IjoxNjE2NzAzNDI1LCJleHAiOjE2MTY3MDQzMjV9.gZqM-hywybBeJ0bwG9a087nffahh2XmKQbZMoleEW8I",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:5005/dailies/5",
 					"protocol": "http",
@@ -221,6 +232,36 @@
 						"2021",
 						"3",
 						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTINE: localhost:5001/user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmFkNThiMGM2YjgzYTc3MDQyZDZiM2EiLCJlbWFpbCI6ImNsZW1lbnQudmFuc3RhZW5AZ21haWwuY29tIiwiaWF0IjoxNjE2ODcwNjYyLCJleHAiOjE2MTY4NzE1NjJ9.tmqSitj5OOe3I4gsFwYi6XrAxre71skbRoYCEJz63wc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5005/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"user"
 					]
 				}
 			},
