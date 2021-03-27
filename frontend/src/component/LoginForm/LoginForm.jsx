@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Checkbox, notification } from "antd";
 
 import { authStore } from "../../store/authStore";
 import { postCreateUser } from "./postCreateUser";
@@ -37,13 +37,20 @@ export const LoginForm = () => {
       // TODO! Create a user on auth service + in routine
       //postCreateUser()
     } else {
-      const userData = await postFetchToken(email, password);
-      if (remember === true) {
-        localStorage.setItem("refreshToken", userData.refreshToken);
-        localStorage.setItem("userId", userData.userId);
+      try {
+        const userData = await postFetchToken(email, password);
+        if (remember === true) {
+          localStorage.setItem("refreshToken", userData.refreshToken);
+          localStorage.setItem("userId", userData.userId);
+        }
+        authStore.login(userData.token, userData.refreshToken);
+      } catch (error) {
+        notification.warn({
+          message: error.message,
+        });
+        console.log(error);
       }
       setIsLoading(false);
-      authStore.login(userData.token, userData.refreshToken);
     }
   };
 
