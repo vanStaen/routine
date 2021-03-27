@@ -35,6 +35,7 @@ app.use("/dailies", require("./api/dailies"));
 app.use("/daily", require("./api/daily"));
 app.use("/activity", require("./api/activity"));
 app.use("/streak", require("./api/streak"));
+app.use("/user", require("./api/user"));
 
 // Listen on a port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

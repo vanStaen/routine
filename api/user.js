@@ -1,4 +1,5 @@
 const express = require("express");
+const { TokenExpiredError } = require("jsonwebtoken");
 const router = express.Router();
 const { Client } = require("pg");
 
@@ -18,8 +19,14 @@ client.connect(err => {
 
 // GET all data from user
 router.get("/", async (req, res) => {
+    if (!req.isAuth) {
+        res.status(401).json({
+            error: "Unauthorized",
+        });
+        return;
+    }
     try {
-        const activities = await client.query(`SELECT * FROM user WHERE userid='ID'`);
+        const activities = await client.query(`SELECT * FROM user WHERE userid='${req.userId}'`);
         res.status(201).json(activities.rows);
     } catch (err) {
         res.status(400).json({
@@ -28,16 +35,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-// GET all data from user for specific userid
-router.get("/:userid", async (req, res) => {
-    try {
-        const activities = await client.query(`SELECT * FROM user WHERE userid='${req.params.userid}'`);
-        res.status(201).json(activities.rows);
-    } catch (err) {
-        res.status(400).json({
-            error: `${err})`,
-        });
-    }
-});
+// DELETE user 
+// TODO
 
 module.exports = router;

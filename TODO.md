@@ -15,6 +15,7 @@
     - [x] Name
     - [x] PicUrl
     - [x] Activities
+          https://stackoverflow.com/questions/20095475/how-to-create-and-store-array-of-objects-in-postgresql
       - [ ] Activity (as ref)
       - [ ] Goal
       - [ ] Increment
@@ -22,14 +23,17 @@
       - [ ] Unit
       - [ ] Daily (boolean)
       - [ ] Optional (boolean)
-            https://stackoverflow.com/questions/20095475/how-to-create-and-store-array-of-objects-in-postgresql
+  - [ ] Get activities data from user
   - [ ] Delete user specific infos from activities
   - [x] Add user info in dailies/streak table
   - [x] create UserStore
-  - [ ] AWS S3 Bucket for profil pic upload
-  - [ ] Admin panel to set up increment and goals
+  - [ ] Admin panel
+    - [ ] to set up increment and goal
+    - [ ] to add new activities
 - [ ] Click on streak badge will open activity history
 - [ ] Finish create-user path : `postCreateUser`
+- [ ] User endpoint : Delete path
+- [ ] AWS S3 Bucket for profil pic upload
 
 ## Completed ✓
 
