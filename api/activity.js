@@ -83,8 +83,8 @@ router.delete("/", async (req, res) => {
 
 // POST add activity
 router.post("/", async (req, res) => {
-    const alterQuery = `
-                        ALTER TABLE ${req.body.table}
+    const alterDailiesQuery = `
+                        ALTER TABLE dailies
                         ADD ${req.body.activity} SMALLINT
                         SET DEFAULT 0;;
                         `;
@@ -93,9 +93,9 @@ router.post("/", async (req, res) => {
                         VALUES ('${req.body.name}', '${req.body.activity}','${req.body.category}', '${req.body.unit}', ${req.body.increment}, ${req.body.goal})
                         `;
     try {
-        await client.query(alterQuery);
+        await client.query(alterDailiesQuery);
         await client.query(insertQuery);
-        res.status(201).json({ success: `Column ${req.body.activity} added to ${req.body.table}.` });
+        res.status(201).json({ success: `Column ${req.body.activity} added to dailies.` });
     } catch (err) {
         res.status(400).json({
             error: `${err})`,
