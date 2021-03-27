@@ -7,7 +7,7 @@ axios.interceptors.request.use(
     const token = await authStore.token
       ? await authStore.token
       : await authStore.getNewToken();
-    console.log("Request send with token:", token);
+    //console.log("Request send with token:", token);
     config.headers = Object.assign({
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",

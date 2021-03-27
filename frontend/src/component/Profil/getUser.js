@@ -14,7 +14,7 @@ export const getUser = async () => {
       throw new Error(`Error! Status ${response.status}`);
     }
   }
-  const user = await response.data;
+  const user = await response.data[0];
   return user;
 
 };
