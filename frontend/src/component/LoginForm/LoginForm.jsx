@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Form, Input, Button, Checkbox, notification } from "antd";
 
 import { authStore } from "../../store/authStore";
-import { postCreateUser } from "./postCreateUser";
+import { userStore } from "../../store/userStore";
 import { postFetchToken } from "./postFetchToken";
+import { postCreateUser } from "./postCreateUser";
 import { getUser } from "./getUser";
 
 import logoRoutine from "../../images/routine.svg";
@@ -44,6 +45,7 @@ export const LoginForm = () => {
           localStorage.setItem("userId", userData.userId);
         }
         authStore.login(userData.token, userData.refreshToken);
+        userStore.setUserId(userData.userId);
       } catch (error) {
         notification.warn({
           message: error.message,

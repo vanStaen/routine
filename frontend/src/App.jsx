@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import axios from "axios";
 
 import { Profil } from "./component/Profil/Profil";
 import { Dailies } from "./component/Dailies/Dailies";

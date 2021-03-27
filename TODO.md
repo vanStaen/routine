@@ -14,8 +14,8 @@
     - [ ] With user infos
     - [ ] with activities user specific details (as array)
   - [ ] Delete user specific infos from activities
-  - [ ] Add user info in dailies table
-  - [ ] Get user detail in MObx Store on login
+  - [x] Add user info in dailies/streak table
+  - [x] create UserStore
   - [ ] AWS S3 Bucket for profil pic upload
   - [ ] Admin panel to set up increment and goals
 - [ ] Click on streak badge will open activity history

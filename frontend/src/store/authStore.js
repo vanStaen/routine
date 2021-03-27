@@ -40,7 +40,7 @@ export class AuthStore {
         })
             .then((res) => {
                 if (res.status !== 204) {
-                    throw new Error("Error when logout!"); 
+                    throw new Error("Error when logout!");
                 }
             })
             .catch((err) => {
@@ -68,10 +68,10 @@ export class AuthStore {
                 this.token = null;
             } else {
                 return this.token
-            }            
+            }
         }
         // Refresh token if token missing
-        else {            
+        else {
             let requestBody = { refreshToken: this.refreshToken };
             return fetch(process.env.REACT_APP_AUTH_URL + "/token", {
                 method: "POST",
