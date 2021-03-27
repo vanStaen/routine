@@ -13,7 +13,7 @@
   - [ ] Create user table
     - [ ] With user infos
     - [ ] with activities user specific details (as array)
-  - [ ] Delete user specific infos from table array
+  - [ ] Delete user specific infos from activities
   - [ ] Add user info in dailies table
   - [ ] Get user detail in MObx Store on login
   - [ ] AWS S3 Bucket for profil pic upload 
