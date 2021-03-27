@@ -38,7 +38,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \n   \"name\" : \"Javascript\",\n   \"activity\": \"javascript\",\n   \"category\": \"learning\",\n   \"increment\": 1,\n   \"unit\": \"commits\"\n}"
+					"raw": "{  \n   \"name\" : \"Flex your body!\",\n   \"activity\": \"yoga\",\n   \"category\": \"Sport\",\n   \"increment\": 1,\n   \"goal\": 1,\n   \"unit\": \"Yoga\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5005/activity/",
@@ -100,7 +100,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{  \n   \"activity\": \"teeth\",\n   \"name\" : \"Brush your teeth!\"\n}"
+					"raw": "{  \n   \"activity\": \"friends\",\n   \"unit\" : \"Socialize\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5005/activity/",

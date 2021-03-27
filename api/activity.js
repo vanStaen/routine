@@ -58,7 +58,7 @@ router.get("/:table", async (req, res) => {
 // DELETE single column from a table (based on column_name 'activity')
 router.delete("/", async (req, res) => {
     const deleteQuery1 = `
-                        ALTER TABLE daily
+                        ALTER TABLE dailies
                         DROP COLUMN ${req.body.activity};
                         `;
     const deleteQuery2 = `
@@ -88,13 +88,18 @@ router.post("/", async (req, res) => {
                         ADD COLUMN ${req.body.activity} SMALLINT
                         DEFAULT 0;
                         `;
+    const alterStreakQuery = `
+                        ALTER TABLE streak
+                        ADD COLUMN ${req.body.activity} SMALLINT
+                        DEFAULT 0;
+                        `;
     const insertQuery = `
                         INSERT INTO activities (name, activity, category, unit, increment, goal) 
                         VALUES ('${req.body.name}', '${req.body.activity}','${req.body.category}', '${req.body.unit}', ${req.body.increment}, ${req.body.goal})
                         `;
     try {
-        console.log(insertQuery);
         await client.query(alterDailiesQuery);
+        await client.query(alterStreakQuery);
         await client.query(insertQuery);
         res.status(201).json({ success: `Column ${req.body.activity} added to dailies.` });
     } catch (err) {
