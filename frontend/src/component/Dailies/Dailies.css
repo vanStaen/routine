@@ -9,7 +9,6 @@
 }
 
 .dailies__date {
-  max-width: 960px;
   justify-content: center;
   font-size: 0.5em;
   color: rgba(255, 255, 255, 1);
@@ -23,7 +22,6 @@
 }
 
 .dailies__main {
-  max-width: 960px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
