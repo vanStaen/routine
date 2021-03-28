@@ -35,7 +35,18 @@ router.get("/", async (req, res) => {
     }
 });
 
-// DELETE user 
-// TODO
+// DELETE user from table
+router.delete("/", async (req, res) => {
+    try {
+        const deleteUser = `DELETE FROM users WHERE userid='${req.userId}'`;
+        await client.query(deleteUser);
+        res.status(201).json({ success: `User with id #${req.userId} was deleted.` });
+    } catch (err) {
+        res.status(400).json({
+            error: `${err})`,
+        });
+    }
+});
+
 
 module.exports = router;
