@@ -14,6 +14,7 @@
         https://stackoverflow.com/questions/20095475/how-to-create-and-store-array-of-objects-in-postgresql
   - [ ] Get activities data from user
   - [ ] Delete user specific infos from activities
+  - [ ] Get goals from user for streak
   - [x] Add user info in dailies/streak table
   - [x] create UserStore
   - [ ] Admin panel
