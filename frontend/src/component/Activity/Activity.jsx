@@ -26,6 +26,7 @@ export const Activity = (props) => {
   const activity = props.activity.activity;
   const increment = props.activity.increment;
   const goal = props.activity.goal;
+  const optional = props.activity.optional;
 
   const done =
     count >= goal ? (goal ? true : count > goal ? true : false) : false;
@@ -94,7 +95,7 @@ export const Activity = (props) => {
       }
     >
       <div className="daily__item">
-        {!goal && !done && <div className="daily__optional" />}
+        {optional && !done && <div className="daily__optional" />}
 
         {done && (
           <div className="daily__doneContainer">
@@ -179,7 +180,7 @@ export const Activity = (props) => {
               {goal > 1 && props.activity.unit}
             </>
           )}
-          {goal === 0 && (
+          {optional && (
             <div style={{ fontStyle: "italic", fontSize: ".7em" }}>
               <i>optional</i>
             </div>

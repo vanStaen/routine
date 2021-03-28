@@ -54,7 +54,7 @@
         "unit": "xp",
         "increment": 10,
         "desc": "Leer wat Nederlands",
-        "goal": 0, 
+        "goal": 30, 
         "daily": true,
         "optional": false,
         "sorting": 5
