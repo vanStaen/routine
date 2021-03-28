@@ -35,6 +35,45 @@ router.get("/", async (req, res) => {
     }
 });
 
+
+// PATCH single user from daily (based on userId)
+router.patch("/", async (req, res) => {
+    if (!req.isAuth) {
+        res.status(401).json({
+            error: "Unauthorized",
+        });
+        return;
+    }
+    let updateField = '';
+    if (req.body.name) {
+        updateField = updateField + "name='" + req.body.name + "',";
+    }
+    if (req.body.picurl) {
+        updateField = updateField + "picurl='" + req.body.picurl + "',";
+    }
+    if (req.body.activities) {
+        updateField = updateField + "activities='" + req.body.activities + "',";
+    }
+    const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
+    const updateQuery = `UPDATE users SET ${updateFieldEdited} WHERE userid='${req.userId}'`;
+    try {
+        const udpate = await client.query(updateQuery);
+        if (udpate.rowCount > 0) {
+            res.status(200).json({
+                success: `User updated.`,
+            });
+        } else {
+            res.status(400).json({
+                error: `No User found with id#${req.params.id}`,
+            });
+        }
+    } catch (err) {
+        res.status(400).json({
+            error: `${err}`,
+        });
+    }
+});
+
 // DELETE user from table
 router.delete("/", async (req, res) => {
     try {
