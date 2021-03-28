@@ -35,6 +35,20 @@ router.get("/", async (req, res) => {
     }
 });
 
+// PATCH single user from daily (based on userId)
+router.post("/", async (req, res) => {
+    try {
+        const createQuery = `INSERT INTO public.users(userid, name, picurl, activities) VALUES(${req.body.userid}, ${req.body.name}, ${req.body.picurl}, ${req.body.activities});`;
+        await client.query(createQuery);
+        res.status(200).json({
+            success: `User created.`,
+        });
+    } catch (error) {
+        res.status(400).json({
+            error: `${err}`,
+        });
+    }
+});
 
 // PATCH single user from daily (based on userId)
 router.patch("/", async (req, res) => {
