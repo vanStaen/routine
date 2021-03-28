@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.e9c8c2f9.chunk.css",
-    "main.js": "/static/js/main.a8204757.chunk.js",
-    "main.js.map": "/static/js/main.a8204757.chunk.js.map",
+    "main.css": "/static/css/main.88aa0240.chunk.css",
+    "main.js": "/static/js/main.f3920017.chunk.js",
+    "main.js.map": "/static/js/main.f3920017.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c60b7f5c.js",
     "runtime-main.js.map": "/static/js/runtime-main.c60b7f5c.js.map",
     "static/css/2.e4a59c64.chunk.css": "/static/css/2.e4a59c64.chunk.css",
@@ -10,16 +10,16 @@
     "static/js/2.0cfd55a5.chunk.js.map": "/static/js/2.0cfd55a5.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.e4a59c64.chunk.css.map": "/static/css/2.e4a59c64.chunk.css.map",
-    "static/css/main.e9c8c2f9.chunk.css.map": "/static/css/main.e9c8c2f9.chunk.css.map",
+    "static/css/main.88aa0240.chunk.css.map": "/static/css/main.88aa0240.chunk.css.map",
     "static/js/2.0cfd55a5.chunk.js.LICENSE.txt": "/static/js/2.0cfd55a5.chunk.js.LICENSE.txt",
     "static/media/bass.35a36137.svg": "/static/media/bass.35a36137.svg",
     "static/media/bye.babac325.svg": "/static/media/bye.babac325.svg",
     "static/media/clean.8fa6a8de.svg": "/static/media/clean.8fa6a8de.svg",
     "static/media/climb.936e7285.svg": "/static/media/climb.936e7285.svg",
-    "static/media/code.2aff3c3a.svg": "/static/media/code.2aff3c3a.svg",
+    "static/media/code.6688a6a8.svg": "/static/media/code.6688a6a8.svg",
     "static/media/dutch.0d45338e.svg": "/static/media/dutch.0d45338e.svg",
     "static/media/french.37bd6f8d.svg": "/static/media/french.37bd6f8d.svg",
-    "static/media/friends.fd9f2f12.svg": "/static/media/friends.fd9f2f12.svg",
+    "static/media/friends.0c0a6c83.svg": "/static/media/friends.0c0a6c83.svg",
     "static/media/guitar.c3922c9c.svg": "/static/media/guitar.c3922c9c.svg",
     "static/media/javascript.79934a25.svg": "/static/media/javascript.79934a25.svg",
     "static/media/meditation.0eabc1a0.svg": "/static/media/meditation.0eabc1a0.svg",
@@ -42,7 +42,7 @@
     "static/js/runtime-main.c60b7f5c.js",
     "static/css/2.e4a59c64.chunk.css",
     "static/js/2.0cfd55a5.chunk.js",
-    "static/css/main.e9c8c2f9.chunk.css",
-    "static/js/main.a8204757.chunk.js"
+    "static/css/main.88aa0240.chunk.css",
+    "static/js/main.f3920017.chunk.js"
   ]
 }
