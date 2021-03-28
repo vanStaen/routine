@@ -89,7 +89,7 @@ export const Activity = (props) => {
       placement="top"
       title={
         <>
-          {props.activity.name} <Streak activity={props.activity} />
+          {props.activity.desc} <Streak activity={props.activity} />
         </>
       }
     >
