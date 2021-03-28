@@ -10,19 +10,8 @@
     - [x] auth middelware in BE
     - [x] Filter all querry per user
     - [x] Handle wrong password!
-  - [ ] Create user table
-    - [x] Userid
-    - [x] Name
-    - [x] PicUrl
-    - [x] Activities
-          https://stackoverflow.com/questions/20095475/how-to-create-and-store-array-of-objects-in-postgresql
-      - [ ] Activity (as ref)
-      - [ ] Goal
-      - [ ] Increment
-      - [ ] Desc
-      - [ ] Unit
-      - [ ] Daily (boolean)
-      - [ ] Optional (boolean)
+  - [x] Create user table
+        https://stackoverflow.com/questions/20095475/how-to-create-and-store-array-of-objects-in-postgresql
   - [ ] Get activities data from user
   - [ ] Delete user specific infos from activities
   - [x] Add user info in dailies/streak table
@@ -32,7 +21,6 @@
     - [ ] to add new activities
 - [ ] Click on streak badge will open activity history
 - [ ] Finish create-user path : `postCreateUser`
-- [ ] User endpoint : Delete path
 - [ ] AWS S3 Bucket for profil pic upload
 
 ## Completed ✓
