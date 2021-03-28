@@ -14,8 +14,6 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; // This bypasses the SSL verificat
 client.connect((err) => {
     if (err) {
         console.error("connection error", err.stack);
-    } else {
-        console.log("Streak API:", "Connected to postgres db!");
     }
 });
 
@@ -28,10 +26,10 @@ const day = today.getDate();
 // GET  streak data for all activities
 router.get("/", async (req, res) => {
     if (!req.isAuth) {
-      res.status(401).json({
-        error: "Unauthorized",
-      });
-      return;
+        res.status(401).json({
+            error: "Unauthorized",
+        });
+        return;
     }
     try {
         const activities = await client.query(
@@ -62,10 +60,10 @@ router.get("/", async (req, res) => {
 // GET streak data for specific date
 router.get("/:year/:month/:day", async (req, res) => {
     if (!req.isAuth) {
-      res.status(401).json({
-        error: "Unauthorized",
-      });
-      return;
+        res.status(401).json({
+            error: "Unauthorized",
+        });
+        return;
     }
     try {
         const activities = await client.query(
@@ -97,10 +95,10 @@ router.get("/:year/:month/:day", async (req, res) => {
 // PATCH single data from streak for specific date
 router.patch("/:year/:month/:day", async (req, res) => {
     if (!req.isAuth) {
-      res.status(401).json({
-        error: "Unauthorized",
-      });
-      return;
+        res.status(401).json({
+            error: "Unauthorized",
+        });
+        return;
     }
     let updateField = '';
     if (req.body.day !== undefined) {

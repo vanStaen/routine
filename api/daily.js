@@ -13,8 +13,6 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; // This bypasses the SSL verificat
 client.connect((err) => {
   if (err) {
     console.error("connection error", err.stack);
-  } else {
-    console.log("Daily API:", "Connected to postgres db!");
   }
 });
 
