@@ -16,10 +16,15 @@ client.connect(err => {
 
 // GET all data from activities
 router.get("/", async (req, res) => {
+    if (!req.isAuth) {
+        res.status(401).json({
+            error: "Unauthorized",
+        });
+        return;
+    }
     try {
-        const activities = await client.query('SELECT * FROM activities ORDER BY category ASC;');
-        const activitiesTest = await client.query('SELECT * FROM users ORBER BY sorting ASC;');
-        res.status(201).json(activities.rows);
+        const userActivities = await client.query(`SELECT activities FROM users WHERE userid='${req.userId}'`);
+        res.status(201).json(userActivities.rows[0].activities);
     } catch (err) {
         res.status(400).json({
             error: `${err})`,
