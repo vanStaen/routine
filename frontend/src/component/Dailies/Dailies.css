@@ -1,31 +1,31 @@
 .Dailies__full {
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
+  min-height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  min-height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-} 
+}
 
 .dailies__date {
   max-width: 960px;
   justify-content: center;
-  font-size: .5em;
-  color: rgba(255,255,255,1);
+  font-size: 0.5em;
+  color: rgba(255, 255, 255, 1);
   margin: 0 0 3em 0;
   font-weight: 200;
   letter-spacing: 2.7px;
 }
 
 .Dailies__full:nth-child(even) {
-  background: #43464D;
+  background: #43464d;
 }
 
 .dailies__main {
   max-width: 960px;
-  display: flex;     
-  flex-wrap: wrap; 
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin: 0 0 1em 0;
 }

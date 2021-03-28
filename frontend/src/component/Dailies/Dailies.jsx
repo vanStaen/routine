@@ -5,7 +5,7 @@ import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
 import { Activity } from "../Activity/Activity";
 import { CountDown } from "../CountDown/CountDown";
-import { Spinner } from '../Spinner/Spinner';
+import { Spinner } from "../Spinner/Spinner";
 
 import "./Dailies.css";
 
@@ -134,21 +134,23 @@ export const Dailies = () => {
     listDailies.push(
       <div className="Dailies__full" id={`daily${i}`} key={i}>
         <div className="dailies__date">
-          {dailies.length > 0 ? (
-            <div>
-              {i === 0 && <CountDown />}
-              {i === 1 && `Yesterday`}
-              {i > 1 &&
-                `${dailies[i].day}.${dailies[i].month}.${dailies[i].year}`}
-            </div>
-          ) : (
-              ""
-            )}
+          <div>
+            {i === 0 && <CountDown />}
+            {i === 1 && `Yesterday`}
+            {i > 1 &&
+              `${dailies[i].day}.${dailies[i].month}.${dailies[i].year}`}
+          </div>
         </div>
         <div className="dailies__main">{formattedDaily(i)}</div>
       </div>
     );
   }
 
-  return isLoading ? <Spinner /> : listDailies;
+  return isLoading ? (
+    <div className="Dailies__full">
+      <Spinner />
+    </div>
+  ) : (
+    listDailies
+  );
 };
