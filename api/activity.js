@@ -18,6 +18,7 @@ client.connect(err => {
 router.get("/", async (req, res) => {
     try {
         const activities = await client.query('SELECT * FROM activities ORDER BY category ASC;');
+        const activitiesTest = await client.query('SELECT * FROM users ORBER BY sorting ASC;');
         res.status(201).json(activities.rows);
     } catch (err) {
         res.status(400).json({
@@ -26,34 +27,8 @@ router.get("/", async (req, res) => {
     }
 });
 
-// GET list of all columns in table
-router.get("/:table", async (req, res) => {
-    try {
-        const querry = `
-                        SELECT COLUMN_NAME
-                        FROM   INFORMATION_SCHEMA.COLUMNS
-                        WHERE  TABLE_NAME = '${req.params.table}'
-                        `
-        const results = await client.query(querry)
-        const activities = results.rows.filter(result => {
-            if (result.column_name === "year" ||
-                result.column_name === "month" ||
-                result.column_name === "day") {
-                return false;
-            } else {
-                return true;
-            }
-        });
-        res.status(201).json(activities);
-    } catch (err) {
-        res.status(400).json({
-            error: `${err})`,
-        });
-    }
-});
 
-
-// DELETE single column from a table (based on column_name 'activity')
+// DELETE column (based on column_name 'activity')
 router.delete("/", async (req, res) => {
     const deleteQuery1 = `
                         ALTER TABLE dailies
@@ -147,3 +122,33 @@ router.patch("/", async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+/*
+// GET list of all columns in table
+router.get("/:table", async (req, res) => {
+    try {
+        const querry = `
+                        SELECT COLUMN_NAME
+                        FROM   INFORMATION_SCHEMA.COLUMNS
+                        WHERE  TABLE_NAME = '${req.params.table}'
+                        `
+        const results = await client.query(querry)
+        const activities = results.rows.filter(result => {
+            if (result.column_name === "year" ||
+                result.column_name === "month" ||
+                result.column_name === "day") {
+                return false;
+            } else {
+                return true;
+            }
+        });
+        res.status(201).json(activities);
+    } catch (err) {
+        res.status(400).json({
+            error: `${err})`,
+        });
+    }
+});
+*/

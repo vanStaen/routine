@@ -3,63 +3,70 @@
         "activity": "bye",
         "unit": "Throw away",
         "increment": 1,
-        "Desc": "Brush your teeth",
-        "Goal": 1, 
-        "Daily": true,
-        "Optional": false
+        "desc": "Brush your teeth",
+        "goal": 1, 
+        "daily": true,
+        "optional": false,
+        "sorting": 0
     },
     {
         "activity": "french",
         "unit": "xp",
         "increment": 10,
-        "Desc": "Apprends le français",
-        "Goal": 30, 
-        "Daily": true,
-        "Optional": false
+        "desc": "Apprends le français",
+        "goal": 30, 
+        "daily": true,
+        "optional": false,
+        "sorting": 1
     },
     {
         "activity": "friends",
         "unit": "Socialize",
         "increment": 1,
-        "Desc": "Be social",
-        "Goal": 1, 
-        "Daily": true,
-        "Optional": true
+        "desc": "Be social",
+        "goal": 1, 
+        "daily": true,
+        "optional": true,
+        "sorting": 2
     },
     {
         "activity": "yoga",
         "unit": "min",
         "increment": 5,
-        "Desc": "Be social",
-        "Goal": 30, 
-        "Daily": true,
-        "Optional": true
+        "desc": "Be social",
+        "goal": 30, 
+        "daily": true,
+        "optional": true,
+        "sorting": 3
     },
     {
         "activity": "meditation",
         "unit": "Meditate",
         "increment": 1,
-        "Desc": "Open your chakras",
-        "Goal": 1, 
-        "Daily": true,
-        "Optional": false
+        "desc": "Open your chakras",
+        "goal": 1, 
+        "daily": true,
+        "optional": false,
+        "sorting": 4
     },
     {
         "activity": "piano",
         "unit": "Play",
         "increment": 1,
-        "Desc": "Why not those key",
-        "Goal": 1, 
-        "Daily": true,
-        "Optional": true
+        "desc": "Why not those key",
+        "goal": 1, 
+        "daily": true,
+        "optional": true,
+        "sorting": 5
     },
     {
         "activity": "steps",
         "unit": "steps",
         "increment": 500,
-        "Desc": "Walk idiot, walk",
-        "Goal": 7000, 
-        "Daily": true,
-        "Optional": false
+        "desc": "Walk idiot, walk",
+        "goal": 7000, 
+        "daily": true,
+        "optional": false,
+        "sorting": 6
     }
 ]

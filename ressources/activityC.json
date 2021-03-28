@@ -6,7 +6,8 @@
         "Desc": "Brush your teeth",
         "Goal": 1, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 0
     },
     {
         "activity": "water",
@@ -15,7 +16,8 @@
         "Desc": "Drink enough water",
         "Goal": 5, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 1
     },
     {
         "activity": "stretch",
@@ -24,7 +26,8 @@
         "Desc": "Strech you body",
         "Goal": 3, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 2
     },
     {
         "activity": "photo",
@@ -33,7 +36,8 @@
         "Desc": "Do a photoshoot",
         "Goal": 1, 
         "Daily": true,
-        "Optional": true
+        "Optional": true,
+        "sorting": 3
     },
     {
         "activity": "javascript",
@@ -42,7 +46,8 @@
         "Desc": "Code some Javascript",
         "Goal": 1, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 4
     },
     {
         "activity": "dutch",
@@ -51,7 +56,8 @@
         "Desc": "Leer wat Nederlands",
         "Goal": 0, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 5
     },
     {
         "activity": "piano",
@@ -60,7 +66,8 @@
         "Desc": "Why not those key",
         "Goal": 1, 
         "Daily": true,
-        "Optional": true
+        "Optional": true,
+        "sorting": 6
     },
     {
         "activity": "guitar",
@@ -69,7 +76,8 @@
         "Desc": "Use your guitars",
         "Goal": 1, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 7
     },
     {
         "activity": "bass",
@@ -78,7 +86,8 @@
         "Desc": "What about somne bass",
         "Goal": 1, 
         "Daily": true,
-        "Optional": true
+        "Optional": true,
+        "sorting": 8
     },
     {
         "activity": "pushups",
@@ -87,7 +96,8 @@
         "Desc": "Do your push-ups",
         "Goal": 50, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 9
     },
     {
         "activity": "pullups",
@@ -96,7 +106,8 @@
         "Desc": "Do your pull-ups",
         "Goal": 50, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 10
     },
     {
         "activity": "situps",
@@ -105,7 +116,8 @@
         "Desc": "Do your sit-ups",
         "Goal": 50, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 11
     },
     {
         "activity": "run",
@@ -114,7 +126,8 @@
         "Desc": "Go oustide & run",
         "Goal": 5, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 12
     },
     {
         "activity": "trumpet",
@@ -123,7 +136,8 @@
         "Desc": "Whake your neighbours",
         "Goal": 1, 
         "Daily": true,
-        "Optional": true
+        "Optional": true,
+        "sorting": 13
     },
     {
         "activity": "producing",
@@ -132,6 +146,7 @@
         "Desc": "Make somne noises",
         "Goal": 1, 
         "Daily": true,
-        "Optional": false
+        "Optional": false,
+        "sorting": 14
     }
 ]
