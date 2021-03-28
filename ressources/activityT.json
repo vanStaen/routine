@@ -1,0 +1,65 @@
+[
+    {
+        "activity": "bye",
+        "unit": "Throw away",
+        "increment": 1,
+        "Desc": "Brush your teeth",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "french",
+        "unit": "xp",
+        "increment": 10,
+        "Desc": "Apprends le français",
+        "Goal": 30, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "friends",
+        "unit": "Socialize",
+        "increment": 1,
+        "Desc": "Be social",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": true
+    },
+    {
+        "activity": "yoga",
+        "unit": "min",
+        "increment": 5,
+        "Desc": "Be social",
+        "Goal": 30, 
+        "Daily": true,
+        "Optional": true
+    },
+    {
+        "activity": "meditation",
+        "unit": "Meditate",
+        "increment": 1,
+        "Desc": "Open your chakras",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "piano",
+        "unit": "Play",
+        "increment": 1,
+        "Desc": "Why not those key",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": true
+    },
+    {
+        "activity": "steps",
+        "unit": "steps",
+        "increment": 500,
+        "Desc": "Walk idiot, walk",
+        "Goal": 7000, 
+        "Daily": true,
+        "Optional": false
+    }
+]

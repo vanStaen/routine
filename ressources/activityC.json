@@ -1,0 +1,137 @@
+[
+    {
+        "activity": "teeth",
+        "unit": "Clean",
+        "increment": 1,
+        "Desc": "Brush your teeth",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "water",
+        "unit": "glass",
+        "increment": 1,
+        "Desc": "Drink enough water",
+        "Goal": 5, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "stretch",
+        "unit": "min",
+        "increment": 1,
+        "Desc": "Strech you body",
+        "Goal": 3, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "photo",
+        "unit": "Shoot",
+        "increment": 1,
+        "Desc": "Do a photoshoot",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": true
+    },
+    {
+        "activity": "javascript",
+        "unit": "Code",
+        "increment": 1,
+        "Desc": "Code some Javascript",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "dutch",
+        "unit": "xp",
+        "increment": 10,
+        "Desc": "Leer wat Nederlands",
+        "Goal": 0, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "piano",
+        "unit": "Play",
+        "increment": 1,
+        "Desc": "Why not those key",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": true
+    },
+    {
+        "activity": "guitar",
+        "unit": "Play",
+        "increment": 1,
+        "Desc": "Use your guitars",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "bass",
+        "unit": "Play",
+        "increment": 1,
+        "Desc": "What about somne bass",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": true
+    },
+    {
+        "activity": "pushups",
+        "unit": "x",
+        "increment": 5,
+        "Desc": "Do your push-ups",
+        "Goal": 50, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "pullups",
+        "unit": "x",
+        "increment": 5,
+        "Desc": "Do your pull-ups",
+        "Goal": 50, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "situps",
+        "unit": "x",
+        "increment": 5,
+        "Desc": "Do your sit-ups",
+        "Goal": 50, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "run",
+        "unit": "km",
+        "increment": 1,
+        "Desc": "Go oustide & run",
+        "Goal": 5, 
+        "Daily": true,
+        "Optional": false
+    },
+    {
+        "activity": "trumpet",
+        "unit": "Play",
+        "increment": 1,
+        "Desc": "Whake your neighbours",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": true
+    },
+    {
+        "activity": "producing",
+        "unit": "Techno",
+        "increment": 0,
+        "Desc": "Make somne noises",
+        "Goal": 1, 
+        "Daily": true,
+        "Optional": false
+    }
+]
