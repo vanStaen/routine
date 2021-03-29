@@ -40,7 +40,7 @@ const timeLeftUntilTomorrow = () => {
       )
     ) / 1000
   );
-  const differenceInSecond = tomorrowInSecond - nowInSecond - 3600;
+  const differenceInSecond = tomorrowInSecond - nowInSecond - 7200;
   return differenceInSecond;
 };
 
