@@ -15,8 +15,6 @@ export const Profil = observer(() => {
   const fetchUserData = async () => {
     try {
       const userData = await getUser();
-      userStore.setUserName(userData.name);
-      userStore.setPicUrl(userData.picurl);
       setActivities(userData.activities);
       setIsLoading(false);
     } catch (error) {

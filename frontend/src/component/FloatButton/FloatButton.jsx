@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { UserOutlined, CloseOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
+import { observer } from "mobx-react";
+
+import { getUser } from "../Profil/getUser";
+import { userStore } from "../../store/userStore";
 import { ConditionalWrapper } from "../../helpers/ConditionnalWrapper";
 
 import "./FloatButton.css";
 
-export const FloatButton = (props) => {
-  const [hasImage, setHasImage] = useState(true);
+export const FloatButton = observer((props) => {
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <ConditionalWrapper
       condition={!props.showProfil}
@@ -23,12 +30,11 @@ export const FloatButton = (props) => {
         >
           <CloseOutlined className="FloatButton__close" />
         </div>
-      ) : hasImage ? (
+      ) : userStore.picUrl ? (
         <div
           className="FloatButton__float"
           style={{
-            backgroundImage:
-              "url(https://avatars0.githubusercontent.com/u/12551446)",
+            backgroundImage: `url(${userStore.picUrl})`,
             backgroundSize: "cover",
           }}
           onClick={() => props.setShowProfil(true)}
@@ -43,4 +49,4 @@ export const FloatButton = (props) => {
       )}
     </ConditionalWrapper>
   );
-};
+});

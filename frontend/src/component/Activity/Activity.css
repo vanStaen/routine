@@ -1,13 +1,12 @@
-
 .daily__item {
-    width: 5em;
-    margin: .7em;
-    display: inline;
+  width: 5em;
+  margin: 1em;
+  display: inline;
 }
 
 .daily__text {
-    padding-top: 1.5em;
-    font-size: .5em;
+  padding-top: 1.5em;
+  font-size: 0.5em;
 }
 
 .daily__textdisabled {
@@ -18,11 +17,11 @@
   position: absolute;
   width: 5em;
   height: 5em;
-  background-color: rgba(40, 44, 52, 0.90);
+  background-color: rgba(40, 44, 52, 0.9);
 }
 
 .Dailies__full:nth-child(even) .daily__doneContainer {
-  background-color: rgba(67, 70, 77, 0.90);
+  background-color: rgba(67, 70, 77, 0.9);
 }
 
 .daily__done {
@@ -48,12 +47,12 @@
 }
 
 .daily__optional {
-    position: absolute;
-    display: flex;
-    width: 5em;
-    height: 5em;
-    background-color: rgba(40, 44, 52, 0.75);
-  }
+  position: absolute;
+  display: flex;
+  width: 5em;
+  height: 5em;
+  background-color: rgba(40, 44, 52, 0.75);
+}
 
 .Dailies__full:nth-child(even) .daily__optional {
   background-color: rgba(67, 70, 77, 0.75);

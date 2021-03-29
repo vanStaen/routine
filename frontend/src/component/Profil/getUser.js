@@ -1,4 +1,5 @@
 import axios from "axios";
+import { userStore } from "../../store/userStore";
 
 export const getUser = async () => {
 
@@ -14,7 +15,10 @@ export const getUser = async () => {
       throw new Error(`Error! Status ${response.status}`);
     }
   }
+
   const user = await response.data[0];
+  userStore.setUserName(user.name);
+  userStore.setPicUrl(user.picurl);
   return user;
 
 };
