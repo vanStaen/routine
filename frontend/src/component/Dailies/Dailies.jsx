@@ -146,11 +146,5 @@ export const Dailies = () => {
     );
   }
 
-  return isLoading ? (
-    <div className="Dailies__full">
-      <Spinner />
-    </div>
-  ) : (
-    listDailies
-  );
+  return isLoading ? <Spinner /> : listDailies;
 };
