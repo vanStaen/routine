@@ -18,7 +18,7 @@ export const FloatButton = observer((props) => {
     <ConditionalWrapper
       condition={!props.showProfil}
       wrap={(children) => (
-        <Tooltip placement="bottom" title="Edit profil">
+        <Tooltip placement="left" title="Edit profil">
           {children}
         </Tooltip>
       )}
@@ -40,13 +40,13 @@ export const FloatButton = observer((props) => {
           onClick={() => props.setShowProfil(true)}
         ></div>
       ) : (
-        <div
-          className="FloatButton__float FloatButton__background"
-          onClick={() => props.setShowProfil(true)}
-        >
-          <UserOutlined className="FloatButton__icon" />
-        </div>
-      )}
+            <div
+              className="FloatButton__float FloatButton__background"
+              onClick={() => props.setShowProfil(true)}
+            >
+              <UserOutlined className="FloatButton__icon" />
+            </div>
+          )}
     </ConditionalWrapper>
   );
 });
