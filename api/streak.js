@@ -197,7 +197,7 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
             let updateValues = "";
 
             for (const activity in yesterdayStreakResult) {
-                if (activity === "year" || activity === "month" || activity === "day" || activity === "userid") {
+                if (activity === "year" || activity === "month" || activity === "day" || activity === "userid" || activity === "id") {
                 } else {
                     updateField = updateField + `${activity},`;
                 }
@@ -216,7 +216,7 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
             const activityGoalResult = activityGoal.rows;
 
             for (const activity in yesterdayStreakResult) {
-                if (activity === "year" || activity === "month" || activity === "day" || activity === "userid") {
+                if (activity === "year" || activity === "month" || activity === "day" || activity === "userid" || activity === "id") {
                 } else {
                     const activityFiltered = activityGoalResult.filter(item => item.activity === activity);
                     const activityFilteredGoal = activityFiltered[0].goal;
