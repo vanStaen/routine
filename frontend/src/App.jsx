@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 
 import { Profil } from "./component/Profil/Profil";
 import { Dailies } from "./component/Dailies/Dailies";
-import { FloatButton } from "./component/FloatButton/FloatButton";
+import { Menu } from "./component/Menu/Menu";
 import { authStore } from "./store/authStore";
 import { LoginForm } from "./component/LoginForm/LoginForm";
 
@@ -35,16 +35,16 @@ const App = observer(() => {
         {!authStore.refreshToken ? (
           <LoginForm />
         ) : (
-          <>
-            <FloatButton
-              showProfil={showProfil}
-              setShowProfil={setShowProfil}
-            />
-            <div className="App__day">
-              {showProfil ? <Profil /> : <Dailies />}
-            </div>
-          </>
-        )}
+            <>
+              <Menu
+                showProfil={showProfil}
+                setShowProfil={setShowProfil}
+              />
+              <div className="App__day">
+                {showProfil ? <Profil /> : <Dailies />}
+              </div>
+            </>
+          )}
       </header>
     </div>
   );

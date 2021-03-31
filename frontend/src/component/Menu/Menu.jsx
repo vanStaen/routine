@@ -7,9 +7,9 @@ import { getUser } from "../Profil/getUser";
 import { userStore } from "../../store/userStore";
 import { ConditionalWrapper } from "../../helpers/ConditionnalWrapper";
 
-import "./FloatButton.css";
+import "./Menu.css";
 
-export const FloatButton = observer((props) => {
+export const Menu = observer((props) => {
   useEffect(() => {
     getUser();
   }, []);
