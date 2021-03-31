@@ -11,8 +11,7 @@
     - [x] Filter all querry per user
     - [x] Handle wrong password!
   - [x] Create user table
-        https://stackoverflow.com/questions/20095475/how-to-create-and-store-array-of-objects-in-postgresql
-  - [ ] Get activities data from user
+  - [x] Get activities data from user
   - [ ] Delete user specific infos from activities
   - [ ] Get goals from user for streak
   - [x] Add user info in dailies/streak table
@@ -23,6 +22,7 @@
 - [ ] Click on streak badge will open activity history
 - [ ] Finish create-user path : `postCreateUser`
 - [ ] AWS S3 Bucket for profil pic upload
+- [ ] Streak data should be fetched only once
 
 ## Completed ✓
 
