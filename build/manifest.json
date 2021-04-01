@@ -1,9 +1,9 @@
 {
-  "short_name": "Routine",
-  "name": "Routine",
+  "short_name": "Venja",
+  "name": "Venja.org || your daily routine",
   "icons": [
     {
-      "src": "routine-logo.png",
+      "src": "venja-logo.png",
       "sizes": "50x50",
       "type": "image/png"
     }
