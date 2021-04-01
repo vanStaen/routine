@@ -59,7 +59,7 @@ export const LoginForm = () => {
     <div className="login__full">
       <div className="login__header">
         <img className="login__logo" src={logoVenja} alt="logo" />
-        Venja
+        Venja.org
       </div>
 
       <Form

@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.c456fbdf.chunk.css",
-    "main.js": "/static/js/main.2f5daa55.chunk.js",
-    "main.js.map": "/static/js/main.2f5daa55.chunk.js.map",
+    "main.js": "/static/js/main.d9ea3273.chunk.js",
+    "main.js.map": "/static/js/main.d9ea3273.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c60b7f5c.js",
     "runtime-main.js.map": "/static/js/runtime-main.c60b7f5c.js.map",
     "static/css/2.e4a59c64.chunk.css": "/static/css/2.e4a59c64.chunk.css",
@@ -28,13 +28,13 @@
     "static/media/producing.a9835c6a.svg": "/static/media/producing.a9835c6a.svg",
     "static/media/pullups.2353a6a1.svg": "/static/media/pullups.2353a6a1.svg",
     "static/media/pushups.82e7b7a9.svg": "/static/media/pushups.82e7b7a9.svg",
-    "static/media/routine.62d3d11c.svg": "/static/media/routine.62d3d11c.svg",
     "static/media/run.eee4c3df.svg": "/static/media/run.eee4c3df.svg",
     "static/media/situps.260199dc.svg": "/static/media/situps.260199dc.svg",
     "static/media/steps.fadb4e3f.svg": "/static/media/steps.fadb4e3f.svg",
     "static/media/stretch.22bae108.svg": "/static/media/stretch.22bae108.svg",
     "static/media/teeth.1aa6b881.svg": "/static/media/teeth.1aa6b881.svg",
     "static/media/trumpet.a799638f.svg": "/static/media/trumpet.a799638f.svg",
+    "static/media/venja.834ef694.svg": "/static/media/venja.834ef694.svg",
     "static/media/water.a1b4f75b.svg": "/static/media/water.a1b4f75b.svg",
     "static/media/yoga.fb727927.svg": "/static/media/yoga.fb727927.svg"
   },
@@ -43,6 +43,6 @@
     "static/css/2.e4a59c64.chunk.css",
     "static/js/2.f9dc171f.chunk.js",
     "static/css/main.c456fbdf.chunk.css",
-    "static/js/main.2f5daa55.chunk.js"
+    "static/js/main.d9ea3273.chunk.js"
   ]
 }
