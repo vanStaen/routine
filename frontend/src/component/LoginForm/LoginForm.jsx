@@ -6,7 +6,7 @@ import { userStore } from "../../store/userStore";
 import { postFetchToken } from "./postFetchToken";
 import { postCreateUser } from "./postCreateUser";
 
-import logoRoutine from "../../images/routine.svg";
+import logoVenja from "../../images/venja.svg";
 import {
   UserOutlined,
   MailOutlined,
@@ -34,7 +34,7 @@ export const LoginForm = () => {
     const username = values.username;
 
     if (!isLogin) {
-      // TODO! Create a user on auth service + in routine
+      // TODO! Create a user on auth service + in venja
       //postCreateUser()
     } else {
       try {
@@ -58,8 +58,8 @@ export const LoginForm = () => {
   return (
     <div className="login__full">
       <div className="login__header">
-        <img className="login__logo" src={logoRoutine} alt="logo" />
-        Routine
+        <img className="login__logo" src={logoVenja} alt="logo" />
+        Venja
       </div>
 
       <Form
@@ -140,8 +140,8 @@ export const LoginForm = () => {
             ) : isLogin ? (
               "Log in"
             ) : (
-              "Create account"
-            )}
+                  "Create account"
+                )}
           </Button>
           <div className="login__switchmode">
             Or{" "}
