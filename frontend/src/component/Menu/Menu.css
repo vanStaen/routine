@@ -1,8 +1,8 @@
 .Menu__floating {
 	position: fixed;
 	width: 3em;
-	top: 2em;
-	right: 2em;
+	top: 1.2em;
+	right: 1.2em;
 	z-index: 1;
   }
 
