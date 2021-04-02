@@ -1,5 +1,14 @@
+.Menu__floating {
+	position: fixed;
+	width: 3em;
+	top: 2em;
+	right: 2em;
+	z-index: 1;
+  }
+
 .FloatButton__float {
-	position:fixed;
+	float: right;
+	text-align: center;
 	width: 1.7em;
 	height: 1.65em;
 	top:1em;
@@ -7,7 +16,7 @@
 	border: 1px solid rgba(40, 44, 52, .5);
     color: rgba(255, 255, 255, .75);
 	border-radius:50px;
-	text-align:center;
+	margin-bottom: .5em;
 	z-index: 10;
 	opacity: .6;
 }
