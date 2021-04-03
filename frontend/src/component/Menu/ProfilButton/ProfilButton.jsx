@@ -1,10 +1,11 @@
 import { Tooltip } from "antd";
 import { UserOutlined, CloseOutlined } from "@ant-design/icons";
+import { observer } from "mobx-react";
 
 import { userStore } from "../../../store/userStore";
 import { ConditionalWrapper } from "../../../helpers/ConditionnalWrapper";
 
-export const ProfilButton = (props) => {
+export const ProfilButton = observer((props) => {
     return (
         <ConditionalWrapper
             condition={!props.showProfil}
@@ -40,4 +41,4 @@ export const ProfilButton = (props) => {
                     )}
         </ConditionalWrapper>
     )
-} 
+})
