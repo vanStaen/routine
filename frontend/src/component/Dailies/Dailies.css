@@ -22,7 +22,7 @@
 }
 
 .dailies__main {
-  max-width: 90%;
+  max-width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -30,14 +30,20 @@
 }
 
 
+@media screen and (min-width: 1000px) {
+  .dailies__main {
+    max-width: 90%;
+  }
+}
+
 @media screen and (min-width: 1200px) {
   .dailies__main {
     max-width: 80%;
   }
 }
+
 @media screen and (min-width: 1600px) {
   .dailies__main {
     max-width: 70%;
   }
 }
-
