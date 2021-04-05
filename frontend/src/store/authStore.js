@@ -49,7 +49,6 @@ export class AuthStore {
     };
 
     getNewToken = () => {
-        debugger;
         const refreshToken = localStorage.getItem("refreshToken");
         // Check if refreshtoken is expired
         if (refreshToken) {
