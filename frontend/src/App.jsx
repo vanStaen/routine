@@ -35,16 +35,13 @@ const App = observer(() => {
         {!authStore.refreshToken ? (
           <LoginForm />
         ) : (
-            <>
-              <Menu
-                showProfil={showProfil}
-                setShowProfil={setShowProfil}
-              />
-              <div className="App__day">
-                {showProfil ? <Profil /> : <Dailies />}
-              </div>
-            </>
-          )}
+          <>
+            <Menu showProfil={showProfil} setShowProfil={setShowProfil} />
+            <div className="App__main">
+              {showProfil ? <Profil /> : <Dailies />}
+            </div>
+          </>
+        )}
       </header>
     </div>
   );

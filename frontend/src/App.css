@@ -15,7 +15,13 @@
   color: white;
 }
 
-.App__day {
+@media screen and (min-width: 1000px) {
+  .App__header {
+    font-size: 32px;
+  }
+}
+
+.App__main {
   min-height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   min-height: calc(var(--vh, 1vh) * 100);
   display: flex;

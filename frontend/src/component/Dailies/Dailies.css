@@ -22,9 +22,22 @@
 }
 
 .dailies__main {
-  max-width: 960px;
+  max-width: 90%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 0 1em 0;
 }
+
+
+@media screen and (min-width: 1200px) {
+  .dailies__main {
+    max-width: 80%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .dailies__main {
+    max-width: 70%;
+  }
+}
+
