@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import { getStreak } from "./getStreak";
 import { streakStore } from "../../store/streakStore";
 import "./Streak.css";
