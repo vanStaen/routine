@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
 import { getStreak } from "./getStreak";
+import { streakStore } from "../../store/streakStore";
 import "./Streak.css";
 
+const today = new Date();
+
 export const Streak = (props) => {
-  const [streak, setStreak] = useState([]);
+  const [streak, setStreak] = useState(streakStore.dailyStreaks);
   const [isLoading, setIsLoading] = useState(true);
   const activity = props.activity.activity;
 
   const fetchStreak = async () => {
     try {
       const fetchedDailies = await getStreak();
+      streakStore.setToday(today.getDate());
+      streakStore.setDailyStreaks(fetchedDailies);
       setStreak(fetchedDailies);
       setIsLoading(false);
     } catch (error) {
@@ -18,7 +23,13 @@ export const Streak = (props) => {
   };
 
   useEffect(() => {
-    fetchStreak();
+    if (streak === null) {
+      fetchStreak();
+    } else if (today.getDate() === streakStore.today) {
+      fetchStreak();
+    } else {
+      setIsLoading(false);
+    }
   }, []);
 
   const backGroundColor = (value) => {
@@ -35,7 +46,7 @@ export const Streak = (props) => {
     } else if (value < 20) {
       return 0.55;
     } else if (value < 30) {
-      return 0.60;
+      return 0.6;
     } else if (value < 40) {
       return 0.65;
     } else if (value < 50) {
@@ -67,6 +78,6 @@ export const Streak = (props) => {
       {streak[activity] > 999 ? "999+" : streak[activity]}
     </div>
   ) : (
-        <></>
-      );
+    <></>
+  );
 };

@@ -22,7 +22,6 @@
 - [ ] Click on streak badge will open activity history
 - [ ] Finish create-user path : `postCreateUser`
 - [ ] AWS S3 Bucket for profil pic upload
-- [ ] Streak data should be fetched only once
 
 ## Completed ✓
 
@@ -35,3 +34,4 @@
 - [x] Deactivate actions for past days
 - [x] Show yesterday(s)
 - [x] Add throtting on KeyDown
+- [x] Streak data fetched only once and store with MobX
