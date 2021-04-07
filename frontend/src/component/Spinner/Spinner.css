@@ -28,3 +28,9 @@
     transform: rotate(360deg);
   }
 }
+
+.spinner__header {
+  padding: .5em;
+  font-weight: 200;
+  letter-spacing: 2.7px;
+}
