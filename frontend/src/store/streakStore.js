@@ -7,7 +7,7 @@ export class StreakStore {
 
     constructor() {
         makeObservable(this, {
-            dailyStreaks: observable,
+            today: observable,
             dailyStreaks: observable,
             setDailyStreaks: action,
         });
