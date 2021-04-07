@@ -11,7 +11,7 @@
 }
 
 .App__header {
-	font-size: max(calc(5px + 2vmin), 22px);
+	font-size: min(calc(5px + 2vmin), 25px);
   color: white;
 }
 
