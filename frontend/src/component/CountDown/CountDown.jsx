@@ -54,7 +54,7 @@ export const CountDown = () => {
   }, [timeLeft]);
 
   return timeLeft < 18000 ? (
-    <div className={timeLeft < 7200 && "countdown__alert"}>
+    <div className={timeLeft < 7200 ? "countdown__alert" : ""}>
       {formatTimeStamp(timeLeft)}
     </div>
   ) : (
