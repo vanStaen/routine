@@ -6,7 +6,6 @@ import { userStore } from "../../store/userStore";
 import { postFetchToken } from "./postFetchToken";
 import { postCreateUser } from "./postCreateUser";
 
-import logoVenja from "../../images/venja.svg";
 import {
   UserOutlined,
   MailOutlined,
@@ -58,7 +57,7 @@ export const LoginForm = () => {
   return (
     <div className="login__full">
       <div className="login__header">
-        <img className="login__logo" src={logoVenja} alt="logo" />
+        <img className="login__logo" src="/images/venja.svg" alt="logo" />
         Venja.org
       </div>
 
@@ -140,8 +139,8 @@ export const LoginForm = () => {
             ) : isLogin ? (
               "Log in"
             ) : (
-                  "Create account"
-                )}
+              "Create account"
+            )}
           </Button>
           <div className="login__switchmode">
             Or{" "}
