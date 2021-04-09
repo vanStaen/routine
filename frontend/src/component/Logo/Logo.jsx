@@ -5,7 +5,10 @@ export const Logo = (props) => {
     <div>
       <img
         className="logo"
-        src={`/images/${props.activity.activity}.svg`}
+        src={
+          process.env.REACT_APP_API_URL +
+          `/images/${props.activity.activity}.svg`
+        }
         alt={props.activity.activity}
       />
     </div>

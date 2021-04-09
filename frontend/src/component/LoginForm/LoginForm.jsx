@@ -57,7 +57,11 @@ export const LoginForm = () => {
   return (
     <div className="login__full">
       <div className="login__header">
-        <img className="login__logo" src="/images/venja.svg" alt="logo" />
+        <img
+          className="login__logo"
+          src={process.env.REACT_APP_API_URL + `/images/venja.svg`}
+          alt="logo"
+        />
         Venja.org
       </div>
 
