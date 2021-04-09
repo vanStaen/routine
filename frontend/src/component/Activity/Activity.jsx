@@ -158,7 +158,7 @@ export const Activity = (props) => {
           )}
         </div>
 
-        <Logo activity={props.activity} />
+        <Logo image={props.activity.activity} />
 
         <div className={`daily__text }`}>
           {updateLoadingError ? (
