@@ -28,7 +28,9 @@ app.use((req, res, next) => {
 
 // Set up for React
 app.use(express.static(path.join(__dirname, "build")));
+app.get('/images', (req, res) => {  express.static(__dirname + '/images'); console.log(req)});
 app.get('/', (req, res) => { res.sendFile(path.join(__dirname, "build", "index.html")); });
+
 
 // Router to API endpoints
 app.use("/dailies", require("./api/dailies"));
