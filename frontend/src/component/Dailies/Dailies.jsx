@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { notification } from "antd";
 
 import { getDailies } from "./getDailies";
@@ -40,7 +40,7 @@ export const Dailies = () => {
     setIsLoading(false);
   };
 
-  const keyDownHandler = (event) => {
+  const keyDownHandler = useCallback((event) => {
     event.preventDefault();
     const keyPressed = event.key.toLowerCase();
 
@@ -89,9 +89,9 @@ export const Dailies = () => {
         throttling.current = false;
       }, 500);
     }
-  };
+  }, []);
 
-  const scrollHandler = (event) => {
+  const scrollHandler = useCallback((event) => {
     //Scroll position define displayedDaily
     displayedDaily.current = Math.round(window.scrollY / window.innerHeight);
     if (!lastDailyreached.current) {
@@ -100,7 +100,7 @@ export const Dailies = () => {
         fetchData(displayedDaily.current + 2);
       }
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData(limit.current);
@@ -114,7 +114,7 @@ export const Dailies = () => {
       document.removeEventListener("keydown", keyDownHandler);
       document.removeEventListener("scroll", scrollHandler);
     };
-  }, []);
+  }, [keyDownHandler, scrollHandler]);
 
   const formattedDaily = (dayFromToday) => {
     return activities.map((activities) => {

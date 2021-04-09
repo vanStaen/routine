@@ -108,6 +108,12 @@ export const Logo = (props) => {
       image = null;
   }
 
+  {
+    /* TODO 
+      src={`/static/images/${image}.svg`}
+    */
+  }
+
   return (
     <div>
       <img className="logo" src={image} alt={props.activity.activity} />

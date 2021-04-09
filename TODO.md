@@ -2,6 +2,7 @@
 
 ## Backlog:
 
+- [ ] ESLint plugging
 - [ ] Manage different user
   - [x] Authorisation process
     - [x] login form
