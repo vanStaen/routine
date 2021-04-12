@@ -7,8 +7,6 @@ export const getStreak = async (year, month, day) => {
     method: "GET",
   });
 
-  console.log(response);
-
   if ((response.status !== 200) & (response.status !== 201)) {
     throw new Error("Error!");
   }

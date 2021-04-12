@@ -34,7 +34,7 @@ export const Streak = observer((props) => {
   useEffect(() => {
     if (streak === null && day === props.daily.day) {
       fetchStreak(true);
-    } else if (day === streakStore.today) {
+    } else if (props.daily.day === streakStore.today) {
       setStreak(streakStore.dailyStreaks);
       setIsLoading(false);
     } else {
