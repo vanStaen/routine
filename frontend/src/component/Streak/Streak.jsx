@@ -1,22 +1,30 @@
 import { useState, useEffect } from "react";
+import { observer } from "mobx-react";
 
 import { getStreak } from "./getStreak";
 import { streakStore } from "../../store/streakStore";
 import "./Streak.css";
 
 const today = new Date();
+const day = today.getDate();
 
-export const Streak = (props) => {
+export const Streak = observer((props) => {
   const [streak, setStreak] = useState(streakStore.dailyStreaks);
   const [isLoading, setIsLoading] = useState(true);
   const activity = props.activity.activity;
 
-  const fetchStreak = async () => {
+  const fetchStreak = async (storeStreak) => {
     try {
-      const fetchedDailies = await getStreak();
-      streakStore.setToday(today.getDate());
-      streakStore.setDailyStreaks(fetchedDailies);
-      setStreak(fetchedDailies);
+      const fetchedStreak = await getStreak(
+        props.daily.year,
+        props.daily.month,
+        props.daily.day
+      );
+      if (storeStreak) {
+        streakStore.setToday(day);
+        streakStore.setDailyStreaks(fetchedStreak);
+      }
+      setStreak(fetchedStreak);
       setIsLoading(false);
     } catch (error) {
       console.log(error.message);
@@ -24,12 +32,13 @@ export const Streak = (props) => {
   };
 
   useEffect(() => {
-    if (streak === null) {
-      fetchStreak();
-    } else if (today.getDate() === streakStore.today) {
-      fetchStreak();
-    } else {
+    if (streak === null && day === props.daily.day) {
+      fetchStreak(true);
+    } else if (props.daily.day === streakStore.today) {
+      setStreak(streakStore.dailyStreaks);
       setIsLoading(false);
+    } else {
+      fetchStreak(false);
     }
   }, []);
 
@@ -81,4 +90,4 @@ export const Streak = (props) => {
   ) : (
     <></>
   );
-};
+});
