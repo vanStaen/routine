@@ -22,6 +22,8 @@ const year = today.getFullYear();
 const month = today.getMonth() + 1;
 const day = today.getDate();
 
+console.log(year, month, day);
+
 // GET all daily data (and create today if not exist)
 router.get("/", async (req, res) => {
   if (!req.isAuth) {
