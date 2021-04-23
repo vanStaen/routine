@@ -54,6 +54,7 @@ export class AuthStore {
         if (refreshToken) {
             let decodedRefreshToken = jsonwebtoken.decode(refreshToken, { complete: true });
             let dateNow = new Date();
+            //console.log("decodedRefreshToken", decodedRefreshToken);
             if (decodedRefreshToken.payload.exp < Math.floor(dateNow.getTime() / 1000)) {
                 this.logout();
             } else {
@@ -61,7 +62,7 @@ export class AuthStore {
             }
         }
         // Check if token exist and/or is expired
-        if (this.token) {
+        if (this.token !== null) {
             let decodedToken = jsonwebtoken.decode(this.token, { complete: true });
             let dateNow = new Date();
             if (decodedToken.payload.exp < Math.floor(dateNow.getTime() / 1000)) {
