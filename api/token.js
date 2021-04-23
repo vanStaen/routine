@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
   const accessToken = await jsonwebtoken.sign(
     { userId: isTokenValid.userId, email: isTokenValid.email },
     process.env.AUTH_SECRET_KEY,
-    { expiresIn: "1m" }
+    { expiresIn: "15m" }
   );
   const newRefreshToken = await jsonwebtoken.sign(
     { userId: isTokenValid.userId, email: isTokenValid.email },
