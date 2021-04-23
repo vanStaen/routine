@@ -1,17 +1,20 @@
 import axios from "axios";
-import { authStore } from "../store/authStore";
+import { authStore } from "../stores/authStore";
 
 axios.interceptors.request.use(
   async (config) => {
     //console.log(`${config.method} ${config.url}`);
-    const token = await authStore.token
-      ? await authStore.token
-      : await authStore.getNewToken();
-    //console.log("Request send with token:", token);
-    config.headers = Object.assign({
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    });
+    try {
+      const token = await authStore.getNewToken();
+      //console.log("Request send with token:", token);
+      if (token) {
+        config.headers = Object.assign({
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        });
+      }
+    }
+    catch (err) { console.log(err);}
     return config;
   },
   (error) => {

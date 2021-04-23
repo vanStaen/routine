@@ -13,8 +13,8 @@
     - [x] Handle wrong password!
   - [x] Create user table
   - [x] Get activities data from user
-  - [ ] Delete user specific infos from activities
   - [ ] Get goals from user for streak
+  - [ ] Delete user specific infos from activities
   - [x] Add user info in dailies/streak table
   - [x] create UserStore
   - [ ] Admin panel
