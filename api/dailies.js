@@ -71,6 +71,9 @@ router.get("/:limit", async (req, res) => {
     const dailyToday = await client.query(
       `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
     );
+    console.log(`########`);
+    console.log(`SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`);
+    console.log(`########`);
     if (dailyToday.rows.length > 0) {
       const daily = await client.query(
         `SELECT * FROM dailies WHERE userid='${req.userId}' ORDER BY id DESC LIMIT ${req.params.limit}`
