@@ -1,4 +1,5 @@
 const express = require("express");
+const moment = require('moment-timezone');
 const router = express.Router();
 const { Client } = require("pg");
 const getYesterdayDate = require("../helpers/getYesterdayDate");
@@ -18,10 +19,9 @@ client.connect((err) => {
 });
 
 // Today
-const today = new Date();
-const year = today.getFullYear();
-const month = today.getMonth() + 1;
-const day = today.getDate();
+const year = moment().tz("Europe/Berlin").format('YYYY');
+const month = moment().tz("Europe/Berlin").format('MM');
+const day = moment().tz("Europe/Berlin").format('DD')
 
 // GET  streak data for all activities
 router.get("/", async (req, res) => {

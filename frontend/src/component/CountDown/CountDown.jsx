@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import 'moment-timezone';
 import getTomorrowDate from "../../helpers/getTomorrowDate";
 
 import "./CountDown.css";
 
-const today = new Date();
-const year = today.getFullYear();
-const month = today.getMonth() + 1;
-const day = today.getDate();
+const moment = require('moment-timezone');
+
+const year = moment().tz("Europe/Berlin").format('YYYY');
+const month = moment().tz("Europe/Berlin").format('MM');
+const day = moment().tz("Europe/Berlin").format('DD')
+
 
 const formatTimeStamp = (timeInSec) => {
   var sec_num = parseInt(timeInSec, 10);
@@ -58,6 +61,6 @@ export const CountDown = () => {
       {formatTimeStamp(timeLeft)}
     </div>
   ) : (
-    "Today"
-  );
+      "Today"
+    );
 };

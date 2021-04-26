@@ -1,4 +1,5 @@
 const express = require("express");
+const moment = require('moment-timezone');
 const router = express.Router();
 const { Client } = require("pg");
 
@@ -17,10 +18,9 @@ client.connect((err) => {
 });
 
 // Today
-const today = new Date();
-const year = today.getFullYear();
-const month = today.getMonth() + 1;
-const day = today.getDate();
+const year = moment().tz("Europe/Berlin").format('YYYY');
+const month = moment().tz("Europe/Berlin").format('MM');
+const day = moment().tz("Europe/Berlin").format('DD')
 
 // GET all daily data (and create today if not exist)
 router.get("/", async (req, res) => {
@@ -71,9 +71,6 @@ router.get("/:limit", async (req, res) => {
     const dailyToday = await client.query(
       `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
     );
-    console.log(`########`);
-    console.log(`SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`);
-    console.log(`########`);
     if (dailyToday.rows.length > 0) {
       const daily = await client.query(
         `SELECT * FROM dailies WHERE userid='${req.userId}' ORDER BY id DESC LIMIT ${req.params.limit}`
