@@ -8,13 +8,21 @@ export class AuthStore {
 
     constructor() {
         makeObservable(this, {
-            token: observable,
+            _token: observable,
             refreshToken: observable,
             login: action,
             logout: action,
             getNewToken: action,
         });
     }
+
+    // check if token is anytime set as a PROMISE
+    get token() { return this._token; }
+    set token(newToken) {
+        debugger;
+        this._token = newToken
+    }
+
 
     login = (token, refreshToken) => {
         this.token = token;
