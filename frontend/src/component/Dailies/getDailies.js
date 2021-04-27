@@ -14,7 +14,6 @@ export const getDailies = async (limit) => {
       throw new Error(`Error! Status ${response.status}`);
     }
   }
-  console.log(response.data);
   const dailies = await response.data;
   return dailies;
 };
