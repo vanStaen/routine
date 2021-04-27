@@ -2,7 +2,11 @@
 
 ## Backlog:
 
-- [ ] ESLint plugging
+- [ ] Check task from yesterday, and save streak
+- [ ] Checkpooint streak shows star
+- [ ] Save streak with 
+  - [ ] Accident
+  - [ ] 1 cheat day per week 
 - [ ] Manage different user
   - [x] Authorisation process
     - [x] login form
