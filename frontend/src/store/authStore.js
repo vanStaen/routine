@@ -17,6 +17,7 @@ export class AuthStore {
     }
 
     login = (token, refreshToken) => {
+        debugger;
         this.token = token;
         this.refreshToken = refreshToken;
     };
@@ -52,26 +53,28 @@ export class AuthStore {
         const refreshToken = localStorage.getItem("refreshToken");
         // Check if refreshtoken is expired
         if (refreshToken) {
-            let decodedRefreshToken = jsonwebtoken.decode(refreshToken, { complete: true });
-            let dateNow = new Date();
-            if (decodedRefreshToken.payload.exp < Math.floor(dateNow.getTime() / 1000)) {
-                this.logout();
-            } else {
+            try {
+                jsonwebtoken.decode(refreshToken, { complete: true })
                 this.refreshToken = refreshToken;
+            }
+            catch (err){
+                console.log("refreshtoken is expired", err);
+                this.logout();
             }
         }
         // Check if token exist and/or is expired
         if (this.token !== null) {
-            let decodedToken = jsonwebtoken.decode(this.token, { complete: true });
-            let dateNow = new Date();
-            if (decodedToken.payload.exp < Math.floor(dateNow.getTime() / 1000)) {
-                this.token = null;
-            } else {
+            try {
+                jsonwebtoken.decode(this.token, { complete: true })
                 return this.token
+            }
+            catch (err){
+                console.log("token is expired", err);
+                this.token = null;
             }
         }
         // Refresh token if token missing
-        else if (this.refreshToken) {
+        if (this.refreshToken) {
             let requestBody = { refreshToken: this.refreshToken };
             return fetch(process.env.REACT_APP_API_URL + "/token", {
                 method: "POST",
