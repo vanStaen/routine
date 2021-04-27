@@ -1,4 +1,5 @@
 const express = require("express");
+const moment = require('moment-timezone');
 const router = express.Router();
 const { Client } = require("pg");
 
@@ -17,10 +18,11 @@ client.connect((err) => {
 });
 
 // Today
-const today = new Date();
-const year = today.getFullYear();
-const month = today.getMonth() + 1;
-const day = today.getDate();
+const year = moment().tz("Europe/Berlin").format('YYYY');
+const month = moment().tz("Europe/Berlin").format('MM');
+const day = moment().tz("Europe/Berlin").format('DD')
+
+console.log("##### today:", day);
 
 // GET all daily data (and create today if not exist)
 router.get("/", async (req, res) => {

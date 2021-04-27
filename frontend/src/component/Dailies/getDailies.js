@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const getDailies = async (limit) => {
+  //debugger;
   const response = await axios({
     url: process.env.REACT_APP_API_URL + `/dailies/${limit}`,
     method: "GET",
