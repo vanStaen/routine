@@ -17,15 +17,14 @@ client.connect((err) => {
   }
 });
 
-// Today
-const year = moment().tz("Europe/Berlin").format('YYYY');
-const month = moment().tz("Europe/Berlin").format('MM');
-const day = moment().tz("Europe/Berlin").format('DD')
-
-console.log("##### today:", day);
-
 // GET all daily data (and create today if not exist)
 router.get("/", async (req, res) => {
+
+  // Today
+  const year = moment().tz("Europe/Berlin").format('YYYY');
+  const month = moment().tz("Europe/Berlin").format('MM');
+  const day = moment().tz("Europe/Berlin").format('DD')
+
   if (!req.isAuth) {
     res.status(401).json({
       error: "Unauthorized",
