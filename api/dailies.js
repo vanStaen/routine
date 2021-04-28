@@ -17,13 +17,15 @@ client.connect((err) => {
   }
 });
 
+console.log("##### today:", day);
+
 // GET all daily data (and create today if not exist)
 router.get("/", async (req, res) => {
 
   // Today
   const year = moment().tz("Europe/Berlin").format('YYYY');
   const month = moment().tz("Europe/Berlin").format('MM');
-  const day = moment().tz("Europe/Berlin").format('DD')
+  const day = moment().tz("Europe/Berlin").format('DD');
 
   if (!req.isAuth) {
     res.status(401).json({
@@ -62,6 +64,12 @@ router.get("/", async (req, res) => {
 
 // GET all data with variable limit
 router.get("/:limit", async (req, res) => {
+
+  // Today
+  const year = moment().tz("Europe/Berlin").format('YYYY');
+  const month = moment().tz("Europe/Berlin").format('MM');
+  const day = moment().tz("Europe/Berlin").format('DD');
+
   if (!req.isAuth) {
     res.status(401).json({
       error: "Unauthorized",
