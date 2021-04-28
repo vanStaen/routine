@@ -17,8 +17,6 @@ client.connect((err) => {
   }
 });
 
-console.log("##### today:", day);
-
 // GET all daily data (and create today if not exist)
 router.get("/", async (req, res) => {
 
