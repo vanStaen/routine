@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
     // Today
     const year = moment().tz("Europe/Berlin").format('YYYY');
     const month = moment().tz("Europe/Berlin").format('MM');
-    const day = moment().tz("Europe/Berlin").format('DD')
+    const day = moment().tz("Europe/Berlin").format('DD');
 
     if (!req.isAuth) {
         res.status(401).json({
@@ -49,7 +49,7 @@ router.get("/", async (req, res) => {
                 });
             }
         } else {
-            res.status(200).json(activities.rows);
+            res.status(200).json(streak.rows);
         }
     } catch (err) {
         res.status(400).json({
@@ -64,7 +64,7 @@ router.get("/:year/:month/:day", async (req, res) => {
     // Today
     const year = moment().tz("Europe/Berlin").format('YYYY');
     const month = moment().tz("Europe/Berlin").format('MM');
-    const day = moment().tz("Europe/Berlin").format('DD')
+    const day = moment().tz("Europe/Berlin").format('DD');
 
     if (!req.isAuth) {
         res.status(401).json({
@@ -82,14 +82,14 @@ router.get("/:year/:month/:day", async (req, res) => {
                 `SELECT * FROM streak WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day} AND userid='${req.userId}'`
             );
             if (streakSecond.rows.length > 0) {
-                res.status(201).json(activitiesSecond.rows);
+                res.status(201).json(streakSecond.rows);
             } else {
                 res.status(400).json({
                     error: `Something wrong happened!`,
                 });
             }
         } else {
-            res.status(200).json(activities.rows);
+            res.status(200).json(streak.rows);
         }
     } catch (err) {
         res.status(400).json({
@@ -101,6 +101,7 @@ router.get("/:year/:month/:day", async (req, res) => {
 
 // Function to update the Streak table
 const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
+
     try {
         const yesterdayDate = getYesterdayDate(toYear, toMonth, toDay);
         const yesterdayStreak = await client.query(
