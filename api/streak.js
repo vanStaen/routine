@@ -33,16 +33,16 @@ router.get("/", async (req, res) => {
         return;
     }
     try {
-        const activities = await client.query(
+        const streak = await client.query(
             `SELECT * FROM streak WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
         );
-        if (activities.rows.length === 0) {
+        if (streak.rows.length === 0) {
             await updateStreakBasedonYesterday(year, month, day, req.userId);
-            const activitiesSecond = await client.query(
+            const streakSecond = await client.query(
                 `SELECT * FROM streak WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
             );
-            if (activitiesSecond.rows.length > 0) {
-                res.status(201).json(activitiesSecond.rows);
+            if (streakSecond.rows.length > 0) {
+                res.status(201).json(streakSecond.rows);
             } else {
                 res.status(400).json({
                     error: `Something wrong happened!`,
@@ -60,6 +60,12 @@ router.get("/", async (req, res) => {
 
 // GET streak data for specific date
 router.get("/:year/:month/:day", async (req, res) => {
+
+    // Today
+    const year = moment().tz("Europe/Berlin").format('YYYY');
+    const month = moment().tz("Europe/Berlin").format('MM');
+    const day = moment().tz("Europe/Berlin").format('DD')
+
     if (!req.isAuth) {
         res.status(401).json({
             error: "Unauthorized",
@@ -67,15 +73,15 @@ router.get("/:year/:month/:day", async (req, res) => {
         return;
     }
     try {
-        const activities = await client.query(
+        const streak = await client.query(
             `SELECT * FROM streak WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day} AND userid='${req.userId}'`
         );
-        if (activities.rows.length === 0) {
+        if (streak.rows.length === 0) {
             await updateStreakBasedonYesterday(year, month, day, req.userId);
-            const activitiesSecond = await client.query(
+            const streakSecond = await client.query(
                 `SELECT * FROM streak WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day} AND userid='${req.userId}'`
             );
-            if (activitiesSecond.rows.length > 0) {
+            if (streakSecond.rows.length > 0) {
                 res.status(201).json(activitiesSecond.rows);
             } else {
                 res.status(400).json({
