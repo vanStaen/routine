@@ -41,7 +41,6 @@ app.use("/daily", require("./api/daily"));
 app.use("/activity", require("./api/activity"));
 app.use("/streak", require("./api/streak"));
 app.use("/user", require("./api/user"));
-app.use("/passport", require("./api/passport"));
 app.use("/login", require("./api/login"));
 app.use("/token", require("./api/token"));
 app.use("/logout", require("./api/logout"));
