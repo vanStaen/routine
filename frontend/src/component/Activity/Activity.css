@@ -1,52 +1,53 @@
-.daily__item {
+.Activity__item {
   width: 5em;
   margin: 1em;
   display: inline;
 }
 
-.daily__text {
+.Activity__text {
   padding-top: 1.5em;
   font-size: 0.5em;
 }
 
-.daily__textdisabled {
+.Activity__textdisabled {
   color: #282c34;
 }
 
-.daily__doneContainer {
+.Activity__doneContainer {
   position: absolute;
   width: 5em;
   height: 5em;
   background-color: rgba(40, 44, 52, 0.9);
 }
 
-.Dailies__full:nth-child(even) .daily__doneContainer {
+.Dailies__full:nth-child(even) .Activity__doneContainer {
   background-color: rgba(67, 70, 77, 0.9);
 }
 
-.daily__done {
+.Activity__done {
   position: relative;
   top: -15px;
   color: green;
   font-size: 2.6em;
 }
 
-.daily__actionContainer {
+.Activity__actionContainer {
   position: absolute;
   display: flex;
   width: 5em;
   height: 3.7em;
+  cursor: pointer;
 }
 
-.daily__actionContainerHover:hover {
+.Activity__actionContainerHover:hover {
   background-color: rgba(40, 44, 52, 0.75);
 }
 
-.Dailies__full:nth-child(even) .daily__actionContainerHover:hover {
+.Dailies__full:nth-child(even) .Activity__actionContainerHover:hover {
   background-color: rgba(67, 70, 77, 0.75);
 }
 
-.daily__optional {
+.Activity__optional {
   position: absolute;
   display: flex;
   width: 5em;
@@ -54,11 +55,11 @@
   background-color: rgba(40, 44, 52, 0.75);
 }
 
-.Dailies__full:nth-child(even) .daily__optional {
+.Dailies__full:nth-child(even) .Activity__optional {
   background-color: rgba(67, 70, 77, 0.75);
 }
 
-.daily__action {
+.Activity__action {
   display: none;
   width: 100%;
   padding: 10px;
@@ -69,6 +70,6 @@
   font-size: 1.7em;
 }
 
-.daily__action:hover {
+.Activity__action:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }

@@ -123,7 +123,7 @@ export const Dailies = () => {
           activity={activities}
           dailies={dailies[dayFromToday]}
           key={activities.activity}
-          disabled={dayFromToday > 1 ? true : false}
+          dayFromToday={dayFromToday}
         />
       );
     });

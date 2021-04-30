@@ -20,12 +20,10 @@ export class AuthStore {
     return this._token;
   }
   set token(newToken) {
-    debugger;
     this._token = newToken;
   }
 
   login = (token, refreshToken) => {
-    debugger;
     this.token = token;
     this.refreshToken = refreshToken;
   };
