@@ -3,6 +3,8 @@
 ## Backlog:
 
 - [ ] Check task from yesterday, and save streak
+  - [x] FE: make yesterday task updatable
+  - [ ] BE: update streak if task from yesterday get udpated
 - [ ] Checkpooint streak shows star
 - [ ] Save streak with 
   - [ ] Accident
@@ -27,6 +29,7 @@
 - [ ] Click on streak badge will open activity history
 - [ ] Finish create-user path : `postCreateUser`
 - [ ] AWS S3 Bucket for profil pic upload
+- [ ] Auth should use Postgres instead of Mongoose
 
 ## Completed ✓
 
