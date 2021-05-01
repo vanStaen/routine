@@ -30,6 +30,7 @@
 - [ ] Finish create-user path : `postCreateUser`
 - [ ] AWS S3 Bucket for profil pic upload
 - [ ] Auth should use Postgres instead of Mongoose
+- [ ] Statistics
 
 ## Completed ✓
 
