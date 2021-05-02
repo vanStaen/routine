@@ -1,8 +1,10 @@
 # routine
 or `Stuff you do, and redo, and redo, and now it's a routine.`.
-
-App available under https://routine-cvs.herokuapp.com/
 `PERN` stack: Postgres, Express, React, Nodejs.
+
+## Redirection
+App available under https://www.venja.org/ (`dig CNAME www.venja.org`).
+Venja means "habit", "to get used to", "to accustom" in icelandic / old norse.
 
 ## FrontEnd peculiarities
 Template: npx create-react-app w/o options. 
