@@ -47,7 +47,7 @@ export class AuthStore {
     })
       .then((res) => {
         if (res.status !== 204) {
-          throw new Error("Error when logout!");
+          throw new Error(`Error on logout!`);
         }
       })
       .catch((err) => {
@@ -106,6 +106,7 @@ export class AuthStore {
           localStorage.setItem("refreshToken", resData.refreshToken);
           if (resData.token) {
             this.login(resData.token, resData.refreshToken);
+            this.token = resData.token;
             return resData.token;
           }
         })

@@ -33,9 +33,6 @@ export const Dailies = () => {
       }
     } catch (error) {
       console.log(error.message);
-      notification.error({
-        message: error.message,
-      });
     }
     setIsLoading(false);
   };
