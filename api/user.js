@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
         res.status(200).json({
             success: `User created.`,
         });
-    } catch (error) {
+    } catch (err) {
         res.status(400).json({
             error: `${err}`,
         });
