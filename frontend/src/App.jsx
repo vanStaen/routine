@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 
-import { Profil } from "./pages/Profil/Profil";
 import { Dailies } from "./pages/Dailies/Dailies";
+import { Profil } from "./pages/Profil/Profil";
+import { Stats } from "./pages/Stats/Stats";
 import { LoginForm } from "./pages/LoginForm/LoginForm";
 import { authStore } from "./store/authStore";
 import { displayStore } from "./store/displayStore";
@@ -47,6 +48,7 @@ const App = observer(() => {
             <div className="App__main">
               {displayStore.showPage === "daily" && <Dailies />}
               {displayStore.showPage === "profil" && <Profil />}
+              {displayStore.showPage === "stats" && <Stats />}
             </div>
           </>
         ) : (

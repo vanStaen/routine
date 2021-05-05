@@ -10,14 +10,14 @@ import "./StatsButton.css";
 export const StatsButton = observer(() => {
   return (
     <ConditionalWrapper
-      condition={displayStore.showPage !== "stat"}
+      condition={displayStore.showPage !== "stats"}
       wrap={(children) => (
         <Tooltip placement="left" title="Show statistics">
           {children}
         </Tooltip>
       )}
     >
-      {displayStore.showPage === "stat" ? (
+      {displayStore.showPage === "stats" ? (
         <div
           className="FloatButton__float"
           onClick={() => displayStore.setShowPage("daily")}
@@ -27,7 +27,7 @@ export const StatsButton = observer(() => {
       ) : (
         <div
           className="FloatButton__float  FloatButton__background"
-          onClick={() => displayStore.setShowPage("stat")}
+          onClick={() => displayStore.setShowPage("stats")}
         >
           <img
             className="StatsButton__logo"
