@@ -17,14 +17,8 @@ client.connect((err) => {
   }
 });
 
-// GET all daily data (and create today if not exist)
-router.get("/", async (req, res) => {
-
-  // Today
-  const year = moment().tz("Europe/Berlin").format('YYYY');
-  const month = moment().tz("Europe/Berlin").format('MM');
-  const day = moment().tz("Europe/Berlin").format('DD');
-
+// GET all daily data
+router.get("/", async (req, res) => { 
   if (!req.isAuth) {
     res.status(401).json({
       error: "Unauthorized",
@@ -32,27 +26,10 @@ router.get("/", async (req, res) => {
     return;
   }
   try {
-    const dailyToday = await client.query(
-      `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
+    const allDaillies = await client.query(
+      `SELECT * FROM dailies WHERE userid='${req.userId}' ORDER BY year, month, day ASC;`
     );
-    if (dailyToday.rows.length > 0) {
-      res.status(201).json(dailyToday.rows);
-    } else {
-      // there is no line for this day, so create one
-      await client.query(
-        `INSERT INTO dailies (year, month, day, userid) VALUES (${year}, ${month}, ${day}, '${req.userId}')`
-      );
-      const dailyNew = await client.query(
-        `SELECT * FROM dailies WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
-      );
-      if (dailyNew.rows.length > 0) {
-        res.status(201).json(dailyNew.rows);
-      } else {
-        res.status(400).json({
-          error: `Something wrong happened! No data found.`,
-        });
-      }
-    }
+    res.status(201).json(allDaillies.rows);
   } catch (err) {
     res.status(400).json({
       error: `${err}`,

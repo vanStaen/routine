@@ -38,7 +38,6 @@ const App = observer(() => {
     defineVariableHeight();
   }, []);
 
-  debugger;
   return (
     <div className="App">
       <header className="App__header">
