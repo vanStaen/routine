@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
     decodedToken = jsonwebtoken.verify(token, process.env.AUTH_SECRET_KEY);
   } catch (err) {
     req.isAuth = false;
-    console.log("Error", err);
+    // console.log("Error", err);
     return next();
   }
   if (!decodedToken) {

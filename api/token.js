@@ -15,13 +15,11 @@ router.post("/", async (req, res) => {
   }
 
   try {
-
     // Check token validity
     const isTokenValid = await jsonwebtoken.verify(
       refreshToken,
       process.env.AUTH_SECRET_KEY_REFRESH
     );
-
     // Generate new Tokens
     const accessToken = await jsonwebtoken.sign(
       { userId: isTokenValid.userId, email: isTokenValid.email },
