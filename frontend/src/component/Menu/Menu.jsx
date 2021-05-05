@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { getUser } from "../Profil/getUser";
+import { getUser } from "../../pages/Profil/getUser";
 import { ProfilButton } from "./ProfilButton/ProfilButton";
 import { SporadicButton } from "./SporadicButton/SporadicButton";
 import { ObstacleButton } from "./ObstacleButton/ObstacleButton";
@@ -15,10 +15,7 @@ export const Menu = (props) => {
 
   return (
     <div className="Menu__floating">
-      <ProfilButton
-        showProfil={props.showProfil}
-        setShowProfil={props.setShowProfil}
-      />
+      <ProfilButton />
       <StatsButton />
       <SporadicButton />
       <ObstacleButton />

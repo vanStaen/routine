@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { notification } from "antd";
 
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
-import { Activity } from "../Activity/Activity";
-import { CountDown } from "../CountDown/CountDown";
-import { Spinner } from "../Spinner/Spinner";
+import { Activity } from "../../component/Activity/Activity";
+import { CountDown } from "../../component/CountDown/CountDown";
+import { Spinner } from "../../component/Spinner/Spinner";
 
 import "./Dailies.css";
 

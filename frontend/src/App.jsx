@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 
-import { Profil } from "./component/Profil/Profil";
-import { Dailies } from "./component/Dailies/Dailies";
-import { Menu } from "./component/Menu/Menu";
+import { Profil } from "./pages/Profil/Profil";
+import { Dailies } from "./pages/Dailies/Dailies";
+import { LoginForm } from "./pages/LoginForm/LoginForm";
 import { authStore } from "./store/authStore";
-import { LoginForm } from "./component/LoginForm/LoginForm";
+import { displayStore } from "./store/displayStore";
+import { Menu } from "./component/Menu/Menu";
 
 import "./helpers/axiosInterceptor";
 import "./App.css";
@@ -18,8 +19,6 @@ const defineVariableHeight = () => {
 window.addEventListener("resize", defineVariableHeight);
 
 const App = observer(() => {
-  const [showProfil, setShowProfil] = useState(false);
-
   const loginOnMount = () => {
     try {
       authStore.getNewToken();
@@ -44,9 +43,10 @@ const App = observer(() => {
       <header className="App__header">
         {authStore.refreshToken ? (
           <>
-            <Menu showProfil={showProfil} setShowProfil={setShowProfil} />
+            <Menu />
             <div className="App__main">
-              {showProfil ? <Profil /> : <Dailies />}
+              {displayStore.showPage === "daily" && <Dailies />}
+              {displayStore.showPage === "profil" && <Profil />}
             </div>
           </>
         ) : (

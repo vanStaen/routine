@@ -44,3 +44,19 @@
 - [x] Show yesterday(s)
 - [x] Add throtting on KeyDown
 - [x] Streak data fetched only once and store with MobX
+
+
+
+authStore 
+
+user
+checkUser
+refreshToken
+logout
+
+setTimeOut
+
+pack Login logic in a library
+(perso npm package)
+
+.css specification rules
