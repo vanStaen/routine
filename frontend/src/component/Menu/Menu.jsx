@@ -5,6 +5,7 @@ import { ProfilButton } from "./ProfilButton/ProfilButton";
 import { SporadicButton } from "./SporadicButton/SporadicButton";
 import { ObstacleButton } from "./ObstacleButton/ObstacleButton";
 import { StatsButton } from "./StatsButton/StatsButton";
+import { CloseButton } from "./CloseButton/CloseButton";
 
 import "./Menu.css";
 
@@ -15,6 +16,7 @@ export const Menu = (props) => {
 
   return (
     <div className="Menu__floating">
+      <CloseButton />
       <ProfilButton />
       <StatsButton />
       <SporadicButton />

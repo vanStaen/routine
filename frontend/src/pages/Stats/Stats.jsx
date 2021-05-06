@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 
 import { userStore } from "../../store/userStore";
 import { Spinner } from "../../component/Spinner/Spinner";
-import { getAllDailies } from "./getAllDallies";
+import { getStats } from "./getStats";
 import { Bar } from "react-chartjs-2";
 
 import "./Stats.css";
@@ -11,12 +11,12 @@ import "./Stats.css";
 export const Stats = observer(() => {
   const [isLoading, setIsLoading] = useState(true);
   const [labels, setLabels] = useState([]);
-  const dataArray = useRef([]);
+  const dataArray = useRef([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
   let activityKeys = [];
 
   const fetchData = async () => {
     try {
-      const fetchedDailies = await getAllDailies();
+      const fetchedDailies = await getStats();
       const newLabels = fetchedDailies.map((daily) => {
         return `${daily.day}.${daily.month}.${daily.year}`;
       });
@@ -25,14 +25,14 @@ export const Stats = observer(() => {
       userStore.userActivities.map((activity) => {
         const activityObject = { name: activity.activity, data: [] };
         activityKeys.push(activity.activity);
-        dataArray.current.push(activityObject);
+        //dataArray.current.push(activityObject);
       });
 
-      fetchedDailies.map((daily) => {
+      /* fetchedDailies.map((daily) => {
         activityKeys.forEach((key) => {
           console.log(`${key}: ${daily[key]}`);
         });
-      });
+      });*/
 
       console.log(dataArray.current);
     } catch (error) {

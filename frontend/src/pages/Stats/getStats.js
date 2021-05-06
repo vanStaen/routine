@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const getAllDailies = async (limit) => {
+export const getStats = async (limit) => {
   //debugger;
   const response = await axios({
-    url: process.env.REACT_APP_API_URL + `/dailies/`,
+    url: process.env.REACT_APP_API_URL + `/stats/`,
     method: "GET",
   });
 

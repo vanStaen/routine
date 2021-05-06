@@ -17,12 +17,7 @@ export const ProfilButton = observer((props) => {
       )}
     >
       {displayStore.showPage === "profil" ? (
-        <div
-          className="FloatButton__float"
-          onClick={() => displayStore.setShowPage("daily")}
-        >
-          <CloseOutlined className="FloatButton__close" />
-        </div>
+        ""
       ) : userStore.picUrl ? (
         <div
           className="FloatButton__float"

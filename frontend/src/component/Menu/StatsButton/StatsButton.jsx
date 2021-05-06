@@ -18,12 +18,7 @@ export const StatsButton = observer(() => {
       )}
     >
       {displayStore.showPage === "stats" ? (
-        <div
-          className="FloatButton__float"
-          onClick={() => displayStore.setShowPage("daily")}
-        >
-          <CloseOutlined className="FloatButton__close" />
-        </div>
+        ""
       ) : (
         <div
           className="FloatButton__float  FloatButton__background"
