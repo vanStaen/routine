@@ -17,26 +17,6 @@ client.connect((err) => {
   }
 });
 
-// GET all daily data
-router.get("/", async (req, res) => { 
-  if (!req.isAuth) {
-    res.status(401).json({
-      error: "Unauthorized",
-    });
-    return;
-  }
-  try {
-    const allDaillies = await client.query(
-      `SELECT * FROM dailies WHERE userid='${req.userId}' ORDER BY year, month, day ASC;`
-    );
-    res.status(201).json(allDaillies.rows);
-  } catch (err) {
-    res.status(400).json({
-      error: `${err}`,
-    });
-  }
-});
-
 // GET all data with variable limit
 router.get("/:limit", async (req, res) => {
 
@@ -83,5 +63,30 @@ router.get("/:limit", async (req, res) => {
   }
 });
 
+// PATCH single data from daily (based on id)
+router.patch("/:id", async (req, res) => {
+  let updateField = '';
+  for (const [key, value] of Object.entries(req.body)) {
+    updateField = updateField + `${key}=${value},`;
+  }
+  const updateFieldEdited = updateField.slice(0, -1) // delete the last comma
+  const updateQuery = `UPDATE dailies SET ${updateFieldEdited} WHERE id=${req.params.id}`;
+  try {
+    const udpate = await client.query(updateQuery);
+    if (udpate.rowCount > 0) {
+      res.status(200).json({
+        success: `Daily updated.`,
+      });
+    } else {
+      res.status(400).json({
+        error: `No daily found with id#${req.params.id}`,
+      });
+    }
+  } catch (err) {
+    res.status(400).json({
+      error: `${err}`,
+    });
+  }
+});
 
 module.exports = router;

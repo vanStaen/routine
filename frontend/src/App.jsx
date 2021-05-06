@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { observer } from "mobx-react";
 
 import { Dailies } from "./pages/Dailies/Dailies";
@@ -8,6 +8,7 @@ import { LoginForm } from "./pages/LoginForm/LoginForm";
 import { authStore } from "./store/authStore";
 import { displayStore } from "./store/displayStore";
 import { Menu } from "./component/Menu/Menu";
+import { getUser } from "./pages/Profil/getUser";
 
 import "./helpers/axiosInterceptor";
 import "./App.css";
@@ -33,6 +34,9 @@ const App = observer(() => {
     if (authStore.refreshToken) {
       loginOnMount();
     }
+
+    // fetch user infos
+    getUser();
 
     // Define variable height
     defineVariableHeight();

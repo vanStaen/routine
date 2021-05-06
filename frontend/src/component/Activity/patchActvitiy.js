@@ -8,7 +8,7 @@ export const patchActvitiy = async (id, activity, value) => {
 
   try {
     const response = await axios({
-      url: process.env.REACT_APP_API_URL + `/daily/${id}`,
+      url: process.env.REACT_APP_API_URL + `/dailies/${id}`,
       method: "PATCH",
       data: requestBody,
     });

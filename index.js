@@ -37,13 +37,13 @@ app.use('/images', express.static(path.join(__dirname, "images")));
 
 // Router to API endpoints
 app.use("/dailies", require("./api/dailies"));
-app.use("/daily", require("./api/daily"));
 app.use("/activity", require("./api/activity"));
 app.use("/streak", require("./api/streak"));
 app.use("/user", require("./api/user"));
 app.use("/login", require("./api/login"));
 app.use("/token", require("./api/token"));
 app.use("/logout", require("./api/logout"));
+app.use("/stats", require("./api/stats"));
 
 // Connect to Mongo db
 mongoose.connect(

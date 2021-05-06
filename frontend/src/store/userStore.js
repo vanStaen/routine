@@ -3,6 +3,7 @@ import { action, makeObservable, observable } from "mobx";
 export class UserStore {
 
     userId = localStorage.getItem("userId") || null;
+    userActivities = null;
     userName = null;
     picUrl = null;
 
@@ -10,6 +11,8 @@ export class UserStore {
         makeObservable(this, {
             userId: observable,
             setUserId: action,
+            userActivities: observable,
+            setUserActivities: action,
             userName: observable,
             setUserName: action,
             picUrl: observable,
@@ -21,6 +24,10 @@ export class UserStore {
         this.userId = userId;
     };
 
+    setUserActivities = (userActivities) => {
+        this.userActivities = userActivities;
+    };
+
     setUserName = (userName) => {
         this.userName = userName;
     };
@@ -28,7 +35,6 @@ export class UserStore {
     setPicUrl = (picUrl) => {
         this.picUrl = picUrl;
     };
-
 
 }
 
