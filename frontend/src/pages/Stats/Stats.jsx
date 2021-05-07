@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { userStore } from "../../store/userStore";
 import { Spinner } from "../../component/Spinner/Spinner";
 import { getStats } from "./getStats";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 import "./Stats.css";
 
@@ -50,8 +50,8 @@ export const Stats = observer(() => {
     datasets: [
       {
         label: "Run",
-        backgroundColor: "rgba(214, 137, 16, 1)",
-        borderColor: "rgba(255, 255, 255, 1)",
+        backgroundColor: "rgba(214, 137, 16, 0.95)",
+        borderColor: "rgba(214, 137, 16, 1)",
         data: dataArray.current,
       },
     ],
@@ -64,7 +64,7 @@ export const Stats = observer(() => {
       <div className="Stats__title">Statistics</div>
 
       <div className="Stats__main">
-        <Bar data={data} />
+        <Line data={data} />
       </div>
     </div>
   );

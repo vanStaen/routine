@@ -87,7 +87,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-// PATCH single data from daily (based on activity)
+// PATCH activity
 router.patch("/", async (req, res) => {
     let updateField = '';
     if (req.body.name) {
@@ -129,15 +129,13 @@ router.patch("/", async (req, res) => {
 module.exports = router;
 
 
-
-/*
-// GET list of all columns in table
-router.get("/:table", async (req, res) => {
+/* GET list of all columns in table
+router.get("/columns", async (req, res) => {
     try {
         const querry = `
                         SELECT COLUMN_NAME
                         FROM   INFORMATION_SCHEMA.COLUMNS
-                        WHERE  TABLE_NAME = '${req.params.table}'
+                        WHERE  TABLE_NAME = 'dailies'
                         `
         const results = await client.query(querry)
         const activities = results.rows.filter(result => {
@@ -155,5 +153,29 @@ router.get("/:table", async (req, res) => {
             error: `${err})`,
         });
     }
+});*/
+
+// GET all categories from activities
+router.get("/categories", async (req, res) => {   
+    try {
+        const userActivities = await client.query(`SELECT DISTINCT category FROM activities`);
+        res.status(201).json(userActivities.rows);
+    } catch (err) {
+        res.status(400).json({
+            error: `${err})`,
+        });
+    }
 });
-*/
+
+
+// GET all activities short-names
+router.get("/listall", async (req, res) => {   
+    try {
+        const userActivities = await client.query(`SELECT activity FROM activities`);
+        res.status(201).json(userActivities.rows);
+    } catch (err) {
+        res.status(400).json({
+            error: `${err})`,
+        });
+    }
+});
