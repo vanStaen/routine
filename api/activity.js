@@ -168,10 +168,10 @@ router.get("/categories", async (req, res) => {
 });
 
 
-// GET all activities short-names
-router.get("/listall", async (req, res) => {   
+// GET all activities
+router.get("/list", async (req, res) => {   
     try {
-        const userActivities = await client.query(`SELECT activity FROM activities`);
+        const userActivities = await client.query(`SELECT * FROM activities`);
         res.status(201).json(userActivities.rows);
     } catch (err) {
         res.status(400).json({

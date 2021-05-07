@@ -6,15 +6,6 @@
   justify-content: center;
 }
 
-.Profil__title {
-  justify-content: center;
-  font-size: 0.5em;
-  color: rgba(255, 255, 255, 0.2);
-  margin: 0 0 1em 0;
-  font-weight: 200;
-  letter-spacing: 2.7px;
-}
-
 .Profil__main {
   max-width: 1200px;
   width: calc(100% - 2em);
@@ -32,13 +23,6 @@
   border-radius: 50%;
 }
 
-.Profil__ActivitiesContainer {
-  max-width: 500px;
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 200;
-  padding: 10px;
-}
-
 .Profil__logout {
   font-weight: 200;
   cursor: pointer;
@@ -47,4 +31,34 @@
 .Profil__logout:hover {
   text-decoration: underline;
   color: rgba(255, 255, 255, 0.5);
+}
+
+.Profil__container {
+  max-width: calc(6*8.1em);
+  font-weight: 200;
+  padding: 3em 0 0px 0;
+}
+
+.Profil__activities {
+  display: inline-block;
+  width: 7em;
+  height: 5em;
+  margin: .45em;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: capitalize;
+}
+
+.Profil__activities:hover {
+  opacity: .75;
+  text-decoration: underline;
+}
+
+.Profil__containerTitle {
+  color: rgba(214, 137, 16, 1);
+  padding: 0 0 2em 4em;
+  letter-spacing: 2.7px;
+  text-align: left;
+  font-style: italic;
+  font-size: .9em;
 }
