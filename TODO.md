@@ -2,6 +2,7 @@
 
 ## Backlog:
 
+- [ ] Clean Activtiy data : `Name` vs `Desc`
 - [ ] Check task from yesterday, and save streak
   - [x] FE: make yesterday task updatable
   - [ ] BE: update streak if task from yesterday get udpated
@@ -26,6 +27,7 @@
   - [ ] Admin panel
     - [ ] to set up increment and goal
     - [ ] to add new activities
+      - [ ] Filter new activity per category
 - [ ] Click on streak badge will open activity history
 - [ ] Finish create-user path : `postCreateUser`
 - [ ] AWS S3 Bucket for profil pic upload

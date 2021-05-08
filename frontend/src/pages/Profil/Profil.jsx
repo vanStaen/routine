@@ -50,7 +50,6 @@ export const Profil = observer(() => {
 
   const openDrawerHandler = (selected) => {
     setDrawerVisible(true);
-    console.log(selected);
     setSelected(selected);
   };
 
