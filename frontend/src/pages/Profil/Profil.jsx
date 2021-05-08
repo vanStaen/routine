@@ -50,6 +50,7 @@ export const Profil = observer(() => {
 
   const openDrawerHandler = (selected) => {
     setDrawerVisible(true);
+    console.log(selected);
     setSelected(selected);
   };
 
@@ -89,7 +90,16 @@ export const Profil = observer(() => {
         placement={"left"}
       >
         {selected !== null && (
-          <Logo image={selected.activity} invert={true} big={true} />
+          <>
+            <Logo image={selected.activity} invert={true} big={true} />
+            <div>Daily: {selected.daily ? "Yes" : "No"}</div>
+            <div>Desc: {selected.desc}</div>
+            <div>Goal: {selected.goal}</div>
+            <div>Increment: {selected.increment}</div>
+            <div>Opt: {selected.optional ? "Yes" : "No"}</div>
+            <div>Sorting: {selected.sorting}</div>
+            <div>Unit: {selected.unit}</div>
+          </>
         )}
       </Drawer>
       <div className="Profil__full">
