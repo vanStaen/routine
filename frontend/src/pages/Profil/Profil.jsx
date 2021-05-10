@@ -53,25 +53,25 @@ export const Profil = observer(() => {
     setSelected(selected);
   };
 
-  const adminActivities = userActivities.map((item) => {
+  const adminActivities = userActivities.map((activity) => {
     return (
       <div
         className="Profil__activities"
-        onClick={() => openDrawerHandler(item)}
+        onClick={() => openDrawerHandler(activity)}
       >
-        <Logo image={item.activity} />
-        {item.activity}
+        <Logo image={activity.name} />
+        {activity.name}
       </div>
     );
   });
 
-  const addActivities = newActivities.map((item) => {
+  const addActivities = newActivities.map((activity) => {
     return (
       <div
         className="Profil__activities"
-        onClick={() => openDrawerHandler(item)}
+        onClick={() => openDrawerHandler(activity)}
       >
-        <Logo image={item.activity} />
+        <Logo image={activity.name} />
       </div>
     );
   });
@@ -86,11 +86,11 @@ export const Profil = observer(() => {
         closable={true}
         visible={drawerVisible}
         onClose={onCloseDrawerHandler}
-        placement={"left"}
+        placement={"bottom"}
       >
         {selected !== null && (
           <>
-            <Logo image={selected.activity} invert={true} big={true} />
+            <Logo image={selected.name} invert={true} big={true} />
             <div>Daily: {selected.daily ? "Yes" : "No"}</div>
             <div>Desc: {selected.desc}</div>
             <div>Goal: {selected.goal}</div>
