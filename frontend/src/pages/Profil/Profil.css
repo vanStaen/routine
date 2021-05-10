@@ -7,8 +7,7 @@
 }
 
 .Profil__main {
-  max-width: 1200px;
-  width: calc(100% - 2em);
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,4 +60,23 @@
   text-align: left;
   font-style: italic;
   font-size: .9em;
+}
+
+
+@media screen and (min-width: 1000px) {
+  .Profil__main {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .Profil__main {
+    max-width: 80%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .Profil__main {
+    max-width: 70%;
+  }
 }
