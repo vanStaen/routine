@@ -11,7 +11,7 @@ const day = today.getDate();
 export const Streak = observer((props) => {
   const [streak, setStreak] = useState(streakStore.dailyStreaks);
   const [isLoading, setIsLoading] = useState(true);
-  const activity = props.activity.activity;
+  const activity = props.activity.name;
 
   const fetchStreak = async (storeStreak) => {
     try {

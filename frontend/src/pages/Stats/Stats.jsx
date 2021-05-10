@@ -23,8 +23,8 @@ export const Stats = observer(() => {
       setLabels(newLabels);
 
       userStore.userActivities.map((activity) => {
-        const activityObject = { name: activity.activity, data: [] };
-        activityKeys.push(activity.activity);
+        const activityObject = { name: activity.name, data: [] };
+        activityKeys.push(activity.name);
         //dataArray.current.push(activityObject);
       });
 

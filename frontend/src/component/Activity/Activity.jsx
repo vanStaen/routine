@@ -17,14 +17,12 @@ export const Activity = (props) => {
   const [updateLoading, setUpdateLoading] = useState(false);
   const [updateLoadingError, setUpdateLoadingError] = useState(false);
   const [count, setCount] = useState(
-    props.dailies[props.activity.activity]
-      ? props.dailies[props.activity.activity]
-      : 0
+    props.dailies[props.activity.name] ? props.dailies[props.activity.name] : 0
   );
 
   const dayFromToday = props.dayFromToday;
   const id = props.dailies.id;
-  const activity = props.activity.activity;
+  const activity = props.activity.name;
   const increment = props.activity.increment;
   const goal = props.activity.goal;
   const optional = props.activity.optional;
@@ -266,7 +264,7 @@ export const Activity = (props) => {
           )}
         </div>
 
-        <Logo image={props.activity.activity} />
+        <Logo image={props.activity.name} />
 
         <div className={`Activity__text }`}>
           {updateLoadingError ? (

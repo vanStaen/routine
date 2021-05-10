@@ -26,10 +26,10 @@ export const Profil = observer(() => {
         getActivityList(),
       ]);
       const userActivitiesKey = await userData.activities.map((activity) => {
-        return activity.activity;
+        return activity.name;
       });
       const otherActivities = allActivities.filter((activity) => {
-        return !userActivitiesKey.includes(activity.activity);
+        return !userActivitiesKey.includes(activity.name);
       });
       setUserActivities(userData.activities);
       setNewActivities(otherActivities);
