@@ -118,7 +118,7 @@ export const Dailies = () => {
         <Activity
           activity={activities}
           dailies={dailies[dayFromToday]}
-          key={activities.activity}
+          key={activities.name}
           dayFromToday={dayFromToday}
         />
       );
@@ -129,7 +129,7 @@ export const Dailies = () => {
   for (let i = 0; i < limit.current; i++) {
     listDailies.push(
       <div className="Dailies__full" id={`daily${i}`} key={`daily${i}`}>
-        <div className="dailies__date" key={`date${i}`}>
+        <div className="dailies__date">
           {i === 0 && <CountDown />}
           {i === 1 && `Yesterday`}
           {i > 1 && `${dailies[i].day}.${dailies[i].month}.${dailies[i].year}`}
