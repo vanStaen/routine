@@ -46,3 +46,7 @@
 - [x] Add throtting on KeyDown
 - [x] Streak data fetched only once and store with MobX
 - [x] Clean Activtiy data : `Name` vs `Desc`
+
+
+
+npm Forever vs supervisord (to keep backup alive)
