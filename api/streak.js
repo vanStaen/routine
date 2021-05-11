@@ -139,7 +139,7 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
             for (const activity in yesterdayStreakResult) {
                 if (activity === "year" || activity === "month" || activity === "day" || activity === "userid" || activity === "id") {
                 } else {
-                    const activityFiltered = activityGoalResult.filter(item => item.activity === activity);
+                    const activityFiltered = activityGoalResult.filter(item => item.name === activity);
                     const activityFilteredGoal = activityFiltered[0].goal;
                     if (yesterdayDailyDataResult[activity] >= activityFilteredGoal) {
                         if (yesterdayDailyDataResult[activity]) {
