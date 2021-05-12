@@ -266,7 +266,7 @@ export const Activity = (props) => {
 
         <Logo image={props.activity.name} />
 
-        <div className={`Activity__text }`}>
+        <div className={`Activity__text`}>
           {updateLoadingError ? (
             <CloseOutlined style={{ color: "#C70039" }} />
           ) : updateLoading ? (

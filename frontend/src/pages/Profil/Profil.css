@@ -50,7 +50,6 @@
 
 .Profil__activities:hover {
   opacity: .75;
-  text-decoration: underline;
 }
 
 .Profil__containerTitle {
@@ -62,6 +61,50 @@
   font-size: .9em;
 }
 
+.Drawer__main {
+  display: inline-flex;
+  width: 100%;
+}
+
+.Drawer__title {
+  font-weight: 200;
+  margin-right: 1em;
+  opacity: .5;
+  letter-spacing: 2px;
+}
+
+.Drawer__editable {
+ display: inline-flex;
+ width: auto;
+ margin: .5em;
+ padding: 0 2em 0 0;
+}
+
+.Drawer__editableContainer {
+  max-width: 100%;
+  display: inline-flexbox;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2em;
+}
+
+.Drawer__inputNumber {
+  background-color: transparent;
+  width: 60px;
+  height: 22px;
+}
+
+.Drawer__inputText {
+  background-color: transparent;
+  height: 22px;
+}
+
+.Drawer__editableTitle {
+  margin-right: 1em;
+  opacity: .5;
+  letter-spacing: 2px;
+}
 
 @media screen and (min-width: 1000px) {
   .Profil__main {

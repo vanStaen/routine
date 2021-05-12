@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { observer } from "mobx-react";
+import { observer, PropTypes } from "mobx-react";
 import { Drawer } from "antd";
 
 import { authStore } from "../../store/authStore";
@@ -81,7 +81,14 @@ export const Profil = observer(() => {
   ) : (
     <>
       <Drawer
-        title={capitalizeFirstLetter(selected?.activity)}
+        title={
+          <>
+            <span className="Drawer__title">
+              {capitalizeFirstLetter(selected?.name)}
+            </span>
+            {selected?.desc}
+          </>
+        }
         placement="right"
         closable={true}
         visible={drawerVisible}
@@ -89,16 +96,74 @@ export const Profil = observer(() => {
         placement={"bottom"}
       >
         {selected !== null && (
-          <>
-            <Logo image={selected.name} invert={true} big={true} />
-            <div>Daily: {selected.daily ? "Yes" : "No"}</div>
-            <div>Desc: {selected.desc}</div>
-            <div>Goal: {selected.goal}</div>
-            <div>Increment: {selected.increment}</div>
-            <div>Opt: {selected.optional ? "Yes" : "No"}</div>
-            <div>Sorting: {selected.sorting}</div>
-            <div>Unit: {selected.unit}</div>
-          </>
+          <div className="Drawer__main">
+            <Logo image={selected.name} invert={false} big={true} />
+            <div className="Drawer__editableContainer">
+              <div className="Drawer__editable">
+                <span className="Drawer__editableTitle">Description</span>
+                <input
+                  className="Drawer__inputText"
+                  type="text"
+                  id="desc"
+                  name="desc"
+                  defaultValue={selected.desc}
+                  min="1"
+                />
+              </div>
+              <div className="Drawer__editable">
+                <span className="Drawer__editableTitle">Goal</span>
+                <input
+                  className="Drawer__inputNumber"
+                  type="number"
+                  id="goal"
+                  name="goal"
+                  defaultValue={selected.goal}
+                  min="1"
+                />
+              </div>
+              <div className="Drawer__editable">
+                <span className="Drawer__editableTitle">Increment</span>
+                <input
+                  className="Drawer__inputNumber"
+                  type="number"
+                  id="increment"
+                  name="increment"
+                  defaultValue={selected.increment}
+                  min="1"
+                />
+              </div>
+              <div className="Drawer__editable">
+                <span className="Drawer__editableTitle">Sorting</span>
+                <input
+                  className="Drawer__inputNumber"
+                  type="number"
+                  id="sorting"
+                  name="sorting"
+                  defaultValue={selected.sorting}
+                  min="1"
+                />
+              </div>
+              <div className="Drawer__editable">
+                <span className="Drawer__editableTitle">Unit</span>
+                <input
+                  className="Drawer__inputText"
+                  type="text"
+                  id="unit"
+                  name="unit"
+                  defaultValue={selected.unit}
+                  min="1"
+                />
+              </div>
+              <div className="Drawer__editable">
+                <span className="Drawer__editableTitle">Optional</span>
+                {selected.optional ? "Yes" : "No"}
+              </div>
+              <div className="Drawer__editable">
+                <span className="Drawer__editableTitle">Daily</span>
+                {selected.daily ? "Yes" : "No"}
+              </div>
+            </div>
+          </div>
         )}
       </Drawer>
       <div className="Profil__full">
