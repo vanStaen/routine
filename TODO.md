@@ -2,9 +2,6 @@
 
 ## Backlog:
 
-- [ ] Check task from yesterday, and save streak
-  - [x] FE: make yesterday task updatable
-  - [ ] BE: update streak if task from yesterday get udpated
 - [ ] Checkpooint streak shows star
 - [ ] Save streak with 
   - [ ] Accident
@@ -46,6 +43,7 @@
 - [x] Add throtting on KeyDown
 - [x] Streak data fetched only once and store with MobX
 - [x] Clean Activtiy data : `Name` vs `Desc`
+- [x] Check task from yesterday, and update streak
 
 
 
