@@ -9,7 +9,8 @@ import {
   SyncOutlined,
 } from "@ant-design/icons";
 import { Tooltip, notification, Popconfirm } from "antd";
-import { patchActvitiy } from "./patchActvitiy";
+import { patchActvitiy } from "./patchActivity";
+import { patchStreak } from "./patchStreak";
 
 import "./Activity.css";
 
@@ -64,11 +65,14 @@ export const Activity = (props) => {
     }
   };
 
-  const handlePlusClick = async () => {
+  const handlePlusClick = async (yesterday = false) => {
     setUpdateLoading(true);
     setUpdateLoadingError(false);
     const newCount = count + increment;
     const resultPlus = await patchActvitiy(id, activity, newCount);
+    if (yesterday) {
+      await patchStreak(activity);
+    }
     if (resultPlus.status === 200) {
       setCount(newCount);
       setUpdateLoading(false);
@@ -80,11 +84,14 @@ export const Activity = (props) => {
     }
   };
 
-  const handleMinusClick = async () => {
+  const handleMinusClick = async (yesterday = false) => {
     setUpdateLoading(true);
     setUpdateLoadingError(false);
     const newCount = count >= increment ? count - increment : 0;
     const resultMinus = await patchActvitiy(id, activity, newCount);
+    if (yesterday) {
+      await patchStreak(activity);
+    }
     if (resultMinus.status === 200) {
       setCount(newCount);
       setUpdateLoading(false);
@@ -177,7 +184,7 @@ export const Activity = (props) => {
                       </>
                     }
                     placement="bottom"
-                    onConfirm={handlePlusClick}
+                    onConfirm={() => handlePlusClick(true)}
                     okText="Yes"
                     cancelText="No"
                   >
@@ -213,7 +220,7 @@ export const Activity = (props) => {
                     </>
                   }
                   placement="bottom"
-                  onConfirm={handlePlusClick}
+                  onConfirm={() => handlePlusClick(true)}
                   okText="Yes"
                   cancelText="No"
                 >
