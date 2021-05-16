@@ -1,5 +1,5 @@
 
-.Streak__Main {
+.Streak__Float {
     position: absolute;
     text-align: center;
     top: -1.1em;
@@ -10,5 +10,18 @@
     font-size: .75em;
     font-weight: bold;
     border: 1px solid rgba(255, 255, 255, .75);
+    border-radius: 25px;
+}
+
+.Streak__Round {
+    position: relative;
+    display: inline-block;
+    top: -.2em;
+    width: fit-content;
+    padding-right: 4px;
+    padding-left: 4px;
+    margin-left: 1.4em;
+    font-size: .75em;
+    border: 1px solid rgba(255, 255, 255, .15);
     border-radius: 25px;
 }

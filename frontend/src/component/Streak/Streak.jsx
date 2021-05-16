@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { observer } from "mobx-react";
+import { observer, PropTypes } from "mobx-react";
 
 import { getStreak } from "./getStreak";
 import { streakStore } from "../../store/streakStore";
@@ -12,6 +12,13 @@ export const Streak = observer((props) => {
   const [streak, setStreak] = useState(streakStore.dailyStreaks);
   const [isLoading, setIsLoading] = useState(true);
   const activity = props.activity.name;
+
+  let float;
+  if (props.float === undefined) {
+    float = true;
+  } else {
+    float = props.float;
+  }
 
   const fetchStreak = async (storeStreak) => {
     try {
@@ -75,10 +82,10 @@ export const Streak = observer((props) => {
   };
 
   return isLoading ? (
-    <div className="Streak__Main">?</div>
+    <div className="Streak__Float">?</div>
   ) : streak[activity] ? (
     <div
-      className="Streak__Main"
+      className={float ? "Streak__Float" : "Streak__Round"}
       style={{
         backgroundColor: `rgba(214, 137, 16, ${backGroundColor(
           streak[activity]
