@@ -15,7 +15,7 @@ import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
 
 import "./Activity.css";
 
-const WIDTH_SMALL_DEVICE_PIXEL = 900;
+const WIDTH_SMALL_DEVICE_PIXEL = 1600;
 
 export const Activity = (props) => {
   const [updateLoading, setUpdateLoading] = useState(false);
@@ -145,23 +145,29 @@ export const Activity = (props) => {
         placement={"bottom"}
       >
         {goal > 1 ? (
-          <>
+          <div className="Activity__fullDrawerButton">
             <div
+              className="Activity__drawerButton Activity__drawerActionButton"
               id={activity + dayFromToday + "_minus"}
               onClick={handleMinusClick}
             >
               <MinusOutlined />
             </div>
-            <div>{count}</div>
+            <div className="Activity__drawerButton">
+              {count}
+              <span className="transparentWhite">&nbsp;/ {goal}</span>
+            </div>
             <div
+              className="Activity__drawerButton Activity__drawerActionButton"
               id={activity + dayFromToday + "_plus"}
               onClick={handlePlusClick}
             >
               <PlusOutlined />
             </div>
-          </>
+          </div>
         ) : !done ? (
           <div
+            className="Activity__fullDrawerButton Activity__drawerActionButton"
             id={activity + dayFromToday + "_check"}
             onClick={handlePlusClick}
           >
@@ -169,7 +175,8 @@ export const Activity = (props) => {
           </div>
         ) : (
           <div
-            id={activity + dayFromToday + "_close"}
+            className="Activity__fullDrawerButton Activity__drawerActionButton"
+            id={activity + dayFromToday + "_check"}
             onClick={handleMinusClick}
           >
             <CloseOutlined />
@@ -316,7 +323,7 @@ export const Activity = (props) => {
                   {dayFromToday === 0 ? (
                     <div
                       className="Activity__action"
-                      id={activity + dayFromToday + "_close"}
+                      id={activity + dayFromToday + "_check"}
                       onClick={handleMinusClick}
                     >
                       <CloseOutlined />
@@ -339,7 +346,7 @@ export const Activity = (props) => {
                     >
                       <div
                         className="Activity__action"
-                        id={activity + dayFromToday + "_close"}
+                        id={activity + dayFromToday + "_check"}
                       >
                         <CloseOutlined />
                       </div>
