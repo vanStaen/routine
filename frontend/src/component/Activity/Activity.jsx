@@ -211,10 +211,32 @@ export const Activity = (props) => {
             </div>
           )}
           {smallDevice ? (
-            <div
-              className={`Activity__actionContainer`}
-              onClick={() => setDrawerVisible(true)}
-            ></div>
+            dayFromToday === 0 ? (
+              <div
+                className={`Activity__actionContainer`}
+                onClick={() => setDrawerVisible(true)}
+              ></div>
+            ) : (
+              dayFromToday === 1 && (
+                <Popconfirm
+                  title={
+                    <>
+                      Update this task from{" "}
+                      <b>
+                        <u>yesterday</u>
+                      </b>
+                      ?
+                    </>
+                  }
+                  placement="bottom"
+                  onConfirm={() => setDrawerVisible(true)}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <div className={`Activity__actionContainer`}></div>
+                </Popconfirm>
+              )
+            )
           ) : (
             <div
               className={`Activity__actionContainer ${
