@@ -16,7 +16,6 @@
     - [x] Handle wrong password!
   - [x] Create user table
   - [x] Get activities data from user
-  - [ ] Get goals from user for streak
   - [ ] Delete user specific infos from activities
   - [x] Add user info in dailies/streak table
   - [x] create UserStore
@@ -24,7 +23,6 @@
     - [ ] to set up increment and goal
     - [ ] to add new activities
       - [ ] Filter new activity per category
-- [ ] Click on streak badge will open activity history
 - [ ] Finish create-user path : `postCreateUser`
 - [ ] AWS S3 Bucket for profil pic upload
 - [ ] Auth should use Postgres instead of Mongoose
