@@ -15,7 +15,7 @@ import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
 
 import "./Activity.css";
 
-const WIDTH_SMALL_DEVICE_PIXEL = 1600;
+const WIDTH_SMALL_DEVICE_PIXEL = 900;
 
 export const Activity = (props) => {
   const [updateLoading, setUpdateLoading] = useState(false);

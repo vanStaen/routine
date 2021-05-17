@@ -2,7 +2,7 @@
 
 ## Backlog:
 
-- [ ] Checkpooint streak shows star
+- [ ] Checkpoint streak shows star
 - [ ] Save streak with 
   - [ ] Accident
   - [ ] 1 cheat day per week 
@@ -44,6 +44,7 @@
 - [x] Streak data fetched only once and store with MobX
 - [x] Clean Activtiy data : `Name` vs `Desc`
 - [x] Check task from yesterday, and update streak
+- [x] Action in a drawer for user with small device 
 
 
 
