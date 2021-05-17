@@ -153,8 +153,13 @@ export const Activity = (props) => {
             >
               <MinusOutlined />
             </div>
+
             <div className="Activity__drawerButton">
-              {count}
+              {updateLoading ? (
+                <SyncOutlined spin style={{ color: "#999" }} />
+              ) : (
+                count
+              )}
               <span className="transparentWhite">&nbsp;/ {goal}</span>
             </div>
             <div
