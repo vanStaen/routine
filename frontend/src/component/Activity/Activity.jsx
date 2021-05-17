@@ -148,13 +148,14 @@ export const Activity = (props) => {
           <div className="Activity__fullDrawerButton">
             <div
               className="Activity__drawerButton Activity__drawerActionButton"
+              style={{ fontSize: "7em" }}
               id={activity + dayFromToday + "_minus"}
               onClick={handleMinusClick}
             >
               <MinusOutlined />
             </div>
 
-            <div className="Activity__drawerButton">
+            <div className="Activity__drawerButton" style={{ fontSize: "2em" }}>
               {updateLoading ? (
                 <SyncOutlined spin style={{ color: "#999" }} />
               ) : (
@@ -164,6 +165,7 @@ export const Activity = (props) => {
             </div>
             <div
               className="Activity__drawerButton Activity__drawerActionButton"
+              style={{ fontSize: "7em" }}
               id={activity + dayFromToday + "_plus"}
               onClick={handlePlusClick}
             >
@@ -173,6 +175,7 @@ export const Activity = (props) => {
         ) : !done ? (
           <div
             className="Activity__fullDrawerButton Activity__drawerActionButton"
+            style={{ fontSize: "7em" }}
             id={activity + dayFromToday + "_check"}
             onClick={handlePlusClick}
           >
@@ -181,6 +184,7 @@ export const Activity = (props) => {
         ) : (
           <div
             className="Activity__fullDrawerButton Activity__drawerActionButton"
+            style={{ fontSize: "7em" }}
             id={activity + dayFromToday + "_check"}
             onClick={handleMinusClick}
           >
