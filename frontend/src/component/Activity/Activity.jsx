@@ -148,7 +148,7 @@ export const Activity = (props) => {
           <div className="Activity__fullDrawerButton">
             <div
               className="Activity__drawerButton Activity__drawerActionButton"
-              style={{ fontSize: "7em" }}
+              style={{ fontSize: "5em" }}
               id={activity + dayFromToday + "_minus"}
               onClick={handleMinusClick}
             >
@@ -165,7 +165,7 @@ export const Activity = (props) => {
             </div>
             <div
               className="Activity__drawerButton Activity__drawerActionButton"
-              style={{ fontSize: "7em" }}
+              style={{ fontSize: "5em" }}
               id={activity + dayFromToday + "_plus"}
               onClick={handlePlusClick}
             >
