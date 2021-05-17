@@ -144,7 +144,37 @@ export const Activity = (props) => {
         onClose={() => setDrawerVisible(false)}
         placement={"bottom"}
       >
-        CONTENT OF DRAWER
+        {goal > 1 ? (
+          <>
+            <div
+              id={activity + dayFromToday + "_minus"}
+              onClick={handleMinusClick}
+            >
+              <MinusOutlined />
+            </div>
+            <div>{count}</div>
+            <div
+              id={activity + dayFromToday + "_plus"}
+              onClick={handlePlusClick}
+            >
+              <PlusOutlined />
+            </div>
+          </>
+        ) : !done ? (
+          <div
+            id={activity + dayFromToday + "_check"}
+            onClick={handlePlusClick}
+          >
+            <CheckOutlined />
+          </div>
+        ) : (
+          <div
+            id={activity + dayFromToday + "_close"}
+            onClick={handleMinusClick}
+          >
+            <CloseOutlined />
+          </div>
+        )}
       </Drawer>
       <Tooltip
         placement="top"
@@ -286,7 +316,7 @@ export const Activity = (props) => {
                   {dayFromToday === 0 ? (
                     <div
                       className="Activity__action"
-                      id={activity + dayFromToday + "_check"}
+                      id={activity + dayFromToday + "_close"}
                       onClick={handleMinusClick}
                     >
                       <CloseOutlined />
@@ -309,7 +339,7 @@ export const Activity = (props) => {
                     >
                       <div
                         className="Activity__action"
-                        id={activity + dayFromToday + "_check"}
+                        id={activity + dayFromToday + "_close"}
                       >
                         <CloseOutlined />
                       </div>
