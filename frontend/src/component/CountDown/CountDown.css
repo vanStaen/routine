@@ -1,5 +1,5 @@
 .countdown__alert {
-  color:  rgba(214, 137, 16, 1);
+  color:  red;
   font-weight: 400;
   animation: blinker 1s linear infinite;
 }
