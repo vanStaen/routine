@@ -43,7 +43,3 @@
 - [x] Clean Activtiy data : `Name` vs `Desc`
 - [x] Check task from yesterday, and update streak
 - [x] Action in a drawer for user with small device 
-
-
-
-npm Forever vs supervisord (to keep backup alive)
