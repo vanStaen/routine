@@ -33,7 +33,6 @@
 }
 
 .Profil__container {
-  max-width: calc(6*8.1em);
   font-weight: 200;
   padding: 3em 0 0px 0;
 }
@@ -54,11 +53,13 @@
 
 .Profil__containerTitle {
   color: rgba(214, 137, 16, 1);
-  padding: 0 0 2em 2em;
+  padding: 0 0 1em 2em;
+  margin: 0 0 3em 0em;
   letter-spacing: 2.7px;
   text-align: left;
   font-style: italic;
   font-size: .9em;
+  border-bottom: 1px solid rgba(214, 137, 16, .25);
 }
 
 .Drawer__main {
