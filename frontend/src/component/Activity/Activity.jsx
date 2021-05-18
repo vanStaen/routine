@@ -159,7 +159,7 @@ export const Activity = (props) => {
               {updateLoading ? (
                 <SyncOutlined spin style={{ color: "#999" }} />
               ) : (
-                count
+                <span className={count < goal ? "" : "gold"}>{count}</span>
               )}
               <span className="transparentWhite">&nbsp;/ {goal}</span>
             </div>

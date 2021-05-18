@@ -97,3 +97,8 @@
 .transparentWhite {
   color: rgba(255, 255, 255, .25);
 }
+
+.gold {
+  color: #D68910;
+  text-shadow: 2px 2px rgba(214, 137, 16, .25);
+}
