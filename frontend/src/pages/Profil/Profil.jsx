@@ -51,7 +51,8 @@ export const Profil = observer(() => {
   const openDrawerHandler = (selected) => {
     setDrawerVisible(true);
     setSelected(selected);
-    console.log(userStore.userActivities);
+    console.log(selected);
+    console.log(userStore.userActivities[0]);
   };
 
   const adminActivities = userActivities.map((activity) => {
@@ -198,7 +199,8 @@ export const Profil = observer(() => {
 
 /*
 TODO: 
-  Manage Goal / increment
-  Edit activity title
-  Make optional/mandatory
+  let foo = [{ bar: 1, baz: [1,2,3] }, { bar: 2, baz: [4,5,6] }];
+  let obj = foo.find(f=>f.bar==1);
+  if(obj) {obj.baz=[2,3,4];}
+  console.log(foo);
 */

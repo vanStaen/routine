@@ -2,6 +2,9 @@
 
 ## Backlog:
 
+- [ ] Add parameter "icon" to activities
+  - [ ] Add it to activities in db
+  - [ ] Add it to the user specific activities
 - [ ] Checkpoint streak shows star
 - [ ] Save streak with 
   - [ ] Accident
@@ -26,7 +29,8 @@
 - [ ] Finish create-user path : `postCreateUser`
 - [ ] AWS S3 Bucket for profil pic upload
 - [ ] Auth should use Postgres instead of Mongoose
-- [ ] Statistics
+- [ ] Statistics 
+- [ ] Save Dailies per user as object instead of per columns
 
 ## Completed ✓
 
