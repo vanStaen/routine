@@ -56,11 +56,15 @@ export const CountDown = () => {
     }, 1000);
   }, [timeLeft]);
 
-  return timeLeft < 18000 ? (
+  return timeLeft < 0 ? (
+    <div className={timeLeft < 7200 ? "countdown__alert" : ""}>
+      00:00:00
+    </div>
+  ) : timeLeft < 18000 ? (
     <div className={timeLeft < 7200 ? "countdown__alert" : ""}>
       {formatTimeStamp(timeLeft)}
     </div>
   ) : (
-      "Today"
-    );
+        "Today"
+      );
 };
