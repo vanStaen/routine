@@ -1,10 +1,15 @@
 import axios from "axios";
+import { userStore } from "../../store/userStore";
 
-export const getActivityList = async () => {
-
+export const patchUser = async (activities) => {
+  
+  const requestBody = {
+    [activities]: activities,
+  };
   const response = await axios({
-    url: process.env.REACT_APP_API_URL + `/activity/list`,
-    method: "GET",
+    url: process.env.REACT_APP_API_URL + `/user`,
+    method: "PATCH",
+    data: requestBody,
   });
 
   if ((response.status !== 200) & (response.status !== 201)) {
@@ -15,12 +20,5 @@ export const getActivityList = async () => {
     }
   }
 
-  const activityList = await response.data.map(
-    activity => {
-      return activity;
-    }
-  );
-
-  return activityList;
-
+  return response.data;
 };

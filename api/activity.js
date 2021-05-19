@@ -126,35 +126,6 @@ router.patch("/", async (req, res) => {
     }
 });
 
-module.exports = router;
-
-
-/* GET list of all columns in table
-router.get("/columns", async (req, res) => {
-    try {
-        const querry = `
-                        SELECT COLUMN_NAME
-                        FROM   INFORMATION_SCHEMA.COLUMNS
-                        WHERE  TABLE_NAME = 'dailies'
-                        `
-        const results = await client.query(querry)
-        const activities = results.rows.filter(result => {
-            if (result.column_name === "year" ||
-                result.column_name === "month" ||
-                result.column_name === "day") {
-                return false;
-            } else {
-                return true;
-            }
-        });
-        res.status(201).json(activities);
-    } catch (err) {
-        res.status(400).json({
-            error: `${err})`,
-        });
-    }
-});*/
-
 // GET all categories from activities
 router.get("/categories", async (req, res) => {   
     try {
@@ -167,7 +138,6 @@ router.get("/categories", async (req, res) => {
     }
 });
 
-
 // GET all activities
 router.get("/list", async (req, res) => {   
     try {
@@ -179,3 +149,5 @@ router.get("/list", async (req, res) => {
         });
     }
 });
+
+module.exports = router;

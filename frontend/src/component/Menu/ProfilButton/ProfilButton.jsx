@@ -1,5 +1,5 @@
 import { Tooltip } from "antd";
-import { UserOutlined, CloseOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react";
 
 import { userStore } from "../../../store/userStore";

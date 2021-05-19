@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { observer, PropTypes } from "mobx-react";
+import { observer } from "mobx-react";
 
 import { getStreak } from "./getStreak";
 import { streakStore } from "../../store/streakStore";

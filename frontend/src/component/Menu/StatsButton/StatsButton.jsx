@@ -1,5 +1,4 @@
 import { Tooltip } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react";
 
 import { displayStore } from "../../../store/displayStore";

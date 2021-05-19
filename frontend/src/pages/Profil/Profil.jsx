@@ -51,6 +51,7 @@ export const Profil = observer(() => {
   const openDrawerHandler = (selected) => {
     setDrawerVisible(true);
     setSelected(selected);
+    console.log(userStore.userActivities);
   };
 
   const adminActivities = userActivities.map((activity) => {
@@ -89,7 +90,6 @@ export const Profil = observer(() => {
             {selected?.desc}
           </>
         }
-        placement="right"
         closable={true}
         visible={drawerVisible}
         onClose={onCloseDrawerHandler}
