@@ -1,0 +1,168 @@
+[
+  {
+    "name": "teeth",
+    "icon": "teeth",
+    "unit": "Clean",
+    "increment": 1,
+    "desc": "Brush your teeth",
+    "goal": 1,
+    "daily": true,
+    "optional": false,
+    "sorting": 0
+  },
+  {
+    "name": "water",
+    "icon": "water",
+    "unit": "glass",
+    "increment": 1,
+    "desc": "Drink enough water",
+    "goal": 5,
+    "daily": true,
+    "optional": false,
+    "sorting": 1
+  },
+  {
+    "name": "stretch",
+    "icon": "stretch",
+    "unit": "min",
+    "increment": 1,
+    "desc": "Stretch your body",
+    "goal": 3,
+    "daily": true,
+    "optional": false,
+    "sorting": 2
+  },
+  {
+    "name": "photo",
+    "icon": "photo",
+    "unit": "Shoot",
+    "increment": 1,
+    "desc": "Do a photoshoot",
+    "goal": 1,
+    "daily": true,
+    "optional": true,
+    "sorting": 3
+  },
+  {
+    "name": "javascript",
+    "icon": "javascript",
+    "unit": "Code",
+    "increment": 1,
+    "desc": "Code some Javascript",
+    "goal": 1,
+    "daily": true,
+    "optional": false,
+    "sorting": 4
+  },
+  {
+    "name": "dutch",
+    "icon": "dutch",
+    "unit": "xp",
+    "increment": 10,
+    "desc": "Leer wat Nederlands",
+    "goal": 30,
+    "daily": true,
+    "optional": false,
+    "sorting": 5
+  },
+  {
+    "name": "piano",
+    "icon": "piano",
+    "unit": "Play",
+    "increment": 1,
+    "desc": "Why not those key",
+    "goal": 1,
+    "daily": true,
+    "optional": true,
+    "sorting": 6
+  },
+  {
+    "name": "guitar",
+    "icon": "guitar",
+    "unit": "Play",
+    "increment": 1,
+    "desc": "Use your guitars",
+    "goal": 1,
+    "daily": true,
+    "optional": false,
+    "sorting": 7
+  },
+  {
+    "name": "bass",
+    "icon": "bass",
+    "unit": "Play",
+    "increment": 1,
+    "desc": "What about some bass?",
+    "goal": 1,
+    "daily": true,
+    "optional": true,
+    "sorting": 8
+  },
+  {
+    "name": "pushups",
+    "icon": "pushups",
+    "unit": "x",
+    "increment": 5,
+    "desc": "Do your push-ups",
+    "goal": 50,
+    "daily": true,
+    "optional": false,
+    "sorting": 9
+  },
+  {
+    "name": "pullups",
+    "icon": "pullups",
+    "unit": "x",
+    "increment": 5,
+    "desc": "Do your pull-ups",
+    "goal": 50,
+    "daily": true,
+    "optional": false,
+    "sorting": 10
+  },
+  {
+    "name": "situps",
+    "icon": "situps",
+    "unit": "x",
+    "increment": 5,
+    "desc": "Do your sit-ups",
+    "goal": 50,
+    "daily": true,
+    "optional": false,
+    "sorting": 11
+  },
+  {
+    "name": "run",
+    "icon": "run",
+    "unit": "km",
+    "increment": 1,
+    "desc": "Go oustide & run",
+    "goal": 5,
+    "daily": true,
+    "optional": false,
+    "sorting": 12
+  },
+  {
+    "name": "trumpet",
+    "icon": "trumpet",
+    "unit": "Play",
+    "increment": 1,
+    "desc": "Wake your neighbours",
+    "goal": 1,
+    "daily": true,
+    "optional": true,
+    "sorting": 13
+  },
+  {
+    "name": "producing",
+    "icon": "producing",
+    "unit": "Techno",
+    "increment": 1,
+    "desc": "Make some noises",
+    "goal": 1,
+    "daily": true,
+    "optional": false,
+    "sorting": 14
+  }
+]
+

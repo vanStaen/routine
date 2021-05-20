@@ -2,9 +2,6 @@
 
 ## Backlog:
 
-- [ ] Add parameter "icon" to activities
-  - [ ] Add it to activities in db
-  - [ ] Add it to the user specific activities
 - [ ] Checkpoint streak shows star
 - [ ] Save streak with 
   - [ ] Accident
@@ -47,3 +44,4 @@
 - [x] Clean Activtiy data : `Name` vs `Desc`
 - [x] Check task from yesterday, and update streak
 - [x] Action in a drawer for user with small device 
+- [x] Add parameter "icon" to activities

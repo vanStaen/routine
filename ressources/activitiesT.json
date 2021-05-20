@@ -1,0 +1,79 @@
+[
+  {
+    "name": "bye",
+    "icon": "bye",
+    "unit": "Throw away",
+    "increment": 1,
+    "desc": "Brush your teeth",
+    "goal": 1,
+    "daily": true,
+    "optional": false,
+    "sorting": 0
+  },
+  {
+    "name": "french",
+    "icon": "french",
+    "unit": "xp",
+    "increment": 10,
+    "desc": "Apprends le français",
+    "goal": 30,
+    "daily": true,
+    "optional": false,
+    "sorting": 1
+  },
+  {
+    "name": "friends",
+    "icon": "friends",
+    "unit": "Socialize",
+    "increment": 1,
+    "desc": "Be social",
+    "goal": 1,
+    "daily": true,
+    "optional": true,
+    "sorting": 2
+  },
+  {
+    "name": "yoga",
+    "icon": "yoga",
+    "unit": "min",
+    "increment": 5,
+    "desc": "Be social",
+    "goal": 30,
+    "daily": true,
+    "optional": true,
+    "sorting": 3
+  },
+  {
+    "name": "meditation",
+    "icon": "meditation",
+    "unit": "Meditate",
+    "increment": 1,
+    "desc": "Open your chakras",
+    "goal": 1,
+    "daily": true,
+    "optional": false,
+    "sorting": 4
+  },
+  {
+    "name": "piano",
+    "icon": "piano",
+    "unit": "Play",
+    "increment": 1,
+    "desc": "Why not those key",
+    "goal": 1,
+    "daily": true,
+    "optional": true,
+    "sorting": 5
+  },
+  {
+    "name": "steps",
+    "icon": "steps",
+    "unit": "steps",
+    "increment": 500,
+    "desc": "Walk idiot, walk",
+    "goal": 7000,
+    "daily": true,
+    "optional": false,
+    "sorting": 6
+  }
+]

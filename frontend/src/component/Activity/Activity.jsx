@@ -12,6 +12,7 @@ import { Tooltip, notification, Popconfirm, Drawer } from "antd";
 import { patchActvitiy } from "./patchActivity";
 import { patchStreak } from "./patchStreak";
 import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
+import { ConditionalWrapper } from "../../helpers/ConditionnalWrapper";
 
 import "./Activity.css";
 
@@ -192,14 +193,21 @@ export const Activity = (props) => {
           </div>
         )}
       </Drawer>
-      <Tooltip
-        placement="top"
-        title={
-          <>
-            {props.activity.desc}{" "}
-            <Streak activity={props.activity} daily={props.dailies} />
-          </>
-        }
+      <ConditionalWrapper
+        condition={!smallDevice}
+        wrap={(children) => (
+          <Tooltip
+            placement="top"
+            title={
+              <>
+                {props.activity.desc}{" "}
+                <Streak activity={props.activity} daily={props.dailies} />
+              </>
+            }
+          >
+            {children}
+          </Tooltip>
+        )}
       >
         <div className="Activity__item">
           {optional && !done && <div className="Activity__optional" />}
@@ -388,7 +396,7 @@ export const Activity = (props) => {
             </div>
           )}
 
-          <Logo image={props.activity.name} />
+          <Logo image={props.activity.icon} />
 
           <div className={`Activity__text`}>
             {updateLoadingError ? (
@@ -417,7 +425,7 @@ export const Activity = (props) => {
             )}
           </div>
         </div>
-      </Tooltip>
+      </ConditionalWrapper>
     </>
   );
 };
