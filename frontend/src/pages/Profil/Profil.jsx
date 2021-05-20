@@ -9,7 +9,7 @@ import { Logo } from "../../component/Logo/Logo";
 import { getUser } from "./getUser";
 import { getActivityList } from "./getActivityList";
 import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
-import { SaveOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 
 //import { uuid } from "../../helpers/uuid";
 
@@ -70,6 +70,13 @@ export const Profil = observer(() => {
     */
   };
 
+  const deleteActivityHandler = (id) => {
+    console.log("Delete this", id);
+    /*
+    TODO: make archiviert flag instead of delete
+    */
+  };
+
   const adminActivities = userActivities.map((activity, index) => {
     return (
       <div
@@ -114,7 +121,7 @@ export const Profil = observer(() => {
         placement={"bottom"}
       >
         {selected !== null && (
-          <>
+          <div className="Drawer">
             <div className="Drawer__main">
               <Logo image={selected.icon} invert={false} big={true} />
               <div className="Drawer__editableContainer">
@@ -200,19 +207,20 @@ export const Profil = observer(() => {
                 </div>
               </div>
             </div>
-            {/* 
-            <Button
-              className="Profil__drawerButton"
-              icon={<SaveOutlined />}
-              onClick={() => udpateActivityHandler(selected)}
-              type="primary"
-              block
-              danger={true}
-            >
-              Update
-            </Button>
-            */}
-          </>
+            <div className="Drawer__buttonContainer">
+              {
+                <Button
+                  icon={<DeleteOutlined />}
+                  onClick={() => deleteActivityHandler(selected.id)}
+                  type="primary"
+                  danger
+                  disabled
+                >
+                  Delete
+                </Button>
+              }
+            </div>
+          </div>
         )}
       </Drawer>
       <div className="Profil__full">

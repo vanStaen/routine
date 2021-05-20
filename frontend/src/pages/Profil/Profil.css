@@ -62,6 +62,10 @@
   border-bottom: 1px solid rgba(214, 137, 16, .25);
 }
 
+.Drawer {
+  width: 100%;
+}
+
 .Drawer__main {
   display: inline-flex;
   width: 100%;
@@ -107,6 +111,13 @@
   letter-spacing: 2px;
 }
 
+.Drawer__buttonContainer {
+  width: 100%;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  text-align: right;
+}
+
 @media screen and (min-width: 1000px) {
   .Profil__main {
     max-width: 90%;
@@ -123,9 +134,4 @@
   .Profil__main {
     max-width: 70%;
   }
-}
-
-.Profil__drawerButton {
-  margin-top: 1.5em;
-  margin-bottom: .5em;
 }
