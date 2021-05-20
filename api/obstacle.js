@@ -72,10 +72,10 @@ router.post("/", async (req, res) => {
     return;
   }
   try {
-    const createQuery = `INSERT INTO obstacle (userid, desc, year, month, day) VALUES('${req.userId}', '${req.body.desc}', ${year}, ${month}, ${day});`;
+    const createQuery = `INSERT INTO obstacle (userid, type, "desc", year, month, day) VALUES('${req.userId}', '${req.body.desc}', '${req.body.desc}', ${year}, ${month}, ${day});`;
     await client.query(createQuery);
     res.status(200).json({
-      success: `User created.`,
+      success: `Obstacle added.`,
     });
   } catch (err) {
     res.status(400).json({
@@ -86,10 +86,16 @@ router.post("/", async (req, res) => {
 
 // DELETE obstacle from table
 router.delete("/:id", async (req, res) => {
+  if (!req.isAuth) {
+    res.status(401).json({
+      error: "Unauthorized",
+    });
+    return;
+  }
   try {
-    const deleteObstacle = `DELETE FROM obstacle WHERE id='${req.params.id}'`;
+    const deleteObstacle = `DELETE FROM obstacle WHERE id='${req.params.id}' AND userid='${req.userId}'`;
     await client.query(deleteObstacle);
-    res.status(201).json({ success: `Obastacle with id #${req.params.id} was deleted.` });
+    res.status(201).json({ success: `Obstacle with id #${req.params.id} was deleted.` });
   } catch (err) {
     res.status(400).json({
       error: `${err})`,
