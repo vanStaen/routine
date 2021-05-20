@@ -60,6 +60,29 @@ router.get("/:year/:month/:day", async (req, res) => {
   }
 });
 
+// POST obstacle (based on userId)
+router.post("/", async (req, res) => {
+  const year = moment().tz("Europe/Berlin").format("YYYY");
+  const month = moment().tz("Europe/Berlin").format("MM");
+  const day = moment().tz("Europe/Berlin").format("DD");
+  if (!req.isAuth) {
+    res.status(401).json({
+      error: "Unauthorized",
+    });
+    return;
+  }
+  try {
+    const createQuery = `INSERT INTO obstacle (userid, desc, year, month, day) VALUES('${req.userId}', '${req.body.desc}', ${year}, ${month}, ${day});`;
+    await client.query(createQuery);
+    res.status(200).json({
+      success: `User created.`,
+    });
+  } catch (err) {
+    res.status(400).json({
+      error: `${err}`,
+    });
+  }
+});
 
 // DELETE obstacle from table
 router.delete("/:id", async (req, res) => {
