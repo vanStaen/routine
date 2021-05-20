@@ -55,11 +55,12 @@ export const Profil = observer(() => {
     console.log(userStore.userActivities[0]);
   };
 
-  const adminActivities = userActivities.map((activity) => {
+  const adminActivities = userActivities.map((activity, index) => {
     return (
       <div
         className="Profil__activities"
         onClick={() => openDrawerHandler(activity)}
+        key={`admin_activities_${index}`}
       >
         <Logo image={activity.name} />
         {activity.name}
@@ -67,11 +68,12 @@ export const Profil = observer(() => {
     );
   });
 
-  const addActivities = newActivities.map((activity) => {
+  const addActivities = newActivities.map((activity, index) => {
     return (
       <div
         className="Profil__activities"
         onClick={() => openDrawerHandler(activity)}
+        key={`add_activities_${index}`}
       >
         <Logo image={activity.name} />
       </div>
