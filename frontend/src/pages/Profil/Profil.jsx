@@ -65,6 +65,7 @@ export const Profil = observer(() => {
       activityToUpdate[e.target.name] = e.target.value;
     }
     setUserActivities(allUserActivities);
+    console.log(userStore.userActivities);
     /*
     TODO: must be persisted in db
     */
