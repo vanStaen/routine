@@ -1,5 +1,6 @@
 [
   {
+    "id": "3b8d5626-6452-4968-9003-c9cdf50b5d31",
     "name": "bye",
     "icon": "bye",
     "unit": "Throw away",
@@ -11,6 +12,7 @@
     "sorting": 0
   },
   {
+    "id": "a20b36b3-8cfb-4aa6-a77a-20a99f40655a",
     "name": "french",
     "icon": "french",
     "unit": "xp",
@@ -22,6 +24,7 @@
     "sorting": 1
   },
   {
+    "id": "f24827d1-6718-40fd-a6e4-59eb90ec5e56",
     "name": "friends",
     "icon": "friends",
     "unit": "Socialize",
@@ -33,6 +36,7 @@
     "sorting": 2
   },
   {
+    "id": "1e5ba306-841a-4a39-8c3f-bff581d1b47b",
     "name": "yoga",
     "icon": "yoga",
     "unit": "min",
@@ -44,6 +48,7 @@
     "sorting": 3
   },
   {
+    "id": "c274f1d2-830a-49cb-b5a3-cb0b5c5a5c95",
     "name": "meditation",
     "icon": "meditation",
     "unit": "Meditate",
@@ -55,6 +60,7 @@
     "sorting": 4
   },
   {
+    "id": "f1e004c2-e24c-4b59-9f98-e268b7be71d7",
     "name": "piano",
     "icon": "piano",
     "unit": "Play",
@@ -66,6 +72,7 @@
     "sorting": 5
   },
   {
+    "id": "d25d8143-9205-467d-a350-5b2530a2241c",
     "name": "steps",
     "icon": "steps",
     "unit": "steps",

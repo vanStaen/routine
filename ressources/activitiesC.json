@@ -1,5 +1,6 @@
 [
   {
+    "id": "9a7ee7dd-321b-4a3d-a6af-a8bdacd5c30e",
     "name": "teeth",
     "icon": "teeth",
     "unit": "Clean",
@@ -11,6 +12,7 @@
     "sorting": 0
   },
   {
+    "id": "aa403e3c-705c-4a06-985a-d59addc3fe14",
     "name": "water",
     "icon": "water",
     "unit": "glass",
@@ -22,6 +24,7 @@
     "sorting": 1
   },
   {
+    "id": "ec26791f-ff97-44a1-b818-6421afacc5bc",
     "name": "stretch",
     "icon": "stretch",
     "unit": "min",
@@ -33,6 +36,7 @@
     "sorting": 2
   },
   {
+    "id": "bb5b0383-e4b1-4796-b58b-14cf1d670520",
     "name": "photo",
     "icon": "photo",
     "unit": "Shoot",
@@ -44,6 +48,7 @@
     "sorting": 3
   },
   {
+    "id": "332e9f76-58e8-49ee-aca0-cd23f94fa91d",
     "name": "javascript",
     "icon": "javascript",
     "unit": "Code",
@@ -55,6 +60,7 @@
     "sorting": 4
   },
   {
+    "id": "7bdb0861-251f-4112-b7cd-2c97ced9acb6",
     "name": "dutch",
     "icon": "dutch",
     "unit": "xp",
@@ -66,6 +72,7 @@
     "sorting": 5
   },
   {
+    "id": "0a5c9bfc-1ad4-4ab5-86ea-03623411ec3f",
     "name": "piano",
     "icon": "piano",
     "unit": "Play",
@@ -77,6 +84,7 @@
     "sorting": 6
   },
   {
+    "id": "a42f0ad4-0278-4129-9c48-d6cb44c39c71",
     "name": "guitar",
     "icon": "guitar",
     "unit": "Play",
@@ -88,6 +96,7 @@
     "sorting": 7
   },
   {
+    "id": "151ab520-4aab-459b-a2df-fcbd4540cd18",
     "name": "bass",
     "icon": "bass",
     "unit": "Play",
@@ -99,6 +108,7 @@
     "sorting": 8
   },
   {
+    "id": "a3e094a1-f2fe-4be2-80a1-49b25d78dfa9",
     "name": "pushups",
     "icon": "pushups",
     "unit": "x",
@@ -110,6 +120,7 @@
     "sorting": 9
   },
   {
+    "id": "ab5efd2e-7ffa-42c9-89fc-0562d4919563",
     "name": "pullups",
     "icon": "pullups",
     "unit": "x",
@@ -121,6 +132,7 @@
     "sorting": 10
   },
   {
+    "id": "e5b195ef-61de-43e4-802d-5877ca1fc773",
     "name": "situps",
     "icon": "situps",
     "unit": "x",
@@ -132,6 +144,7 @@
     "sorting": 11
   },
   {
+    "id": "b344fdc6-88b2-4357-a554-cd65a107f9b5",
     "name": "run",
     "icon": "run",
     "unit": "km",
@@ -143,6 +156,7 @@
     "sorting": 12
   },
   {
+    "id": "68ada771-7b1c-44c6-be80-7cfea086fb82",
     "name": "trumpet",
     "icon": "trumpet",
     "unit": "Play",
@@ -154,6 +168,7 @@
     "sorting": 13
   },
   {
+    "id": "a704cd34-0829-4812-b6ad-8fd618e29e9e",
     "name": "producing",
     "icon": "producing",
     "unit": "Techno",

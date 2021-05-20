@@ -124,3 +124,8 @@
     max-width: 70%;
   }
 }
+
+.Profil__drawerButton {
+  margin-top: 1.5em;
+  margin-bottom: .5em;
+}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { observer } from "mobx-react";
-import { Drawer } from "antd";
+import { Drawer, Button } from "antd";
 
 import { authStore } from "../../store/authStore";
 import { userStore } from "../../store/userStore";
@@ -9,6 +9,9 @@ import { Logo } from "../../component/Logo/Logo";
 import { getUser } from "./getUser";
 import { getActivityList } from "./getActivityList";
 import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
+import { SaveOutlined } from "@ant-design/icons";
+
+//import { uuid } from "../../helpers/uuid";
 
 import "./Profil.css";
 
@@ -51,8 +54,20 @@ export const Profil = observer(() => {
   const openDrawerHandler = (selected) => {
     setDrawerVisible(true);
     setSelected(selected);
-    console.log(selected);
-    console.log(userStore.userActivities[0]);
+  };
+
+  const updateActivityHandler = (e) => {
+    const allUserActivities = userStore.userActivities;
+    let activityToUpdate = allUserActivities.find(
+      (activity) => activity.id === selected.id
+    );
+    if (activityToUpdate) {
+      activityToUpdate[e.target.name] = e.target.value;
+    }
+    setUserActivities(allUserActivities);
+    /*
+    TODO: must be persisted in db
+    */
   };
 
   const adminActivities = userActivities.map((activity, index) => {
@@ -62,7 +77,7 @@ export const Profil = observer(() => {
         onClick={() => openDrawerHandler(activity)}
         key={`admin_activities_${index}`}
       >
-        <Logo image={activity.name} />
+        <Logo image={activity.icon} />
         {activity.name}
       </div>
     );
@@ -75,7 +90,7 @@ export const Profil = observer(() => {
         onClick={() => openDrawerHandler(activity)}
         key={`add_activities_${index}`}
       >
-        <Logo image={activity.name} />
+        <Logo image={activity.icon} />
       </div>
     );
   });
@@ -99,74 +114,105 @@ export const Profil = observer(() => {
         placement={"bottom"}
       >
         {selected !== null && (
-          <div className="Drawer__main">
-            <Logo image={selected.name} invert={false} big={true} />
-            <div className="Drawer__editableContainer">
-              <div className="Drawer__editable">
-                <span className="Drawer__editableTitle">Description</span>
-                <input
-                  className="Drawer__inputText"
-                  type="text"
-                  id="desc"
-                  name="desc"
-                  defaultValue={selected.desc}
-                  min="1"
-                />
-              </div>
-              <div className="Drawer__editable">
-                <span className="Drawer__editableTitle">Goal</span>
-                <input
-                  className="Drawer__inputNumber"
-                  type="number"
-                  id="goal"
-                  name="goal"
-                  defaultValue={selected.goal}
-                  min="1"
-                />
-              </div>
-              <div className="Drawer__editable">
-                <span className="Drawer__editableTitle">Increment</span>
-                <input
-                  className="Drawer__inputNumber"
-                  type="number"
-                  id="increment"
-                  name="increment"
-                  defaultValue={selected.increment}
-                  min="1"
-                />
-              </div>
-              <div className="Drawer__editable">
-                <span className="Drawer__editableTitle">Sorting</span>
-                <input
-                  className="Drawer__inputNumber"
-                  type="number"
-                  id="sorting"
-                  name="sorting"
-                  defaultValue={selected.sorting}
-                  min="1"
-                />
-              </div>
-              <div className="Drawer__editable">
-                <span className="Drawer__editableTitle">Unit</span>
-                <input
-                  className="Drawer__inputText"
-                  type="text"
-                  id="unit"
-                  name="unit"
-                  defaultValue={selected.unit}
-                  min="1"
-                />
-              </div>
-              <div className="Drawer__editable">
-                <span className="Drawer__editableTitle">Optional</span>
-                {selected.optional ? "Yes" : "No"}
-              </div>
-              <div className="Drawer__editable">
-                <span className="Drawer__editableTitle">Daily</span>
-                {selected.daily ? "Yes" : "No"}
+          <>
+            <div className="Drawer__main">
+              <Logo image={selected.icon} invert={false} big={true} />
+              <div className="Drawer__editableContainer">
+                <div className="Drawer__editable">
+                  <span className="Drawer__editableTitle">Name</span>
+                  <input
+                    className="Drawer__inputText"
+                    type="text"
+                    id="name"
+                    name="name"
+                    defaultValue={selected.name}
+                    min="1"
+                    onChange={updateActivityHandler}
+                  />
+                </div>
+                <div className="Drawer__editable">
+                  <span className="Drawer__editableTitle">Description</span>
+                  <input
+                    className="Drawer__inputText"
+                    type="text"
+                    id="desc"
+                    name="desc"
+                    defaultValue={selected.desc}
+                    min="1"
+                    onChange={updateActivityHandler}
+                  />
+                </div>
+                <div className="Drawer__editable">
+                  <span className="Drawer__editableTitle">Goal</span>
+                  <input
+                    className="Drawer__inputNumber"
+                    type="number"
+                    id="goal"
+                    name="goal"
+                    defaultValue={selected.goal}
+                    min="1"
+                    onChange={updateActivityHandler}
+                  />
+                </div>
+                <div className="Drawer__editable">
+                  <span className="Drawer__editableTitle">Increment</span>
+                  <input
+                    className="Drawer__inputNumber"
+                    type="number"
+                    id="increment"
+                    name="increment"
+                    defaultValue={selected.increment}
+                    min="1"
+                    onChange={updateActivityHandler}
+                  />
+                </div>
+                <div className="Drawer__editable">
+                  <span className="Drawer__editableTitle">Sorting</span>
+                  <input
+                    className="Drawer__inputNumber"
+                    type="number"
+                    id="sorting"
+                    name="sorting"
+                    defaultValue={selected.sorting}
+                    min="1"
+                    onChange={updateActivityHandler}
+                  />
+                </div>
+                <div className="Drawer__editable">
+                  <span className="Drawer__editableTitle">Unit</span>
+                  <input
+                    className="Drawer__inputText"
+                    type="text"
+                    id="unit"
+                    name="unit"
+                    defaultValue={selected.unit}
+                    min="1"
+                    onChange={updateActivityHandler}
+                  />
+                </div>
+                <div className="Drawer__editable">
+                  <span className="Drawer__editableTitle">Optional</span>
+                  {selected.optional ? "Yes" : "No"}
+                </div>
+                <div className="Drawer__editable">
+                  <span className="Drawer__editableTitle">Daily</span>
+                  {selected.daily ? "Yes" : "No"}
+                </div>
               </div>
             </div>
-          </div>
+            {/* 
+            <Button
+              className="Profil__drawerButton"
+              icon={<SaveOutlined />}
+              onClick={() => udpateActivityHandler(selected)}
+              type="primary"
+              block
+              danger={true}
+            >
+              Update
+            </Button>
+            */}
+          </>
         )}
       </Drawer>
       <div className="Profil__full">
