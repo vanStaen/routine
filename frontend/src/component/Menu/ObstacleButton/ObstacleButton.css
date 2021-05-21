@@ -4,34 +4,48 @@
     width: 1.7em;
     height: 1.65em;
     border: 1px solid rgba(40, 44, 52, .5);
-    color: rgba(255, 255, 255, .75);
+    color: rgba(255, 255, 255, .45);
     border-radius: 50px;
     margin-bottom: .5em;
     padding-right: .3em;
     z-index: 10;
-    opacity: .6;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, .25);
+    background-color: rgba(255, 255, 255, .15);
     transition: background-color .2s linear, width .2s linear, color .2s linear, opacity .2s linear, border .2s linear;
 }
 
-.ObstacleButton__float:hover {
-    opacity: 1;
+.ObstacleButton__close:hover {
+    border: 1px solid rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, .75);
+    background-color: rgba(255, 255, 255, .25);
 }
 
 .ObstacleButton__open {
-    width: 5em;
+    width: 5.3em;
     border: 1px solid rgba(110, 15, 28, .2);
 }
 
 .ObstacleButton__element {
     display: inline-block;
     position: relative;
-    top: -.05em;
-    left: -.05em;
+    top: -.12em;
+    left: -.25em;
     padding: 0 0.25em 0 0.2em;
 }
 
-.ObstacleButton__element:hover {
-    filter: sepia(1);
+.ObstacleButton__elementGray {
+    filter: grayscale(1);
+}
+
+.ObstacleButton__elementGray:hover {
+    filter: grayscale(0);
+}
+
+.ObstacleButton__separator {
+    display: inline-block;
+    position: relative;
+    top: -.05em;
+    left: -.1em;
+    font-size: 1em;
+    color: rgba(255, 255, 255, .15);
 }

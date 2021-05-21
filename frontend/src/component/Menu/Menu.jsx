@@ -19,8 +19,8 @@ export const Menu = (props) => {
       <CloseButton />
       <ProfilButton />
       <StatsButton />
-      <SporadicButton />
       <ObstacleButton />
+      <SporadicButton />
     </div>
   );
 };

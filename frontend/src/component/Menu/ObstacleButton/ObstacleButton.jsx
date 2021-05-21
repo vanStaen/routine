@@ -3,10 +3,23 @@ import { ExclamationOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 
 import './ObstacleButton.css'
+import travelLogo from './travel.png';
+import sickLogo from './sick.png';
 
 export const ObstacleButton = () => {
     const [showObstacle, setShowObstacle] = useState(true);
-    const [tooltipTitle, setTooltipTitle] = useState("Any obstacle?");
+    const [travel, setTravel] = useState(false);
+    const [sick, setSick] = useState(false);
+    const [tooltipTitle, setTooltipTitle] = useState("Save your streak?");
+
+    const obstacleHandler = (type) => {
+        if (type === "travel") {
+            setTravel(!travel);
+        } else if (type === "sick") {
+            setSick(!sick);
+
+        }
+    }
 
     useEffect(() => {
         showObstacle
@@ -22,28 +35,35 @@ export const ObstacleButton = () => {
 
     return (
         <Tooltip placement="left" title={tooltipTitle}>
-            <div className={showObstacle ? "ObstacleButton__open ObstacleButton__float" : "ObstacleButton__float"}>
+            <div className={showObstacle ? "ObstacleButton__open ObstacleButton__float" : "ObstacleButton__close ObstacleButton__float"}>
                 <div id="ObstacleButton__actionContainer">
-                    <div className="ObstacleButton__element" onMouseOver={() => { setTooltipTitle('Traveling?') }}>
+                    <div
+                        className={`ObstacleButton__element ${!travel && "ObstacleButton__elementGray"}`}
+                        onMouseOver={() => { setTooltipTitle('Out of town?') }}
+                        onClick={() => { obstacleHandler("travel") }}>
                         <img
-                            src={process.env.REACT_APP_API_URL + `/images/airplane.svg`}
-                            alt='airplane'
-                            width='25px'
+                            src={travelLogo}
+                            alt='travel'
+                            width='20em'
 
                         />
                     </div>
-                    <div className="ObstacleButton__element" onMouseOver={() => { setTooltipTitle('Sick?') }}>
+                    <div
+                        className={`ObstacleButton__element ${!sick && "ObstacleButton__elementGray"}`}
+                        onMouseOver={() => { setTooltipTitle('Not feeling well?') }}
+                        onClick={() => { obstacleHandler("sick") }}>
                         <img
-                            src={process.env.REACT_APP_API_URL + `/images/virus.svg`}
-                            alt='virus'
-                            width='22px'
+                            src={sickLogo}
+                            alt='sick'
+                            width='20em'
                         />
                     </div>
+                    <div className="ObstacleButton__separator">|</div>
                 </div>
                 <ExclamationOutlined
                     className="FloatButton__icon"
                     onClick={() => { setShowObstacle(!showObstacle) }}
-                    onMouseOver={() => { setTooltipTitle('Any obstacle?') }}
+                    onMouseOver={() => { setTooltipTitle('Save your streak?') }}
                 />
             </div>
         </Tooltip>
