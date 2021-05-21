@@ -37,7 +37,6 @@
 
 .FloatButton__icon {
 	position: relative;
-	font-size: .9em;
 	filter: grayscale(100%);
 }
 
