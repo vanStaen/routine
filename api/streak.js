@@ -141,7 +141,7 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
     const yesterdayObstacle = await client.query(
       `SELECT * FROM obstacle WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]} AND userid='${userid}'`
     );
-    const ignoreYesterday = yesterdayObstacle.rows.length > 1 ? true : false;
+    const ignoreYesterday = yesterdayObstacle.rows.length > 0 ? true : false;
 
     if (yesterdayStreak.rows.length === 0) {
       await client.query(
