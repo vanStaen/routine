@@ -58,11 +58,11 @@
 
 .ObstacleButton__snowflakeContainer {
     position: absolute;
-    right: 10px;
+    right: .5em;
 }
 
 .ObstacleButton__snowflake {
     position: absolute;
-    top: 1px;
+    top: -.05em;
     height: .5em;
 }
