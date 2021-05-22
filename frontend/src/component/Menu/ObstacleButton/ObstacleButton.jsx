@@ -7,7 +7,7 @@ import travelLogo from './travel.png';
 import sickLogo from './sick.png';
 
 export const ObstacleButton = () => {
-    const [showObstacle, setShowObstacle] = useState(true);
+    const [showObstacle, setShowObstacle] = useState(false);
     const [travel, setTravel] = useState(false);
     const [sick, setSick] = useState(false);
     const [tooltipTitle, setTooltipTitle] = useState("Save your streak?");
