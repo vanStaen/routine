@@ -5,12 +5,14 @@ import { Tooltip } from "antd";
 import './ObstacleButton.css'
 import travelLogo from './travel.png';
 import sickLogo from './sick.png';
+import Snowflake from '../../Activity/snowflake.png'
+
 
 export const ObstacleButton = () => {
     const [showObstacle, setShowObstacle] = useState(false);
     const [travel, setTravel] = useState(false);
     const [sick, setSick] = useState(false);
-    const [tooltipTitle, setTooltipTitle] = useState("Save your streak?");
+    const [tooltipTitle, setTooltipTitle] = useState("Freeze your streak?");
 
     const obstacleHandler = (type) => {
         if (type === "travel") {
@@ -36,6 +38,14 @@ export const ObstacleButton = () => {
     return (
         <Tooltip placement="left" title={tooltipTitle}>
             <div className={showObstacle ? "ObstacleButton__open ObstacleButton__float" : "ObstacleButton__close ObstacleButton__float"}>
+                {(travel || sick) && <div className="ObstacleButton__snowflakeContainer">
+                    <img
+                        src={Snowflake}
+                        alt='travel'
+                        className='ObstacleButton__snowflake'
+                    />
+                </div>
+                }
                 <div id="ObstacleButton__actionContainer">
                     <div
                         className={`ObstacleButton__element ${!travel && "ObstacleButton__elementGray"}`}
@@ -44,7 +54,7 @@ export const ObstacleButton = () => {
                         <img
                             src={travelLogo}
                             alt='travel'
-                            width='20em'
+                            className='ObstacleButton__logo'
 
                         />
                     </div>
@@ -55,7 +65,7 @@ export const ObstacleButton = () => {
                         <img
                             src={sickLogo}
                             alt='sick'
-                            width='20em'
+                            className='ObstacleButton__logo'
                         />
                     </div>
                     <div className="ObstacleButton__separator">|</div>
@@ -63,7 +73,7 @@ export const ObstacleButton = () => {
                 <ExclamationOutlined
                     className="FloatButton__icon"
                     onClick={() => { setShowObstacle(!showObstacle) }}
-                    onMouseOver={() => { setTooltipTitle('Save your streak?') }}
+                    onMouseOver={() => { setTooltipTitle('Freeze your streak?') }}
                 />
             </div>
         </Tooltip>
