@@ -22,6 +22,8 @@
 
 .ObstacleButton__open {
     width: 5.3em;
+    background-color: rgba(255, 255, 255, .9);
+    color: rgba(0, 0, 0, .5);
     border: 1px solid rgba(110, 15, 28, .2);
 }
 
@@ -47,5 +49,5 @@
     top: -.05em;
     left: -.1em;
     font-size: 1em;
-    color: rgba(255, 255, 255, .15);
+    color: rgba(0, 0, 0, .25);
 }
