@@ -88,16 +88,12 @@ export const Streak = observer((props) => {
   };
 
   const StreakWasFrozen = () => {
-    console.log(streak[activity]);
-    console.log(streakOfYesterday[activity]);
     if (streak[activity] === streakOfYesterday[activity]) {
       return true;
     } else {
       return false;
     }
   }
-
-
 
   return isLoading ? (
     <div className="Streak__Float">?</div>

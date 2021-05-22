@@ -29,10 +29,10 @@ router.get("/", async (req, res) => {
     return;
   }
   try {
-    const streak = await client.query(
+    const obstacle = await client.query(
       `SELECT * FROM obstacle WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
     );
-    res.status(200).json(streak.rows);
+    res.status(200).json(obstacle.rows);
   } catch (err) {
     res.status(400).json({
       error: `${err})`,
@@ -49,10 +49,10 @@ router.get("/:year/:month/:day", async (req, res) => {
     return;
   }
   try {
-    const streak = await client.query(
+    const obstacle = await client.query(
       `SELECT * FROM obstacle WHERE year=${req.params.year} AND month=${req.params.month} AND day=${req.params.day} AND userid='${req.userId}'`
     );
-    res.status(200).json(streak.rows);
+    res.status(200).json(obstacle.rows);
   } catch (err) {
     res.status(400).json({
       error: `${err})`,

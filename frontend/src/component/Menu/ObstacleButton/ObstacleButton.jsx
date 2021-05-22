@@ -1,25 +1,57 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ExclamationOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 
-import './ObstacleButton.css'
 import travelLogo from './travel.png';
 import sickLogo from './sick.png';
-import Snowflake from '../../Activity/snowflake.png'
+import Snowflake from '../../Activity/snowflake.png';
+import { postObstacle } from './postObstacle';
+import { deleteObstacle } from './deleteObstacle';
+import { getObstacle } from './getObstacle';
 
+import './ObstacleButton.css';
 
 export const ObstacleButton = () => {
     const [showObstacle, setShowObstacle] = useState(false);
-    const [travel, setTravel] = useState(false);
-    const [sick, setSick] = useState(false);
+    const [travel, setTravel] = useState(0);
+    const [sick, setSick] = useState(0);
     const [tooltipTitle, setTooltipTitle] = useState("Freeze your streak?");
 
-    const obstacleHandler = (type) => {
+    const obstacleHandler = async (type) => {
         if (type === "travel") {
-            setTravel(!travel);
+            if (travel) {
+                try {
+                    deleteObstacle(travel);
+                    setTravel(0);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            else {
+                try {
+                    await postObstacle('travel', 'travel');
+                    await fetchObstacle();
+                } catch (err) {
+                    console.log(err);
+                }
+            }
         } else if (type === "sick") {
-            setSick(!sick);
-
+            if (sick) {
+                try {
+                    deleteObstacle(sick)
+                    setSick(0);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            else {
+                try {
+                    await postObstacle('sick', 'sick');
+                    await fetchObstacle();
+                } catch (err) {
+                    console.log(err);
+                }
+            }
         }
     }
 
@@ -35,10 +67,28 @@ export const ObstacleButton = () => {
             ).style.display = "none");
     }, [showObstacle]);
 
+    const fetchObstacle = useCallback(async () => {
+        const getObs = await getObstacle();
+        if (getObs.data !== undefined) {
+            const foundTravel = await getObs.data.find(obs => obs.type === "travel");
+            if (foundTravel) {
+                setTravel(foundTravel.id);
+            }
+            const foundSick = await getObs.data.find(obs => obs.type === "sick");
+            if (foundSick) {
+                setSick(foundSick.id);
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchObstacle()
+    }, [fetchObstacle])
+
     return (
         <Tooltip placement="left" title={tooltipTitle}>
             <div className={showObstacle ? "ObstacleButton__open ObstacleButton__float" : "ObstacleButton__close ObstacleButton__float"}>
-                {(travel || sick) && <div className="ObstacleButton__snowflakeContainer">
+                {(!!travel || !!sick) && <div className="ObstacleButton__snowflakeContainer">
                     <img
                         src={Snowflake}
                         alt='travel'

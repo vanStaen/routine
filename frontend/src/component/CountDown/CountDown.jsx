@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import 'moment-timezone';
 import getTomorrowDate from "../../helpers/getTomorrowDate";
+import moment from 'moment-timezone';
 
 import "./CountDown.css";
-
-const moment = require('moment-timezone');
 
 const year = moment().tz("Europe/Berlin").format('YYYY');
 const month = moment().tz("Europe/Berlin").format('MM');
