@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { observer } from "mobx-react";
 
 import { getStreak } from "./getStreak";
 import { streakStore } from "../../store/streakStore";
+import getYesterdayDate from "../../helpers/getYesterdayDate";
 import "./Streak.css";
 
 const today = new Date();
@@ -10,6 +11,7 @@ const day = today.getDate();
 
 export const Streak = observer((props) => {
   const [streak, setStreak] = useState(streakStore.dailyStreaks);
+  const [streakOfYesterday, setStreakOfYesterday] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const activity = props.activity.name;
 
@@ -20,34 +22,38 @@ export const Streak = observer((props) => {
     float = props.float;
   }
 
-  const fetchStreak = async (storeStreak) => {
+  const fetchStreak = useCallback(async () => {
     try {
-      const fetchedStreak = await getStreak(
-        props.daily.year,
-        props.daily.month,
-        props.daily.day
-      );
-      if (storeStreak) {
-        streakStore.setToday(day);
-        streakStore.setDailyStreaks(fetchedStreak);
+      if (props.daily.day === streakStore.today) {
+        setStreak(streakStore.dailyStreaks);
+      } else {
+        const fetchedStreak = await getStreak(
+          props.daily.year,
+          props.daily.month,
+          props.daily.day
+        );
+        if (streak === null && day === props.daily.day) {
+          streakStore.setToday(day);
+          streakStore.setDailyStreaks(fetchedStreak);
+        }
+        setStreak(fetchedStreak);
       }
-      setStreak(fetchedStreak);
+      const yesterdayArray = getYesterdayDate(props.daily.year, props.daily.month, props.daily.day);
+      const fetchedStreakOfYesterday = await getStreak(
+        yesterdayArray[0],
+        yesterdayArray[1],
+        yesterdayArray[2],
+      );
+      setStreakOfYesterday(fetchedStreakOfYesterday);
       setIsLoading(false);
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }, [props.daily.year, props.daily.month, props.daily.day, streak]);
 
   useEffect(() => {
-    if (streak === null && day === props.daily.day) {
-      fetchStreak(true);
-    } else if (props.daily.day === streakStore.today) {
-      setStreak(streakStore.dailyStreaks);
-      setIsLoading(false);
-    } else {
-      fetchStreak(false);
-    }
-  }, []);
+    fetchStreak();
+  }, [fetchStreak]);
 
   const backGroundColor = (value) => {
     if (value < 2) {
@@ -81,20 +87,30 @@ export const Streak = observer((props) => {
     }
   };
 
+  const StreakWasFrozen = () => {
+    console.log(streak[activity]);
+    console.log(streakOfYesterday[activity]);
+    if (streak[activity] === streakOfYesterday[activity]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+
   return isLoading ? (
     <div className="Streak__Float">?</div>
   ) : streak[activity] ? (
     <div
       className={float ? "Streak__Float" : "Streak__Round"}
       style={{
-        backgroundColor: `rgba(214, 137, 16, ${backGroundColor(
-          streak[activity]
-        )})`,
+        backgroundColor: StreakWasFrozen() ? `rgba(3, 119, 156, ${backGroundColor(streak[activity])})` : `rgba(214, 137, 16, ${backGroundColor(streak[activity])})`,
       }}
     >
       {streak[activity] > 999 ? "999+" : streak[activity]}
     </div>
   ) : (
-    <></>
-  );
+        <></>
+      );
 });
