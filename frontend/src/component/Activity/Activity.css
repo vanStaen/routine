@@ -31,6 +31,13 @@
   font-size: 2.6em;
 }
 
+.Activity__freeze {
+  position: relative;
+  top: -20px;
+  font-size: 2.6em;
+  opacity: .25;
+}
+
 .Dailies__full:nth-child(even) .Activity__actionContainerHover:hover {
   background-color: rgba(67, 70, 77, 0.75);
 }
