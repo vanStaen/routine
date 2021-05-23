@@ -282,7 +282,7 @@ export const Activity = (props) => {
                   <img
                     src={Snowflake}
                     alt='travel'
-                    width='52em'
+                    width='22em'
                   />
                 </div>
               </div>
