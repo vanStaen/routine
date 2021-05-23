@@ -3,12 +3,16 @@ import { observer } from "mobx-react";
 
 import { getStreak } from "./getStreak";
 import { streakStore } from "../../store/streakStore";
+import getYesterdayDate from "../../helpers/getYesterdayDate";
 import "./Streak.css";
 
 export const Streak = observer((props) => {
-  const [streak, setStreak] = useState(streakStore.dailyStreaks);
   const [isLoading, setIsLoading] = useState(true);
   const activity = props.activity.name;
+  const dayFromToday = props.dayFromToday;
+  const year = props.daily.year;
+  const month = props.daily.month;
+  const day = props.daily.day;
 
   let float;
   if (props.float === undefined) {
@@ -17,32 +21,36 @@ export const Streak = observer((props) => {
     float = props.float;
   }
 
-  const fetchStreak = useCallback(async (dayFromToday) => {
-    // check if is in store already
-    const indexStoredStreak = streakStore.dailyStreaks.findIndex((daily) => daily.dayFromToday === dayFromToday);
-    if (indexStoredStreak < 0) {
+  const fetchStreak = useCallback(async () => {
+    // check if today is in store already
+    const indexStoredStreakToday = streakStore.dailyStreaks.findIndex((daily) => daily.dayFromToday === dayFromToday);
+    if (indexStoredStreakToday < 0) {
       // if not, fetch and store
       try {
-        const fetchedStreak = await getStreak(
-          props.daily.year,
-          props.daily.month,
-          props.daily.day,
-          dayFromToday,
-        );
-        setStreak(fetchedStreak);
+        const fetchedStreak = await getStreak(year, month, day);
+        streakStore.setDailyStreaks(fetchedStreak, dayFromToday);
       } catch (error) {
         console.log(error.message);
       }
-    } else {
-      setStreak(streakStore.dailyStreaks[indexStoredStreak]);
+    }
+    // check if yesterday is in store already
+    const indexStoredStreakYesterday = streakStore.dailyStreaks.findIndex((daily) => daily.dayFromToday === (dayFromToday + 1));
+    if (indexStoredStreakYesterday < 0) {
+      // if not, fetch and store
+      try {
+        const dateYesterday = getYesterdayDate(year, month, day);
+        const fetchedStreak = await getStreak(dateYesterday[0], dateYesterday[1], dateYesterday[2]);
+        streakStore.setDailyStreaks(fetchedStreak, dayFromToday + 1);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
     setIsLoading(false);
-  }, [props.daily.year, props.daily.month, props.daily.day]);
+  }, [year, month, day, dayFromToday]);
 
   useEffect(() => {
-    fetchStreak(props.dayFromToday);
-    fetchStreak(props.dayFromToday + 1);
-  }, [fetchStreak, props.dayFromToday]);
+    fetchStreak();
+  }, [fetchStreak]);
 
   const backGroundColor = (value) => {
     if (value < 2) {
@@ -76,31 +84,24 @@ export const Streak = observer((props) => {
     }
   };
 
-  const StreakWasFrozen = (dayFromToday) => {
-    try {
-      if (streakStore.dailyStreaks[dayFromToday][activity] === streakStore.dailyStreaks[dayFromToday + 1][activity]) {
-        console.log(streakStore.dailyStreaks[dayFromToday][activity]);
-        console.log(streakStore.dailyStreaks[dayFromToday + 1][activity]);
-        return true;
-      } else {
-        return false;
-      }
-    } catch (err) {
-      console.error(err);
+  const StreakWasFrozen = () => {
+    if (streakStore.dailyStreaks[dayFromToday][activity] === streakStore.dailyStreaks[dayFromToday + 1][activity]) {
+      return true;
+    } else {
       return false;
     }
   }
 
   return isLoading ? (
     <div className="Streak__Float">?</div>
-  ) : streak[activity] ? (
+  ) : streakStore.dailyStreaks[dayFromToday][activity] ? (
     <div
       className={float ? "Streak__Float" : "Streak__Round"}
       style={{
-        backgroundColor: StreakWasFrozen(props.dayFromToday) ? `rgba(3, 119, 156, ${backGroundColor(streak[activity])})` : `rgba(214, 137, 16, ${backGroundColor(streak[activity])})`,
+        backgroundColor: StreakWasFrozen(dayFromToday) ? `rgba(3, 119, 156, ${backGroundColor(streakStore.dailyStreaks[dayFromToday][activity])})` : `rgba(214, 137, 16, ${backGroundColor(streakStore.dailyStreaks[dayFromToday][activity])})`,
       }}
     >
-      {streak[activity] > 999 ? "999+" : streak[activity]}
+      {streakStore.dailyStreaks[dayFromToday][activity] > 999 ? "999+" : streakStore.dailyStreaks[dayFromToday][activity]}
     </div>
   ) : (
         <></>
