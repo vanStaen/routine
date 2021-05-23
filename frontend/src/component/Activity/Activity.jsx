@@ -136,6 +136,7 @@ export const Activity = (props) => {
             <Streak
               activity={props.activity}
               daily={props.dailies}
+              dayFromToday={dayFromToday}
               float={false}
             />
           </>
@@ -201,7 +202,10 @@ export const Activity = (props) => {
             title={
               <>
                 {props.activity.desc}{" "}
-                <Streak activity={props.activity} daily={props.dailies} />
+                <Streak
+                  activity={props.activity}
+                  daily={props.dailies}
+                  dayFromToday={dayFromToday} />
               </>
             }
           >
