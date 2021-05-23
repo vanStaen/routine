@@ -177,228 +177,160 @@ export const Activity = (props) => {
   };
 
   return (
-    isLoading ? <div>Loading</div> :
-      <>
-        <Drawer
-          title={
-            <>
-              <span className="Drawer__title">
-                {capitalizeFirstLetter(props.activity.name)}
-              </span>
-              {props.activity.desc}
-              <Streak
-                activity={props.activity}
-                daily={props.dailies}
-                dayFromToday={dayFromToday}
-                float={false}
-              />
-            </>
-          }
-          closable={true}
-          visible={drawerVisible}
-          onClose={() => setDrawerVisible(false)}
-          placement={"bottom"}
-        >
-          {goal > 1 ? (
-            <div className="Activity__fullDrawerButton">
-              <div
-                className="Activity__drawerButton Activity__drawerActionButton"
-                style={{ fontSize: "5em" }}
-                id={activity + dayFromToday + "_minus"}
-                onClick={handleMinusClick}
-              >
-                <MinusOutlined />
-              </div>
-
-              <div className="Activity__drawerButton" style={{ fontSize: "2em" }}>
-                {updateLoading ? (
-                  <SyncOutlined spin style={{ color: "#999" }} />
-                ) : (
-                    <span className={count < goal ? "" : "gold"}>{count}</span>
-                  )}
-                <span className="transparentWhite">&nbsp;/ {goal}</span>
-              </div>
-              <div
-                className="Activity__drawerButton Activity__drawerActionButton"
-                style={{ fontSize: "5em" }}
-                id={activity + dayFromToday + "_plus"}
-                onClick={handlePlusClick}
-              >
-                <PlusOutlined />
-              </div>
-            </div>
-          ) : !done ? (
+    <>
+      <Drawer
+        title={
+          <>
+            <span className="Drawer__title">
+              {capitalizeFirstLetter(props.activity.name)}
+            </span>
+            {props.activity.desc}
+            <Streak
+              activity={props.activity}
+              daily={props.dailies}
+              dayFromToday={dayFromToday}
+              float={false}
+            />
+          </>
+        }
+        closable={true}
+        visible={drawerVisible}
+        onClose={() => setDrawerVisible(false)}
+        placement={"bottom"}
+      >
+        {goal > 1 ? (
+          <div className="Activity__fullDrawerButton">
             <div
-              className="Activity__fullDrawerButton Activity__drawerActionButton"
-              style={{ fontSize: "7em" }}
-              id={activity + dayFromToday + "_check"}
+              className="Activity__drawerButton Activity__drawerActionButton"
+              style={{ fontSize: "5em" }}
+              id={activity + dayFromToday + "_minus"}
+              onClick={handleMinusClick}
+            >
+              <MinusOutlined />
+            </div>
+
+            <div className="Activity__drawerButton" style={{ fontSize: "2em" }}>
+              {updateLoading ? (
+                <SyncOutlined spin style={{ color: "#999" }} />
+              ) : (
+                  <span className={count < goal ? "" : "gold"}>{count}</span>
+                )}
+              <span className="transparentWhite">&nbsp;/ {goal}</span>
+            </div>
+            <div
+              className="Activity__drawerButton Activity__drawerActionButton"
+              style={{ fontSize: "5em" }}
+              id={activity + dayFromToday + "_plus"}
               onClick={handlePlusClick}
             >
-              <CheckOutlined />
+              <PlusOutlined />
             </div>
-          ) : (
-                <div
-                  className="Activity__fullDrawerButton Activity__drawerActionButton"
-                  style={{ fontSize: "7em" }}
-                  id={activity + dayFromToday + "_check"}
-                  onClick={handleMinusClick}
-                >
-                  <CloseOutlined />
-                </div>
-              )}
-        </Drawer>
-        <ConditionalWrapper
-          condition={!smallDevice}
-          wrap={(children) => (
-            <Tooltip
-              placement="top"
-              title={
-                <>
-                  {props.activity.desc}{" "}
-                  <Streak
-                    activity={props.activity}
-                    daily={props.dailies}
-                    dayFromToday={dayFromToday} />
-                </>
-              }
-            >
-              {children}
-            </Tooltip>
+          </div>
+        ) : !done ? (
+          <div
+            className="Activity__fullDrawerButton Activity__drawerActionButton"
+            style={{ fontSize: "7em" }}
+            id={activity + dayFromToday + "_check"}
+            onClick={handlePlusClick}
+          >
+            <CheckOutlined />
+          </div>
+        ) : (
+              <div
+                className="Activity__fullDrawerButton Activity__drawerActionButton"
+                style={{ fontSize: "7em" }}
+                id={activity + dayFromToday + "_check"}
+                onClick={handleMinusClick}
+              >
+                <CloseOutlined />
+              </div>
+            )}
+      </Drawer>
+      <ConditionalWrapper
+        condition={!smallDevice}
+        wrap={(children) => (
+          <Tooltip
+            placement="top"
+            title={
+              <>
+                {props.activity.desc}{" "}
+                <Streak
+                  activity={props.activity}
+                  daily={props.dailies}
+                  dayFromToday={dayFromToday} />
+              </>
+            }
+          >
+            {children}
+          </Tooltip>
+        )}
+      >
+        <div className="Activity__item">
+          {optional && !done && <div className="Activity__optional" />}
+          {done && (
+            <div className="Activity__doneContainer">
+              <div className="Activity__done">
+                <CheckOutlined />
+              </div>
+            </div>
           )}
-        >
-          <div className="Activity__item">
-            {optional && !done && <div className="Activity__optional" />}
-            {done && (
+          {!isLoading &&
+            wasCountedAsDone() && !done &&
+            (
               <div className="Activity__doneContainer">
-                <div className="Activity__done">
-                  <CheckOutlined />
+                <div className="Activity__freeze">
+                  <img
+                    src={Snowflake}
+                    alt='travel'
+                    width='52em'
+                  />
                 </div>
               </div>
             )}
-            {wasCountedAsDone() && !done &&
-              (
-                <div className="Activity__doneContainer">
-                  <div className="Activity__freeze">
-                    <img
-                      src={Snowflake}
-                      alt='travel'
-                      width='52em'
-                    />
-                  </div>
-                </div>
-              )}
-            {smallDevice ? (
-              dayFromToday === 0 ? (
-                <div
-                  className={`Activity__actionContainer`}
-                  onClick={() => setDrawerVisible(true)}
-                ></div>
-              ) : (
-                  dayFromToday === 1 && (
-                    <Popconfirm
-                      title={
-                        <>
-                          Update this task from{" "}
-                          <b>
-                            <u>yesterday</u>
-                          </b>
-                      ?
-                        </>
-                      }
-                      placement="bottom"
-                      onConfirm={() => setDrawerVisible(true)}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <div className={`Activity__actionContainer`}></div>
-                    </Popconfirm>
-                  )
-                )
+          {smallDevice ? (
+            dayFromToday === 0 ? (
+              <div
+                className={`Activity__actionContainer`}
+                onClick={() => setDrawerVisible(true)}
+              ></div>
             ) : (
-                <div
-                  className={`Activity__actionContainer ${goal === 0 ? "" : "Activity__actionContainerHover"
-                    }`}
-                  onMouseOver={handleMouseOver}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  {goal > 1 ? (
-                    <>
+                dayFromToday === 1 && (
+                  <Popconfirm
+                    title={
                       <>
-                        {dayFromToday === 0 ? (
-                          <div
-                            className="Activity__action"
-                            id={activity + dayFromToday + "_minus"}
-                            onClick={handleMinusClick}
-                          >
-                            <MinusOutlined />
-                          </div>
-                        ) : (
-                            <Popconfirm
-                              title={
-                                <>
-                                  Update this task from{" "}
-                                  <b>
-                                    <u>yesterday</u>
-                                  </b>
-                            ?
-                                </>
-                              }
-                              placement="bottom"
-                              onConfirm={handleMinusClick}
-                              okText="Yes"
-                              cancelText="No"
-                            >
-                              <div
-                                className="Activity__action"
-                                id={activity + dayFromToday + "_minus"}
-                              >
-                                <MinusOutlined />
-                              </div>
-                            </Popconfirm>
-                          )}
-                        {dayFromToday === 0 ? (
-                          <div
-                            className="Activity__action"
-                            id={activity + dayFromToday + "_plus"}
-                            onClick={handlePlusClick}
-                          >
-                            <PlusOutlined />
-                          </div>
-                        ) : (
-                            <Popconfirm
-                              title={
-                                <>
-                                  Update this task from{" "}
-                                  <b>
-                                    <u>yesterday</u>
-                                  </b>
-                            ?
-                                </>
-                              }
-                              placement="bottom"
-                              onConfirm={() => handlePlusClick(true)}
-                              okText="Yes"
-                              cancelText="No"
-                            >
-                              <div
-                                className="Activity__action"
-                                id={activity + dayFromToday + "_plus"}
-                              >
-                                <PlusOutlined />
-                              </div>
-                            </Popconfirm>
-                          )}
+                        Update this task from{" "}
+                        <b>
+                          <u>yesterday</u>
+                        </b>
+                      ?
                       </>
-                    </>
-                  ) : !done ? (
+                    }
+                    placement="bottom"
+                    onConfirm={() => setDrawerVisible(true)}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <div className={`Activity__actionContainer`}></div>
+                  </Popconfirm>
+                )
+              )
+          ) : (
+              <div
+                className={`Activity__actionContainer ${goal === 0 ? "" : "Activity__actionContainerHover"
+                  }`}
+                onMouseOver={handleMouseOver}
+                onMouseLeave={handleMouseLeave}
+              >
+                {goal > 1 ? (
+                  <>
                     <>
                       {dayFromToday === 0 ? (
                         <div
                           className="Activity__action"
-                          id={activity + dayFromToday + "_check"}
-                          onClick={handlePlusClick}
+                          id={activity + dayFromToday + "_minus"}
+                          onClick={handleMinusClick}
                         >
-                          <CheckOutlined />
+                          <MinusOutlined />
                         </div>
                       ) : (
                           <Popconfirm
@@ -408,7 +340,39 @@ export const Activity = (props) => {
                                 <b>
                                   <u>yesterday</u>
                                 </b>
-                          ?
+                            ?
+                              </>
+                            }
+                            placement="bottom"
+                            onConfirm={handleMinusClick}
+                            okText="Yes"
+                            cancelText="No"
+                          >
+                            <div
+                              className="Activity__action"
+                              id={activity + dayFromToday + "_minus"}
+                            >
+                              <MinusOutlined />
+                            </div>
+                          </Popconfirm>
+                        )}
+                      {dayFromToday === 0 ? (
+                        <div
+                          className="Activity__action"
+                          id={activity + dayFromToday + "_plus"}
+                          onClick={handlePlusClick}
+                        >
+                          <PlusOutlined />
+                        </div>
+                      ) : (
+                          <Popconfirm
+                            title={
+                              <>
+                                Update this task from{" "}
+                                <b>
+                                  <u>yesterday</u>
+                                </b>
+                            ?
                               </>
                             }
                             placement="bottom"
@@ -418,82 +382,118 @@ export const Activity = (props) => {
                           >
                             <div
                               className="Activity__action"
-                              id={activity + dayFromToday + "_check"}
+                              id={activity + dayFromToday + "_plus"}
                             >
-                              <CheckOutlined />
+                              <PlusOutlined />
                             </div>
                           </Popconfirm>
                         )}
                     </>
-                  ) : (
-                        <>
-                          {dayFromToday === 0 ? (
-                            <div
-                              className="Activity__action"
-                              id={activity + dayFromToday + "_check"}
-                              onClick={handleMinusClick}
-                            >
-                              <CloseOutlined />
-                            </div>
-                          ) : (
-                              <Popconfirm
-                                title={
-                                  <>
-                                    Update this task from{" "}
-                                    <b>
-                                      <u>yesterday</u>
-                                    </b>
+                  </>
+                ) : !done ? (
+                  <>
+                    {dayFromToday === 0 ? (
+                      <div
+                        className="Activity__action"
+                        id={activity + dayFromToday + "_check"}
+                        onClick={handlePlusClick}
+                      >
+                        <CheckOutlined />
+                      </div>
+                    ) : (
+                        <Popconfirm
+                          title={
+                            <>
+                              Update this task from{" "}
+                              <b>
+                                <u>yesterday</u>
+                              </b>
                           ?
-                                  </>
-                                }
-                                placement="bottom"
-                                onConfirm={handleMinusClick}
-                                okText="Yes"
-                                cancelText="No"
-                              >
-                                <div
-                                  className="Activity__action"
-                                  id={activity + dayFromToday + "_check"}
-                                >
-                                  <CloseOutlined />
-                                </div>
-                              </Popconfirm>
-                            )}
-                        </>
+                            </>
+                          }
+                          placement="bottom"
+                          onConfirm={() => handlePlusClick(true)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                          <div
+                            className="Activity__action"
+                            id={activity + dayFromToday + "_check"}
+                          >
+                            <CheckOutlined />
+                          </div>
+                        </Popconfirm>
                       )}
-                </div>
-              )}
-
-            <Logo image={props.activity.icon} />
-
-            <div className={`Activity__text`}>
-              {updateLoadingError ? (
-                <CloseOutlined style={{ color: "#C70039" }} />
-              ) : updateLoading ? (
-                <>
-                  {goal > 1 ? (
-                    <>
-                      <SyncOutlined spin style={{ color: "#999" }} /> / {goal}{" "}
-                    </>
-                  ) : (
-                      <SyncOutlined spin style={{ color: "#999" }} />
+                  </>
+                ) : (
+                      <>
+                        {dayFromToday === 0 ? (
+                          <div
+                            className="Activity__action"
+                            id={activity + dayFromToday + "_check"}
+                            onClick={handleMinusClick}
+                          >
+                            <CloseOutlined />
+                          </div>
+                        ) : (
+                            <Popconfirm
+                              title={
+                                <>
+                                  Update this task from{" "}
+                                  <b>
+                                    <u>yesterday</u>
+                                  </b>
+                          ?
+                                </>
+                              }
+                              placement="bottom"
+                              onConfirm={handleMinusClick}
+                              okText="Yes"
+                              cancelText="No"
+                            >
+                              <div
+                                className="Activity__action"
+                                id={activity + dayFromToday + "_check"}
+                              >
+                                <CloseOutlined />
+                              </div>
+                            </Popconfirm>
+                          )}
+                      </>
                     )}
-                  {goal > 1 && props.activity.unit}
-                </>
-              ) : (
-                    <>
-                      {goal > 1 ? `${count} / ${goal} ` : `${props.activity.unit}!`}
-                      {goal > 1 && props.activity.unit}
-                    </>
+              </div>
+            )}
+
+          <Logo image={props.activity.icon} />
+
+          <div className={`Activity__text`}>
+            {updateLoadingError ? (
+              <CloseOutlined style={{ color: "#C70039" }} />
+            ) : updateLoading ? (
+              <>
+                {goal > 1 ? (
+                  <>
+                    <SyncOutlined spin style={{ color: "#999" }} /> / {goal}{" "}
+                  </>
+                ) : (
+                    <SyncOutlined spin style={{ color: "#999" }} />
                   )}
-              {optional && (
-                <div style={{ fontStyle: "italic", fontSize: ".7em" }}>
-                  <i>optional</i>
-                </div>
-              )}
-            </div>
+                {goal > 1 && props.activity.unit}
+              </>
+            ) : (
+                  <>
+                    {goal > 1 ? `${count} / ${goal} ` : `${props.activity.unit}!`}
+                    {goal > 1 && props.activity.unit}
+                  </>
+                )}
+            {optional && (
+              <div style={{ fontStyle: "italic", fontSize: ".7em" }}>
+                <i>optional</i>
+              </div>
+            )}
           </div>
-        </ConditionalWrapper>
-      </>
+        </div>
+      </ConditionalWrapper>
+    </>
   );
 };
