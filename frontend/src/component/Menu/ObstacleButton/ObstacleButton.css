@@ -21,7 +21,7 @@
 }
 
 .ObstacleButton__open {
-    width: 5.3em;
+    width: 6.7em;
     background-color: rgba(255, 255, 255, .9);
     color: rgba(0, 0, 0, .5);
     border: 1px solid rgba(110, 15, 28, .2);
@@ -54,6 +54,10 @@
 
 .ObstacleButton__logo {
     height: 1em;
+}
+
+.ObstacleButton__logoSofa {
+    height: .9em;
 }
 
 .ObstacleButton__snowflakeContainer {

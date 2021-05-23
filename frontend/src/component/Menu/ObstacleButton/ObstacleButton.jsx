@@ -4,6 +4,7 @@ import { Tooltip } from "antd";
 
 import travelLogo from './travel.png';
 import sickLogo from './sick.png';
+import sofaLogo from './sofa.png';
 import Snowflake from '../../Activity/snowflake.png';
 import { postObstacle } from './postObstacle';
 import { deleteObstacle } from './deleteObstacle';
@@ -15,6 +16,7 @@ export const ObstacleButton = () => {
     const [showObstacle, setShowObstacle] = useState(false);
     const [travel, setTravel] = useState(0);
     const [sick, setSick] = useState(0);
+    const [sofa, setSofa] = useState(0);
     const [tooltipTitle, setTooltipTitle] = useState("Freeze your streak?");
 
     const obstacleHandler = async (type) => {
@@ -52,6 +54,23 @@ export const ObstacleButton = () => {
                     console.log(err);
                 }
             }
+        } else if (type === "sofa") {
+            if (sofa) {
+                try {
+                    deleteObstacle(sofa)
+                    setSofa(0);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            else {
+                try {
+                    await postObstacle('sofa', 'sofa');
+                    await fetchObstacle();
+                } catch (err) {
+                    console.log(err);
+                }
+            }
         }
     }
 
@@ -78,6 +97,10 @@ export const ObstacleButton = () => {
             if (foundSick) {
                 setSick(foundSick.id);
             }
+            const foundSofa = await getObs.data.find(obs => obs.type === "sofa");
+            if (foundSofa) {
+                setSofa(foundSofa.id);
+            }
         }
     }, []);
 
@@ -88,7 +111,7 @@ export const ObstacleButton = () => {
     return (
         <Tooltip placement="left" title={tooltipTitle}>
             <div className={showObstacle ? "ObstacleButton__open ObstacleButton__float" : "ObstacleButton__close ObstacleButton__float"}>
-                {(!!travel || !!sick) && <div className="ObstacleButton__snowflakeContainer">
+                {(!!travel || !!sick || !!sofa) && <div className="ObstacleButton__snowflakeContainer">
                     <img
                         src={Snowflake}
                         alt='travel'
@@ -116,6 +139,16 @@ export const ObstacleButton = () => {
                             src={sickLogo}
                             alt='sick'
                             className='ObstacleButton__logo'
+                        />
+                    </div>
+                    <div
+                        className={`ObstacleButton__element ${!sofa && "ObstacleButton__elementGray"}`}
+                        onMouseOver={() => { setTooltipTitle('Enjoy a cheat-day?') }}
+                        onClick={() => { obstacleHandler("sofa") }}>
+                        <img
+                            src={sofaLogo}
+                            alt='sofa'
+                            className='ObstacleButton__logoSofa'
                         />
                     </div>
                     <div className="ObstacleButton__separator">|</div>
