@@ -141,7 +141,8 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
     const yesterdayObstacle = await client.query(
       `SELECT * FROM obstacle WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]} AND userid='${userid}'`
     );
-    const ignoreYesterday = yesterdayObstacle.rows.length > 0 ? true : false;
+    let ignoreYesterday = false;
+    if (yesterdayObstacle.rows.length > 0) { ignoreYesterday = true };
 
     if (yesterdayStreak.rows.length === 0) {
       await client.query(
@@ -204,7 +205,6 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
           }
         }
       }
-
       const updateFieldEdited = updateField.slice(0, -1); // delete the last comma
       const updateValuesEdited = updateValues.slice(0, -1); // delete the last comma
       const updateStreakQuery = `INSERT INTO streak (year, month, day, userid, ${updateFieldEdited}) VALUES (${toYear}, ${toMonth}, ${toDay}, '${userid}', ${updateValuesEdited})`;
