@@ -5,7 +5,7 @@ import { Tooltip } from "antd";
 import travelLogo from './travel.png';
 import sickLogo from './sick.png';
 import sofaLogo from './sofa.png';
-import Snowflake from '../../Activity/snowflake.png';
+import Snowflake from './snowflake.png';
 import { postObstacle } from './postObstacle';
 import { deleteObstacle } from './deleteObstacle';
 import { getObstacle } from './getObstacle';
@@ -111,14 +111,6 @@ export const ObstacleButton = () => {
     return (
         <Tooltip placement="left" title={tooltipTitle}>
             <div className={showObstacle ? "ObstacleButton__open ObstacleButton__float" : "ObstacleButton__close ObstacleButton__float"}>
-                {(!!travel || !!sick || !!sofa) && <div className="ObstacleButton__snowflakeContainer">
-                    <img
-                        src={Snowflake}
-                        alt='travel'
-                        className='ObstacleButton__snowflake'
-                    />
-                </div>
-                }
                 <div id="ObstacleButton__actionContainer">
                     <div
                         className={`ObstacleButton__element ${!travel && "ObstacleButton__elementGray"}`}
@@ -153,8 +145,10 @@ export const ObstacleButton = () => {
                     </div>
                     <div className="ObstacleButton__separator">|</div>
                 </div>
-                <ExclamationOutlined
-                    className="FloatButton__icon"
+                <img
+                    src={Snowflake}
+                    alt='snowflake'
+                    className={`ObstacleButton__snowflake ${(!travel && !sick && !sofa) && 'gray'}`}
                     onClick={() => { setShowObstacle(!showObstacle) }}
                     onMouseOver={() => { setTooltipTitle('Freeze your streak?') }}
                 />

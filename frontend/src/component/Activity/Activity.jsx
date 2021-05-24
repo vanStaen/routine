@@ -17,7 +17,7 @@ import getYesterdayDate from "../../helpers/getYesterdayDate";
 import { getStreak } from "../Streak/getStreak";
 import { Logo } from "../Logo/Logo";
 import { Streak } from "../Streak/Streak";
-import Snowflake from './snowflake.png'
+import Snowflake from '../Menu/ObstacleButton/snowflake.png'
 
 import "./Activity.css";
 

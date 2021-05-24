@@ -60,13 +60,12 @@
     height: .9em;
 }
 
-.ObstacleButton__snowflakeContainer {
-    position: absolute;
-    right: .5em;
+.ObstacleButton__snowflake {
+    position: relative;
+    top: -.1em;
+    height: 1em;
 }
 
-.ObstacleButton__snowflake {
-    position: absolute;
-    top: -.05em;
-    height: .5em;
+.gray {
+    filter: grayscale(100%);
 }
