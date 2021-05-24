@@ -67,6 +67,10 @@
     opacity: .6;
 }
 
+.ObstacleButton__snowflake:hover {
+    opacity: 1;
+}
+
 .gray {
     filter: grayscale(100%);
 }
