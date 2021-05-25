@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
-import { CountDown } from "../../component/CountDown/CountDown";
 import { Spinner } from "../../component/Spinner/Spinner";
 import { Daily } from "./Daily";
 
@@ -114,19 +113,11 @@ export const Dailies = () => {
 
   return isLoading ? <Spinner /> :
     dailies.map((daily, index) => {
-      return (<div className="Dailies__full" id={`daily${index}`} key={`daily${index}`}>
-        <div className="dailies__date">
-          {index === 0 && <CountDown />}
-          {index === 1 && `Yesterday`}
-          {index > 1 && `${daily.day}.${daily.month}.${daily.year}`}
-        </div>
-        <div className="dailies__main">
-          <Daily
-            dayFromToday={index}
-            activities={activities}
-            daily={daily}
-          />
-        </div>
-      </div>)
+      return (
+        <Daily
+          index={index}
+          activities={activities}
+          daily={daily}
+        />)
     });
 };

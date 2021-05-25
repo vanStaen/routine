@@ -53,7 +53,7 @@ export const Activity = (props) => {
     count >= goal ? (goal ? true : count > goal ? true : false) : false;
 
   const wasCountedAsDone = () => {
-    if (dayFromToday === 0) {
+    if (dayFromToday === 0 || props.isLoading) {
       return false
     } else {
       if (streakStore.dailyStreaks.get(dayFromToday)[activity] > 0) {

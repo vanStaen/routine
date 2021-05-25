@@ -1,15 +1,19 @@
 import { useState, useEffect, useCallback } from "react";
+import {
+    LoadingOutlined,
+} from '@ant-design/icons';
 
 import { getStreak } from "./getStreak";
 import { streakStore } from "../../store/streakStore";
 import { Activity } from "../../component/Activity/Activity";
-import { Spinner } from "../../component/Spinner/Spinner";
 import getYesterdayDate from "../../helpers/getYesterdayDate";
 import getTomorrowDate from "../../helpers/getTomorrowDate";
+import { CountDown } from "../../component/CountDown/CountDown";
 
 export const Daily = (props) => {
     const [isLoading, setIsLoading] = useState(true);
-    const dayFromToday = props.dayFromToday;
+    const [wasFrozen, setWasFrozen] = useState(false);
+    const dayFromToday = props.index;
     const year = props.daily.year;
     const month = props.daily.month;
     const day = props.daily.day;
@@ -59,18 +63,28 @@ export const Daily = (props) => {
         fetchStreak();
     }, [fetchStreak])
 
+    const activities = props.activities.map((activity) => {
+        return (
+            <Activity
+                activity={activity}
+                count={props.daily[activity.name] | 0}
+                key={activity.name}
+                dayFromToday={dayFromToday}
+                id={props.daily.id}
+                isLoading={isLoading}
+            />
+        );
+    });
 
-    return isLoading ? <Spinner /> :
-        props.activities.map((activity) => {
-            return (
-                <Activity
-                    activity={activity}
-                    count={props.daily[activity.name] | 0}
-                    key={activity.name}
-                    dayFromToday={dayFromToday}
-                    id={props.daily.id}
-                />
-            );
-        });
 
+    return <div className="Dailies__full" id={`daily${props.index}`} key={`daily${props.index}`}>
+        <div className="dailies__date">
+            {props.index === 0 && <CountDown />}
+            {props.index === 1 && `Yesterday`}
+            {props.index > 1 && `${props.daily.day}.${props.daily.month}.${props.daily.year}`}
+        </div>
+        <div className="dailies__main">
+            {activities}
+        </div>
+    </div>;
 } 

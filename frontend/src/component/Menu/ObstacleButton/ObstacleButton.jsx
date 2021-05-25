@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { ExclamationOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 
 import travelLogo from './travel.png';
