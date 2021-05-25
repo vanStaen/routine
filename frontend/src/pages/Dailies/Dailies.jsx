@@ -5,6 +5,10 @@ import { getActivities } from "./getActivities";
 import { Activity } from "../../component/Activity/Activity";
 import { CountDown } from "../../component/CountDown/CountDown";
 import { Spinner } from "../../component/Spinner/Spinner";
+import { getStreak } from "./getStreak";
+import { streakStore } from "../../store/streakStore";
+import getYesterdayDate from "../../helpers/getYesterdayDate";
+import getTomorrowDate from "../../helpers/getTomorrowDate";
 
 import "./Dailies.css";
 
@@ -35,6 +39,47 @@ export const Dailies = () => {
     }
     setIsLoading(false);
   };
+
+
+  const fetchStreak = useCallback(async (year, month, day, dayFromToday) => {
+
+    console.log(streakStore.dailyStreaks);
+
+    // should fetch both Yesterday, Today and Tomorrow. 
+    const dateYesterday = getYesterdayDate(year, month, day);
+    const datetomorrow = getTomorrowDate(year, month, day);
+
+    // check if today is in store already
+    if (streakStore.dailyStreaks.has(dayFromToday)) {
+      // if not, fetch and store
+      try {
+        const fetchedStreak = await getStreak(year, month, day);
+        streakStore.setDailyStreaks(fetchedStreak, dayFromToday);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    // check if yesterday is in store already
+    if (streakStore.dailyStreaks.has(dayFromToday + 1)) {
+      // if not, fetch and store
+      try {
+        const fetchedStreak = await getStreak(dateYesterday[0], dateYesterday[1], dateYesterday[2]);
+        streakStore.setDailyStreaks(fetchedStreak, dayFromToday + 1);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    // check if yesterday is in store already
+    if (streakStore.dailyStreaks.has(dayFromToday - 1) && dayFromToday > 0) {
+      // if not, fetch and store
+      try {
+        const fetchedStreak = await getStreak(datetomorrow[0], datetomorrow[1], datetomorrow[2]);
+        streakStore.setDailyStreaks(fetchedStreak, dayFromToday - 1);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }, []);
 
   const keyDownHandler = useCallback((event) => {
     event.preventDefault();
@@ -113,6 +158,10 @@ export const Dailies = () => {
   }, [keyDownHandler, scrollHandler]);
 
   const formattedDaily = (dayFromToday) => {
+    const year = dailies[dayFromToday].year;
+    const month = dailies[dayFromToday].month;
+    const day = dailies[dayFromToday].day;
+    fetchStreak(year, month, day, dayFromToday);
     return activities.map((activities) => {
       return (
         <Activity

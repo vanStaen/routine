@@ -13,8 +13,6 @@ import { patchStreak } from "./patchStreak";
 import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
 import { ConditionalWrapper } from "../../helpers/ConditionnalWrapper";
 import { streakStore } from "../../store/streakStore";
-import getYesterdayDate from "../../helpers/getYesterdayDate";
-import { getStreak } from "../Streak/getStreak";
 import { Logo } from "../Logo/Logo";
 import { Streak } from "../Streak/Streak";
 import Snowflake from '../Menu/ObstacleButton/snowflake.png'
@@ -35,55 +33,23 @@ export const Activity = (props) => {
     props.dailies[props.activity.name] ? props.dailies[props.activity.name] : 0
   );
 
-  const year = props.dailies.year;
-  const month = props.dailies.month;
-  const day = props.dailies.day;
-  const dayFromToday = props.dayFromToday;
-  const id = props.dailies.id;
+  const dayFromToday = props.dayFromToday; const id = props.dailies.id;
   const activity = props.activity.name;
   const increment = props.activity.increment;
   const goal = props.activity.goal;
   const optional = props.activity.optional;
-
-  const fetchStreak = useCallback(async () => {
-    // check if today is in store already
-    const indexStoredStreakToday = streakStore.dailyStreaks.findIndex((daily) => daily.dayFromToday === dayFromToday);
-    if (indexStoredStreakToday < 0) {
-      // if not, fetch and store
-      try {
-        const fetchedStreak = await getStreak(year, month, day);
-        streakStore.setDailyStreaks(fetchedStreak, dayFromToday);
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-    // check if yesterday is in store already
-    const indexStoredStreakYesterday = streakStore.dailyStreaks.findIndex((daily) => daily.dayFromToday === (dayFromToday + 1));
-    if (indexStoredStreakYesterday < 0) {
-      // if not, fetch and store
-      try {
-        const dateYesterday = getYesterdayDate(year, month, day);
-        const fetchedStreak = await getStreak(dateYesterday[0], dateYesterday[1], dateYesterday[2]);
-        streakStore.setDailyStreaks(fetchedStreak, dayFromToday + 1);
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-    setIsLoading(false);
-  }, [year, month, day, dayFromToday]);
 
   const isSmallDevice = useCallback(() => {
     setSmallDevice(window.innerWidth < WIDTH_SMALL_DEVICE_PIXEL ? true : false);
   }, []);
 
   useEffect(() => {
-    fetchStreak();
     isSmallDevice();
     window.addEventListener("resize", isSmallDevice);
     return () => {
       window.removeEventListener("resize", isSmallDevice);
     };
-  }, [fetchStreak, isSmallDevice]);
+  }, [isSmallDevice]);
 
   const done =
     count >= goal ? (goal ? true : count > goal ? true : false) : false;

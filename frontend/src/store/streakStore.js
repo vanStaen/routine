@@ -2,7 +2,7 @@ import { action, makeObservable, observable } from "mobx";
 
 export class StreakStore {
 
-    dailyStreaks = [];
+    dailyStreaks = new Map();
 
     constructor() {
         makeObservable(this, {
@@ -12,8 +12,8 @@ export class StreakStore {
     }
 
     setDailyStreaks = (dailyStreak, dayFromToday) => {
-        dailyStreak.dayFromToday = dayFromToday;
-        this.dailyStreaks.push(dailyStreak);
+        console.log("Set", dailyStreak, dayFromToday)
+        this.dailyStreaks.set(dayFromToday, dailyStreak);
     };
 
 }
