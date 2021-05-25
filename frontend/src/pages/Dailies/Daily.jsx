@@ -1,7 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import {
-    LoadingOutlined,
-} from '@ant-design/icons';
 
 import { getStreak } from "./getStreak";
 import { streakStore } from "../../store/streakStore";
@@ -9,6 +6,9 @@ import { Activity } from "../../component/Activity/Activity";
 import getYesterdayDate from "../../helpers/getYesterdayDate";
 import getTomorrowDate from "../../helpers/getTomorrowDate";
 import { CountDown } from "../../component/CountDown/CountDown";
+import { getObstacleForDate } from "../../component/Menu/ObstacleButton/getObstacle"
+
+import Snowflake from '../../component/Menu/ObstacleButton/snowflake.png'
 
 export const Daily = (props) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +29,6 @@ export const Daily = (props) => {
             try {
                 const fetchedStreak = await getStreak(year, month, day);
                 streakStore.setDailyStreaks(fetchedStreak, dayFromToday);
-                console.log("added", fetchedStreak, dayFromToday);
             } catch (error) {
                 console.log(error.message);
             }
@@ -40,7 +39,6 @@ export const Daily = (props) => {
             try {
                 const fetchedStreak = await getStreak(dateYesterday[0], dateYesterday[1], dateYesterday[2]);
                 streakStore.setDailyStreaks(fetchedStreak, dayFromToday + 1);
-                console.log("added", fetchedStreak, dayFromToday + 1);
             } catch (error) {
                 console.log(error.message);
             }
@@ -51,7 +49,6 @@ export const Daily = (props) => {
             try {
                 const fetchedStreak = await getStreak(datetomorrow[0], datetomorrow[1], datetomorrow[2]);
                 streakStore.setDailyStreaks(fetchedStreak, dayFromToday - 1);
-                console.log("added", fetchedStreak, dayFromToday - 1);
             } catch (error) {
                 console.log(error.message);
             }
@@ -59,9 +56,18 @@ export const Daily = (props) => {
         setIsLoading(false);
     }, [year, day, month, dayFromToday]);
 
+
+    const fetchObstacleForDate = useCallback(async () => {
+        const getObs = await getObstacleForDate(year, month, day);
+        if (getObs.data.length > 0) {
+            setWasFrozen(true);
+        }
+    }, [day, month, year]);
+
     useEffect(() => {
         fetchStreak();
-    }, [fetchStreak])
+        fetchObstacleForDate();
+    }, [fetchStreak, fetchObstacleForDate])
 
     const activities = props.activities.map((activity) => {
         return (
@@ -78,10 +84,17 @@ export const Daily = (props) => {
 
 
     return <div className="Dailies__full" id={`daily${props.index}`} key={`daily${props.index}`}>
-        <div className="dailies__date">
+        <div className={`dailies__date ${wasFrozen && "blue"}`}>
             {props.index === 0 && <CountDown />}
             {props.index === 1 && `Yesterday`}
             {props.index > 1 && `${props.daily.day}.${props.daily.month}.${props.daily.year}`}
+            {wasFrozen && <div className="snowflake__container">
+                <img
+                    src={Snowflake}
+                    alt='travel'
+                    className='snowflake'
+                />
+            </div>}
         </div>
         <div className="dailies__main">
             {activities}

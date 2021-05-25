@@ -1,5 +1,6 @@
 .Dailies__full {
-  min-height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  min-height: 100vh;
+  /* Fallback for browsers that do not support Custom Properties */
   min-height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   display: flex;
@@ -31,7 +32,6 @@
   margin: 0 0 1em 0;
 }
 
-
 @media screen and (min-width: 1000px) {
   .dailies__main {
     max-width: 90%;
@@ -48,4 +48,20 @@
   .dailies__main {
     max-width: 70%;
   }
+}
+
+.blue {
+  color: #80dfff;
+}
+
+.snowflake__container {
+  position: relative;
+}
+
+.snowflake {
+  position: absolute;
+  right: -1em;
+  top: -2em;
+  opacity: .5;
+  width: 1em;
 }

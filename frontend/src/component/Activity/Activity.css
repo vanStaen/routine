@@ -20,6 +20,12 @@
   background-color: rgba(40, 44, 52, 0.9);
 }
 
+.Activity__freezeContainer {
+  position: absolute;
+  width: 5em;
+  height: 5em;
+}
+
 .Dailies__full:nth-child(even) .Activity__doneContainer {
   background-color: rgba(67, 70, 77, 0.9);
 }
@@ -33,9 +39,8 @@
 
 .Activity__freeze {
   position: relative;
-  top: -1em;
-  left: 2em;
-  opacity: .5;
+  bottom: -3em;
+  opacity: .1;
   z-index: 10;
 }
 

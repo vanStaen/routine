@@ -238,12 +238,12 @@ export const Activity = (props) => {
           )}
           {wasCountedAsDone() && !done &&
             (
-              <div className="Activity__doneContainer">
+              <div className="Activity__freezeContainer">
                 <div className="Activity__freeze">
                   <img
                     src={Snowflake}
                     alt='travel'
-                    width='22em'
+                    width='50em'
                   />
                 </div>
               </div>

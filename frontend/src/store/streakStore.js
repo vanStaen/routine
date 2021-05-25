@@ -12,7 +12,6 @@ export class StreakStore {
     }
 
     setDailyStreaks = (dailyStreak, dayFromToday) => {
-        console.log("Set", dailyStreak, dayFromToday)
         this.dailyStreaks.set(dayFromToday, dailyStreak);
     };
 
