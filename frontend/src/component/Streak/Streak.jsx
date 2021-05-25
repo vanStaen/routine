@@ -56,9 +56,9 @@ export const Streak = observer((props) => {
   return (<div
     className={float ? "Streak__Float" : "Streak__Round"}
     style={{
-      backgroundColor: StreakWasFrozen(dayFromToday) ? `rgba(3, 119, 156, ${backGroundColor(streakStore.dailyStreaks[dayFromToday][activity])})` : `rgba(214, 137, 16, ${backGroundColor(streakStore.dailyStreaks[dayFromToday][activity])})`,
+      backgroundColor: StreakWasFrozen(dayFromToday) ? `rgba(3, 119, 156, ${backGroundColor(streakStore.dailyStreaks.get(dayFromToday)[activity])})` : `rgba(214, 137, 16, ${backGroundColor(streakStore.dailyStreaks.get(dayFromToday)[activity])})`,
     }}
   >
-    {streakStore.dailyStreaks[dayFromToday][activity] > 999 ? "999+" : streakStore.dailyStreaks[dayFromToday][activity]}
+    {streakStore.dailyStreaks.get(dayFromToday)[activity] > 999 ? "999+" : streakStore.dailyStreaks.get(dayFromToday)[activity]}
   </div>)
 });

@@ -22,18 +22,16 @@ import "./Activity.css";
 const WIDTH_SMALL_DEVICE_PIXEL = 900;
 
 export const Activity = (props) => {
-  const [isLoading, setIsLoading] = useState(true);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [updateLoadingError, setUpdateLoadingError] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
+  const [count, setCount] = useState(props.count);
   const [smallDevice, setSmallDevice] = useState(
     window.innerWidth < WIDTH_SMALL_DEVICE_PIXEL ? true : false
   );
-  const [count, setCount] = useState(
-    props.dailies[props.activity.name] ? props.dailies[props.activity.name] : 0
-  );
 
-  const dayFromToday = props.dayFromToday; const id = props.dailies.id;
+  const id = props.id;
+  const dayFromToday = props.dayFromToday;
   const activity = props.activity.name;
   const increment = props.activity.increment;
   const goal = props.activity.goal;
@@ -58,8 +56,8 @@ export const Activity = (props) => {
     if (dayFromToday === 0) {
       return false
     } else {
-      if (streakStore.dailyStreaks[dayFromToday][activity] > 0) {
-        if (streakStore.dailyStreaks[dayFromToday][activity] === streakStore.dailyStreaks[dayFromToday - 1][activity]) {
+      if (streakStore.dailyStreaks.get(dayFromToday)[activity] > 0) {
+        if (streakStore.dailyStreaks.get(dayFromToday)[activity] === streakStore.dailyStreaks.get(dayFromToday - 1)[activity]) {
           return true;
         } else {
           return false;
@@ -153,7 +151,6 @@ export const Activity = (props) => {
             {props.activity.desc}
             <Streak
               activity={props.activity}
-              daily={props.dailies}
               dayFromToday={dayFromToday}
               float={false}
             />
@@ -222,7 +219,6 @@ export const Activity = (props) => {
                 {props.activity.desc}{" "}
                 <Streak
                   activity={props.activity}
-                  daily={props.dailies}
                   dayFromToday={dayFromToday} />
               </>
             }
@@ -240,8 +236,7 @@ export const Activity = (props) => {
               </div>
             </div>
           )}
-          {!isLoading &&
-            wasCountedAsDone() && !done &&
+          {wasCountedAsDone() && !done &&
             (
               <div className="Activity__doneContainer">
                 <div className="Activity__freeze">
