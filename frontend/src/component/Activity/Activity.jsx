@@ -145,10 +145,10 @@ export const Activity = (props) => {
       <Drawer
         title={
           <>
+            {capitalizeFirstLetter(props.activity.name)}
             <span className="Drawer__title">
-              {capitalizeFirstLetter(props.activity.name)}
+              {capitalizeFirstLetter(props.activity.desc)}
             </span>
-            {props.activity.desc}
             <Streak
               activity={props.activity}
               dayFromToday={dayFromToday}
