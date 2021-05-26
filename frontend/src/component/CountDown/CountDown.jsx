@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import 'moment-timezone';
-import getTomorrowDate from "../../helpers/getTomorrowDate";
 import moment from 'moment-timezone';
+
+import { getTomorrowDate } from "../../helpers/getTomorrowDate";
 
 import "./CountDown.css";
 
