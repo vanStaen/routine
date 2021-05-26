@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
+import { Tooltip } from "antd";
 
 import { getStreak } from "./getStreak";
 import { streakStore } from "../../store/streakStore";
 import { Activity } from "../../component/Activity/Activity";
-import getYesterdayDate from "../../helpers/getYesterdayDate";
-import getTomorrowDate from "../../helpers/getTomorrowDate";
+import { getYesterdayDate } from "../../helpers/getYesterdayDate";
+import { getTomorrowDate } from "../../helpers/getTomorrowDate";
+import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
 import { CountDown } from "../../component/CountDown/CountDown";
 import { getObstacleForDate } from "../../component/Menu/ObstacleButton/getObstacle"
 
@@ -12,7 +14,7 @@ import Snowflake from '../../component/Menu/ObstacleButton/snowflake.png'
 
 export const Daily = (props) => {
     const [isLoading, setIsLoading] = useState(true);
-    const [wasFrozen, setWasFrozen] = useState(false);
+    const [wasFrozen, setWasFrozen] = useState(null);
     const dayFromToday = props.index;
     const year = props.daily.year;
     const month = props.daily.month;
@@ -60,7 +62,7 @@ export const Daily = (props) => {
     const fetchObstacleForDate = useCallback(async () => {
         const getObs = await getObstacleForDate(year, month, day);
         if (getObs.data.length > 0) {
-            setWasFrozen(true);
+            setWasFrozen(getObs.data[0].type);
         }
     }, [day, month, year]);
 
@@ -88,13 +90,16 @@ export const Daily = (props) => {
             {props.index === 0 && <CountDown />}
             {props.index === 1 && `Yesterday`}
             {props.index > 1 && `${props.daily.day}.${props.daily.month}.${props.daily.year}`}
-            {wasFrozen && <div className="snowflake__container">
-                <img
-                    src={Snowflake}
-                    alt='travel'
-                    className='snowflake'
-                />
-            </div>}
+            {wasFrozen &&
+                <div className="snowflake__container">
+                    <Tooltip placement="right" title={capitalizeFirstLetter(wasFrozen)}>
+                        <img
+                            src={Snowflake}
+                            alt='travel'
+                            className='snowflake'
+                        />
+                    </Tooltip>
+                </div>}
         </div>
         <div className="dailies__main">
             {activities}
