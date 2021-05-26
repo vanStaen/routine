@@ -115,3 +115,12 @@
   color: #D68910;
   text-shadow: 2px 2px rgba(214, 137, 16, .25);
 }
+
+.green {
+  color: green;
+  text-shadow: 2px 2px rgba(0, 128, 0, .25);
+}
+
+.snowflakeLogo {
+  height: 2.2em;
+}

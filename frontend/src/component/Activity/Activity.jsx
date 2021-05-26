@@ -176,7 +176,7 @@ export const Activity = (props) => {
               {updateLoading ? (
                 <SyncOutlined spin style={{ color: "#999" }} />
               ) : (
-                  <span className={count < goal ? "" : "gold"}>{count}</span>
+                  <span className={count < goal ? "" : count === goal ? "green" : "gold"}>{count}</span>
                 )}
               <span className="transparentWhite">&nbsp;/ {goal}</span>
             </div>
@@ -243,7 +243,7 @@ export const Activity = (props) => {
                   <img
                     src={Snowflake}
                     alt='travel'
-                    width='50em'
+                    className='snowflakeLogo'
                   />
                 </div>
               </div>
