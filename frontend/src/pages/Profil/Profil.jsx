@@ -65,9 +65,13 @@ export const Profil = observer(() => {
       activityToUpdate[e.target.name] = e.target.value;
     }
     setUserActivities(allUserActivities);
-    console.log(userStore.userActivities);
+    console.log(selected);
+    console.log(userStore.userActivities[0]);
     /*
     TODO: must be persisted in db
+
+    JsonStringify(Proxy) -> normal String format.
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
     */
   };
 
