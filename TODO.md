@@ -3,9 +3,6 @@
 ## Backlog:
 
 - [ ] Checkpoint streak shows star
-- [ ] Save streak with 
-  - [ ] Accident
-  - [ ] 1 cheat day per week 
 - [ ] Manage different user
   - [x] Authorisation process
     - [x] login form
@@ -45,3 +42,4 @@
 - [x] Check task from yesterday, and update streak
 - [x] Action in a drawer for user with small device 
 - [x] Add parameter "icon" to activities
+- [x] freeze streak if any 'obstacles'

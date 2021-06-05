@@ -121,8 +121,8 @@ router.patch("/:activity", async (req, res) => {
     );
     const streakOfYesterday = streak.rows[0][req.params.activity];
     await client.query(
-        `UPDATE streak SET ${req.params.activity}=${streakOfYesterday + 1} WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
-      );
+      `UPDATE streak SET ${req.params.activity}=${streakOfYesterday + 1} WHERE year=${year} AND month=${month} AND day=${day} AND userid='${req.userId}'`
+    );
     res.status(200).json(streak.rows);
   } catch (err) {
     res.status(400).json({
@@ -138,6 +138,11 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
     const yesterdayStreak = await client.query(
       `SELECT * FROM streak WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]} AND userid='${userid}'`
     );
+    const yesterdayObstacle = await client.query(
+      `SELECT * FROM obstacle WHERE year=${yesterdayDate[0]} AND month=${yesterdayDate[1]} AND day=${yesterdayDate[2]} AND userid='${userid}'`
+    );
+    let ignoreYesterday = false;
+    if (yesterdayObstacle.rows.length > 0) { ignoreYesterday = true };
 
     if (yesterdayStreak.rows.length === 0) {
       await client.query(
@@ -191,12 +196,15 @@ const updateStreakBasedonYesterday = async (toYear, toMonth, toDay, userid) => {
             } else {
               updateValues = updateValues + `0,`;
             }
-          } else {
+          } else if (ignoreYesterday) {
+            updateValues =
+              updateValues + `${yesterdayStreakResult[activity]},`;
+          }
+          else {
             updateValues = updateValues + `0,`;
           }
         }
       }
-
       const updateFieldEdited = updateField.slice(0, -1); // delete the last comma
       const updateValuesEdited = updateValues.slice(0, -1); // delete the last comma
       const updateStreakQuery = `INSERT INTO streak (year, month, day, userid, ${updateFieldEdited}) VALUES (${toYear}, ${toMonth}, ${toDay}, '${userid}', ${updateValuesEdited})`;

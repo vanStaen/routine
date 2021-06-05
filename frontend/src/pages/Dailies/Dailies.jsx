@@ -2,9 +2,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 import { getDailies } from "./getDailies";
 import { getActivities } from "./getActivities";
-import { Activity } from "../../component/Activity/Activity";
-import { CountDown } from "../../component/CountDown/CountDown";
 import { Spinner } from "../../component/Spinner/Spinner";
+import { Daily } from "./Daily";
 
 import "./Dailies.css";
 
@@ -112,32 +111,13 @@ export const Dailies = () => {
     };
   }, [keyDownHandler, scrollHandler]);
 
-  const formattedDaily = (dayFromToday) => {
-    return activities.map((activities) => {
+  return isLoading ? <Spinner /> :
+    dailies.map((daily, index) => {
       return (
-        <Activity
-          activity={activities}
-          dailies={dailies[dayFromToday]}
-          key={activities.name}
-          dayFromToday={dayFromToday}
-        />
-      );
+        <Daily
+          index={index}
+          activities={activities}
+          daily={daily}
+        />)
     });
-  };
-
-  let listDailies = [];
-  for (let i = 0; i < limit.current; i++) {
-    listDailies.push(
-      <div className="Dailies__full" id={`daily${i}`} key={`daily${i}`}>
-        <div className="dailies__date">
-          {i === 0 && <CountDown />}
-          {i === 1 && `Yesterday`}
-          {i > 1 && `${dailies[i].day}.${dailies[i].month}.${dailies[i].year}`}
-        </div>
-        <div className="dailies__main">{formattedDaily(i)}</div>
-      </div>
-    );
-  }
-
-  return isLoading ? <Spinner /> : listDailies;
 };

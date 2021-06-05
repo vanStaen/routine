@@ -38,6 +38,7 @@ app.use('/images', express.static(path.join(__dirname, "images")));
 // Router to API endpoints
 app.use("/dailies", require("./api/dailies"));
 app.use("/activity", require("./api/activity"));
+app.use("/obstacle", require("./api/obstacle"));
 app.use("/streak", require("./api/streak"));
 app.use("/user", require("./api/user"));
 app.use("/login", require("./api/login"));

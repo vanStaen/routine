@@ -6,8 +6,8 @@ axios.interceptors.request.use(
     //console.log(`${config.method} ${config.url}`);
     try {
       const token = authStore.token ?
-      await authStore.token :
-      await authStore.getNewToken();
+        await authStore.token :
+        await authStore.getNewToken();
       // console.log("Request send with token:", token);
       if (token) {
         config.headers = Object.assign({
@@ -16,7 +16,7 @@ axios.interceptors.request.use(
         });
       }
     }
-    catch (err) { console.log(err);}
+    catch (err) { console.log(err); }
     return config;
   },
   (error) => {
