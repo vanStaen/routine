@@ -46,22 +46,40 @@ export const Streak = observer((props) => {
   };
 
   const StreakWasFrozen = () => {
-    if (streakStore.dailyStreaks.get(dayFromToday)[activity] === streakStore.dailyStreaks.get(dayFromToday + 1)[activity]) {
-      return true;
-    } else {
+    try {
+      if (
+        streakStore.dailyStreaks.get(dayFromToday)[activity] ===
+        streakStore.dailyStreaks.get(dayFromToday + 1)[activity]
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      console.log(e);
       return false;
     }
-  }
+  };
 
-  return (
-    streakStore.dailyStreaks.get(dayFromToday)[activity] === 0 ?
-      <> </> :
-      <div
-        className={float ? "Streak__Float" : "Streak__Round"}
-        style={{
-          backgroundColor: StreakWasFrozen(dayFromToday) ? `rgba(3, 119, 156, ${backGroundColor(streakStore.dailyStreaks.get(dayFromToday)[activity])})` : `rgba(214, 137, 16, ${backGroundColor(streakStore.dailyStreaks.get(dayFromToday)[activity])})`,
-        }}
-      >
-        {streakStore.dailyStreaks.get(dayFromToday)[activity] > 999 ? "999+" : streakStore.dailyStreaks.get(dayFromToday)[activity]}
-      </div>)
+  return streakStore.dailyStreaks.get(dayFromToday)[activity] &&
+    streakStore.dailyStreaks.get(dayFromToday)[activity] === 0 ? (
+    <> </>
+  ) : (
+    <div
+      className={float ? "Streak__Float" : "Streak__Round"}
+      style={{
+        backgroundColor: StreakWasFrozen(dayFromToday)
+          ? `rgba(3, 119, 156, ${backGroundColor(
+              streakStore.dailyStreaks.get(dayFromToday)[activity]
+            )})`
+          : `rgba(214, 137, 16, ${backGroundColor(
+              streakStore.dailyStreaks.get(dayFromToday)[activity]
+            )})`,
+      }}
+    >
+      {streakStore.dailyStreaks.get(dayFromToday)[activity] > 999
+        ? "999+"
+        : streakStore.dailyStreaks.get(dayFromToday)[activity]}
+    </div>
+  );
 });

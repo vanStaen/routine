@@ -2,7 +2,7 @@ const express = require("express");
 const Token = require("../models/Token");
 const router = express.Router();
 
-// POST login
+// DELETE login
 router.delete("/", async (req, res) => {
   if (!req.body.refreshToken) {
     return res.status(401).json({ error: `No refresh token was provided` });
