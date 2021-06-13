@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import moment from 'moment-timezone';
+import moment from "moment-timezone";
 
 import { getTomorrowDate } from "../../helpers/getTomorrowDate";
 
 import "./CountDown.css";
 
-const year = moment().tz("Europe/Berlin").format('YYYY');
-const month = moment().tz("Europe/Berlin").format('MM');
-const day = moment().tz("Europe/Berlin").format('DD')
-
+const year = moment().tz("Europe/Berlin").format("YYYY");
+const month = moment().tz("Europe/Berlin").format("MM");
+const day = moment().tz("Europe/Berlin").format("DD");
 
 const formatTimeStamp = (timeInSec) => {
   var sec_num = parseInt(timeInSec, 10);
@@ -52,18 +51,19 @@ export const CountDown = () => {
   useEffect(() => {
     setTimeout(() => {
       setTimeLeft(timeLeftUntilTomorrow());
+      if (timeLeft < -60) {
+        window.location.reload();
+      }
     }, 1000);
   }, [timeLeft]);
 
   return timeLeft < 0 ? (
-    <div className={timeLeft < 7200 ? "countdown__alert" : ""}>
-      00:00:00
-    </div>
+    <div className={timeLeft < 7200 ? "countdown__alert" : ""}>00:00:00</div>
   ) : timeLeft < 18000 ? (
     <div className={timeLeft < 7200 ? "countdown__alert" : ""}>
       {formatTimeStamp(timeLeft)}
     </div>
   ) : (
-        "Today"
-      );
+    "Today"
+  );
 };
