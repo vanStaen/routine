@@ -25,6 +25,7 @@
 - [ ] Auth should use Postgres instead of Mongoose
 - [ ] Statistics 
 - [ ] Save Dailies per user as object instead of per columns
+- [ ] When updating one activity, the latest stand of all get fetched
 
 ## Completed ✓
 

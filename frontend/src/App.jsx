@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { observer } from "mobx-react";
 
 import { Dailies } from "./pages/Dailies/Dailies";
@@ -29,7 +29,7 @@ const App = observer(() => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // On mount, update token
     if (authStore.refreshToken) {
       loginOnMount();
